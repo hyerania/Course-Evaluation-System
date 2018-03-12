@@ -5,9 +5,21 @@ one:
   content: MyString
   type: 
   answer: MyString
+  c1: MyString
+  c2: MyString
+  c3: MyString
+  c4: MyString
+  c5: MyString
+  parameters: MyString
 
 two:
   qid: 1
   content: MyString
   type: 
   answer: MyString
+  c1: MyString
+  c2: MyString
+  c3: MyString
+  c4: MyString
+  c5: MyString
+  parameters: MyString

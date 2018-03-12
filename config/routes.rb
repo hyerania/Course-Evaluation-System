@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'questions/view'
+
+  get 'questions/edit'
+
+  get 'questions/remove'
+
   root to: 'welcome#show'
   get 'about', to: 'about#show'
   # '/' Route

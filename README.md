@@ -1,6 +1,39 @@
 # CSCE606-Project
 CSCE120 Self-Evaluation Exam
 
+## Development Workflow
+We will be utilizing a simple version of Gitflow. [More Info](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
+
+### Development
+Most tasks will be possible by branching off of `develop`. The name of the branch should be the name of your story but replacing all spaces with `-` in all lower case under the appropriate category. Ex: The story "Create and setup initial student database" will be `feature/create-and-setup-initial-student-database`. If the story is a bug, replace "feature" with "bug". In order to do this (update branches/category appropriately):
+```
+git checkout develop
+git pull
+git branch -b feature/create-and-setup-initial-student-database
+git push --set-upstream origin feature/create-and-setup-initial-student-database
+```
+
+After completion of your task, reverse merge develop into your branch to ensure that everything is still working. NOTE: This means checking local and Cloud 9 to ensure that all things work.
+```
+# Check to see if all changes are done
+git status
+
+git checkout develop
+git pull
+git checkout <ORIGINAL-BRANCH>
+git merge <ORIGINAL-BRANCH> develop
+```
+
+### Releases
+All releases will be on the master branch tagged with the release/iteration complete number. Once it is time to release, merge develop into master and tag master. Ex:
+```
+git checkout develop
+git pull
+git checkout master
+git merge master develop
+git tag iteration0
+```
+
 ## Setup Instructions (Local - Mac OS X)
 1. Use RVM to switch to Ruby 2.4.1
 ```

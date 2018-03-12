@@ -19,7 +19,7 @@ Student.create([{
 Question.create([{
     qid: 1001,
     content: "What is the color of the sky?",
-    type: "MC",
+    qtype: "MC",
     answer: "Blue",
     created_at: DateTime.strptime("03/10/2018 17:00", "%m/%d/%Y %H:%M"),
     updated_at: DateTime.strptime("03/10/2018 17:00", "%m/%d/%Y %H:%M"),
@@ -28,5 +28,4 @@ Question.create([{
     c3: "White",
     c4: "Pink",
     c5: "Orange",
-    parameters: null,
 }])

@@ -3,7 +3,7 @@
 one:
   qid: 1
   content: MyString
-  type: 
+  qtype: MyString
   answer: MyString
   c1: MyString
   c2: MyString
@@ -15,7 +15,7 @@ one:
 two:
   qid: 1
   content: MyString
-  type: 
+  qtype: MyString
   answer: MyString
   c1: MyString
   c2: MyString

@@ -23,7 +23,8 @@ default: &default
 
 development:
   <<: *default
-  database: online-assessment_development
+  database: development
+  username: ec2
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uin: 1
+  name: MyString
+  section: 1
+  attempts: 1
+  score: 1
+  last_start: 2018-03-10 17:31:53
+  last_end: 2018-03-10 17:31:53
+
+two:
+  uin: 1
+  name: MyString
+  section: 1
+  attempts: 1
+  score: 1
+  last_start: 2018-03-10 17:31:53
+  last_end: 2018-03-10 17:31:53

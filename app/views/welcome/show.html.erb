@@ -3,26 +3,26 @@
  The time is now: <%= Time.now %>
 </p>
 
-<!--<table>-->
-<!--    <thead>-->
-<!--        <tr>-->
-<!--            <th>UIN</th>-->
-<!--            <th>Student Name</th>-->
-<!--            <th>Section</th>-->
-<!--            <th>Attempts</th>-->
-<!--            <th>Score</th>-->
-<!--        </tr>-->
-<!--    </thead>-->
+<table>
+    <thead>
+        <tr>
+            <th>UIN</th>
+            <th>Student Name</th>
+            <th>Section</th>
+            <th>Attempts</th>
+            <th>Score</th>
+        </tr>
+    </thead>
   
-<!--    <tbody>-->
-<!--        <% @students.each do |student| %>-->
-<!--          <tr>-->
-<!--            <td><%= student.uin %></td>-->
-<!--            <td><%= student.name %></td>-->
-<!--            <td><%= student.section %></td>-->
-<!--            <td><%= student.attempts %></td>-->
-<!--            <td><%= student.score %></td>-->
-<!--          </tr>-->
-<!--        <% end %>-->
-<!--    </tbody>-->
-<!--</table>-->
+    <tbody>
+        <% @students.each do |student| %>
+          <tr>
+            <td><%= student.uin %></td>
+            <td><%= student.name %></td>
+            <td><%= student.section %></td>
+            <td><%= student.attempts %></td>
+            <td><%= student.score %></td>
+          </tr>
+        <% end %>
+    </tbody>
+</table>

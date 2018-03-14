@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :students
   get 'questions/view'
 
   get 'questions/edit'

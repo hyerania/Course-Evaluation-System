@@ -5,10 +5,9 @@ class WelcomeController < ApplicationController
   end
 
   def show
-    uin = params[:uin] # retrieve student ID from URI route
-    @student = Students.find(uin) # look up movie by unique ID
+    # uin = params[:uin] # retrieve student ID from URI route
+    @student = Students.all # look up movie by unique ID
+    
   end
   
-  def show
-  end
 end

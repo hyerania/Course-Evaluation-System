@@ -114,7 +114,7 @@ sudo yum -y install postgresql postgresql-server postgresql-devel postgresql-con
 bundle install
 ```
 
-7. Setup Cloud 9's Postgresql
+7. Setup Cloud 9's Postgresql (Look at section below!)
 
 
 7. Start the server to check everything works. Same as the homework, a little window should popup with the URL.

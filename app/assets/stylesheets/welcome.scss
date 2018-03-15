@@ -1,38 +1,3 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-//colors
-$black:  black;
-$white: #fff;
-
-//@extend-elements
-//original selectors
-//th, td
-%extend_1 {
-	border: 1px solid $black;
-	border-collapse: collapse;
-	padding: 15px;
-	text-align: left;
-}
-
-
-table {
-	width: 100%;
-	border: 1px solid $black;
-	border-collapse: collapse;
-	&#t01 {
-		tr: ;
-	}
-}
-th {
-	@extend %extend_1;
-	background-color: $white;
-	color: $black;
-}
-td {
-	@extend %extend_1;
-}
-&:nth-child(odd) {
-	background-color: $white;
-}

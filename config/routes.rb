@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'admin/show'
+
+  get 'students/show'
+
   resources :students
   get 'questions/view'
 

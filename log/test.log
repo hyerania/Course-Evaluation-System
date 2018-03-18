@@ -1,0 +1,234 @@
+  [1m[35m (1.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "test"[0m
+  [1m[35m (10.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7458657555131878620)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateStudents (20180310173153)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.3ms)[0m  [1m[35mCREATE TABLE "students" ("id" bigserial primary key, "uin" integer, "name" character varying, "section" integer, "attempts" integer, "score" integer, "last_start" timestamp, "last_end" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE  INDEX  "index_students_on_uin" ON "students"  ("uin")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180310173153"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateQuestions (20180312142612)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "questions" ("id" bigserial primary key, "qid" integer, "content" character varying, "qtype" character varying, "answer" character varying, "c1" character varying, "c2" character varying, "c3" character varying, "c4" character varying, "c5" character varying, "parameters" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE  INDEX  "index_questions_on_qid" ON "questions"  ("qid")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180312142612"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2018-03-18 22:29:00.184083"], ["updated_at", "2018-03-18 22:29:00.184083"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7458657555131878620)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "students" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "students"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "students" ("uin", "name", "section", "attempts", "score", "last_start", "last_end", "created_at", "updated_at", "id") VALUES (1, 'MyString', 1, 1, 1, '2018-03-10 17:31:53', '2018-03-10 17:31:53', '2018-03-18 22:29:05.794790', '2018-03-18 22:29:05.794790', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "students" ("uin", "name", "section", "attempts", "score", "last_start", "last_end", "created_at", "updated_at", "id") VALUES (1, 'MyString', 1, 1, 1, '2018-03-10 17:31:53', '2018-03-10 17:31:53', '2018-03-18 22:29:05.794790', '2018-03-18 22:29:05.794790', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "questions"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "questions" ("qid", "content", "qtype", "answer", "c1", "c2", "c3", "c4", "c5", "parameters", "created_at", "updated_at", "id") VALUES (1, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2018-03-18 22:29:05.803125', '2018-03-18 22:29:05.803125', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("qid", "content", "qtype", "answer", "c1", "c2", "c3", "c4", "c5", "parameters", "created_at", "updated_at", "id") VALUES (1, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2018-03-18 22:29:05.803125', '2018-03-18 22:29:05.803125', 298486374)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "students" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+StudentsControllerTest: test_should_get_hello
+---------------------------------------------
+Started GET "/students/hello" for 127.0.0.1 at 2018-03-18 22:29:06 +0000
+Processing by StudentsController#hello as HTML
+  Rendering students/hello.html.erb within layouts/application
+  Rendered students/hello.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 7103ms (Views: 7096.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------
+AboutControllerTest: test_should_get_show
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+WelcomeControllerTest: test_should_get_show
+-------------------------------------------
+Started GET "/welcome/show" for 127.0.0.1 at 2018-03-18 22:29:13 +0000
+Processing by WelcomeController#show as HTML
+  Rendering welcome/show.html.erb within layouts/application
+  Rendered welcome/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+QuestionsControllerTest: test_should_get_edit
+---------------------------------------------
+Started GET "/questions/edit" for 127.0.0.1 at 2018-03-18 22:29:13 +0000
+Processing by QuestionsController#edit as HTML
+  Rendering questions/edit.html.erb within layouts/application
+  Rendered questions/edit.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+QuestionsControllerTest: test_should_get_view
+---------------------------------------------
+Started GET "/questions/view" for 127.0.0.1 at 2018-03-18 22:29:13 +0000
+Processing by QuestionsController#view as HTML
+  Rendering questions/view.html.erb within layouts/application
+  Rendered questions/view.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------
+QuestionsControllerTest: test_should_get_remove
+-----------------------------------------------
+Started GET "/questions/remove" for 127.0.0.1 at 2018-03-18 22:29:13 +0000
+Processing by QuestionsController#remove as HTML
+  Rendering questions/remove.html.erb within layouts/application
+  Rendered questions/remove.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "students" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "students"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "students" ("uin", "name", "section", "attempts", "score", "last_start", "last_end", "created_at", "updated_at", "id") VALUES (1, 'MyString', 1, 1, 1, '2018-03-10 17:31:53', '2018-03-10 17:31:53', '2018-03-18 22:30:52.213077', '2018-03-18 22:30:52.213077', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "students" ("uin", "name", "section", "attempts", "score", "last_start", "last_end", "created_at", "updated_at", "id") VALUES (1, 'MyString', 1, 1, 1, '2018-03-10 17:31:53', '2018-03-10 17:31:53', '2018-03-18 22:30:52.213077', '2018-03-18 22:30:52.213077', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "questions"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("qid", "content", "qtype", "answer", "c1", "c2", "c3", "c4", "c5", "parameters", "created_at", "updated_at", "id") VALUES (1, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2018-03-18 22:30:52.220910', '2018-03-18 22:30:52.220910', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("qid", "content", "qtype", "answer", "c1", "c2", "c3", "c4", "c5", "parameters", "created_at", "updated_at", "id") VALUES (1, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2018-03-18 22:30:52.220910', '2018-03-18 22:30:52.220910', 298486374)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "students" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------
+AboutControllerTest: test_should_get_show
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+StudentsControllerTest: test_should_get_hello
+---------------------------------------------
+Started GET "/students/hello" for 127.0.0.1 at 2018-03-18 22:30:52 +0000
+Processing by StudentsController#hello as HTML
+  Rendering students/hello.html.erb within layouts/application
+  Rendered students/hello.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 257ms (Views: 249.8ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------
+QuestionsControllerTest: test_should_get_remove
+-----------------------------------------------
+Started GET "/questions/remove" for 127.0.0.1 at 2018-03-18 22:30:52 +0000
+Processing by QuestionsController#remove as HTML
+  Rendering questions/remove.html.erb within layouts/application
+  Rendered questions/remove.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+QuestionsControllerTest: test_should_get_edit
+---------------------------------------------
+Started GET "/questions/edit" for 127.0.0.1 at 2018-03-18 22:30:52 +0000
+Processing by QuestionsController#edit as HTML
+  Rendering questions/edit.html.erb within layouts/application
+  Rendered questions/edit.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+QuestionsControllerTest: test_should_get_view
+---------------------------------------------
+Started GET "/questions/view" for 127.0.0.1 at 2018-03-18 22:30:52 +0000
+Processing by QuestionsController#view as HTML
+  Rendering questions/view.html.erb within layouts/application
+  Rendered questions/view.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+WelcomeControllerTest: test_should_get_show
+-------------------------------------------
+Started GET "/welcome/show" for 127.0.0.1 at 2018-03-18 22:30:52 +0000
+Processing by WelcomeController#show as HTML
+  Rendering welcome/show.html.erb within layouts/application
+  Rendered welcome/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "students" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.3ms)[0m  [1m[31mDELETE FROM "students"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "students" ("uin", "name", "section", "attempts", "score", "last_start", "last_end", "created_at", "updated_at", "id") VALUES (1, 'MyString', 1, 1, 1, '2018-03-10 17:31:53', '2018-03-10 17:31:53', '2018-03-18 22:31:59.217084', '2018-03-18 22:31:59.217084', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "students" ("uin", "name", "section", "attempts", "score", "last_start", "last_end", "created_at", "updated_at", "id") VALUES (1, 'MyString', 1, 1, 1, '2018-03-10 17:31:53', '2018-03-10 17:31:53', '2018-03-18 22:31:59.217084', '2018-03-18 22:31:59.217084', 298486374)[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "questions"[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("qid", "content", "qtype", "answer", "c1", "c2", "c3", "c4", "c5", "parameters", "created_at", "updated_at", "id") VALUES (1, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2018-03-18 22:31:59.225143', '2018-03-18 22:31:59.225143', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("qid", "content", "qtype", "answer", "c1", "c2", "c3", "c4", "c5", "parameters", "created_at", "updated_at", "id") VALUES (1, 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', 'MyString', '2018-03-18 22:31:59.225143', '2018-03-18 22:31:59.225143', 298486374)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "students" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------
+AboutControllerTest: test_should_get_show
+-----------------------------------------
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+WelcomeControllerTest: test_should_get_show
+-------------------------------------------
+Started GET "/welcome/show" for 127.0.0.1 at 2018-03-18 22:31:59 +0000
+Processing by WelcomeController#show as HTML
+  Rendering welcome/show.html.erb within layouts/application
+  Rendered welcome/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 207ms (Views: 200.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+QuestionsControllerTest: test_should_get_edit
+---------------------------------------------
+Started GET "/questions/edit" for 127.0.0.1 at 2018-03-18 22:31:59 +0000
+Processing by QuestionsController#edit as HTML
+  Rendering questions/edit.html.erb within layouts/application
+  Rendered questions/edit.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------------
+QuestionsControllerTest: test_should_get_remove
+-----------------------------------------------
+Started GET "/questions/remove" for 127.0.0.1 at 2018-03-18 22:31:59 +0000
+Processing by QuestionsController#remove as HTML
+  Rendering questions/remove.html.erb within layouts/application
+  Rendered questions/remove.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+QuestionsControllerTest: test_should_get_view
+---------------------------------------------
+Started GET "/questions/view" for 127.0.0.1 at 2018-03-18 22:31:59 +0000
+Processing by QuestionsController#view as HTML
+  Rendering questions/view.html.erb within layouts/application
+  Rendered questions/view.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+---------------------------------------------
+StudentsControllerTest: test_should_get_hello
+---------------------------------------------
+Started GET "/students/hello" for 127.0.0.1 at 2018-03-18 22:31:59 +0000
+Processing by StudentsController#hello as HTML
+  Rendering students/hello.html.erb within layouts/application
+  Rendered students/hello.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m

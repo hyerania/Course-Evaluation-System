@@ -7,9 +7,7 @@
     <thead>
         <tr>
             <th>UIN &nbsp; &nbsp; &nbsp;</th>
-            <th>Student Name &nbsp; &nbsp; &nbsp;</th>
-            <th>Section &nbsp; &nbsp; &nbsp;</th>
-            <th>Attempts &nbsp; &nbsp; &nbsp;</th>
+            
             <th>Score &nbsp; &nbsp; &nbsp;</th>
         </tr>
     </thead>
@@ -18,11 +16,19 @@
         <% @students.each do |student| %>
           <tr>
             <td><%= student.uin %></td>
-            <td><%= student.name %></td>
-            <td><%= student.section %></td>
-            <td><%= student.attempts %></td>
+            
             <td><%= student.score %></td>
           </tr>
         <% end %>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Average &nbsp; &nbsp; &nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%=@average%>
+        </tr>
     </tbody>
 </table>

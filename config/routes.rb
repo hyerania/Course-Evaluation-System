@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   #root to: 'welcome#show'
   root to: 'students#hello'
   get 'about', to: 'about#show'
+  #Yang: just for testing
+  get 'admin', to: 'admin#show'
   # '/' Route
   get 'welcome/show'
   get 'students/hello'

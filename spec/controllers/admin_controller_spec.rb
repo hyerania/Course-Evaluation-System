@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe StudentsController, type: :controller do
+RSpec.describe AdminController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do

@@ -4,10 +4,10 @@ class WelcomeController < ApplicationController
   #   params.require(:student).permit(:uin, :name, :section, :attempts, :score)
   # end
 
-  def show
-    # uin = params[:uin] # retrieve student ID from URI route
-    @students = Student.all # look up movie by unique ID
+  # def show
+  #   # uin = params[:uin] # retrieve student ID from URI route
+  #   @students = Student.all # look up movie by unique ID
     
-  end
+  # end
   
 end

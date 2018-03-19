@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   get 'questions/remove'
 
-  root to: 'welcome#show'
+  #root to: 'welcome#show'
+  root to: 'students#hello'
   get 'about', to: 'about#show'
   # '/' Route
   get 'welcome/show'

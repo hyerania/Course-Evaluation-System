@@ -212,6 +212,8 @@ psql -U postgres
 
 create database development with owner ec2;
 GRANT ALL PRIVILEGES ON DATABASE development to ec2;
+create database test with owner ec2;
+GRANT ALL PRIVILEGES ON DATABASE test to ec2;
 \q 
 
 rake db:migrate

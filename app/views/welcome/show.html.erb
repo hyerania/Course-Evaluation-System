@@ -2,3 +2,33 @@
 <p>
  The time is now: <%= Time.now %>
 </p>
+
+<table id="t01">
+    <thead>
+        <tr>
+            <th>UIN &nbsp; &nbsp; &nbsp;</th>
+            
+            <th>Score &nbsp; &nbsp; &nbsp;</th>
+        </tr>
+    </thead>
+  
+    <tbody>
+        <% @students.each do |student| %>
+          <tr>
+            <td><%= student.uin %></td>
+            
+            <td><%= student.score %></td>
+          </tr>
+        <% end %>
+    </tbody>
+    <thead>
+        <tr>
+            <th>Average &nbsp; &nbsp; &nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%=@average%>
+        </tr>
+    </tbody>
+</table>

@@ -1,8 +1,11 @@
-<h1>View Course EValuation Results</h1>
+<h1>All students</h1>
 <table id="t01">
     <thead>
         <tr>
             <th>UIN &nbsp; &nbsp; &nbsp;</th>
+            <th>Student Name &nbsp; &nbsp; &nbsp;</th>
+            <th>Section &nbsp; &nbsp; &nbsp;</th>
+            <th>Attempts &nbsp; &nbsp; &nbsp;</th>
             <th>Score &nbsp; &nbsp; &nbsp;</th>
         </tr>
     </thead>
@@ -11,6 +14,9 @@
         <% @students.each do |student| %>
           <tr>
             <td><%= student.uin %></td>
+            <td><%= student.name %></td>
+            <td><%= student.section %></td>
+            <td><%= student.attempts %></td>
             <td><%= student.score %></td>
           </tr>
         <% end %>

@@ -15,8 +15,14 @@ Rails.application.routes.draw do
   get 'about', to: 'about#show'
   #Yang: just for testing
   get 'admin', to: 'admin#show'
+  get 'evaluation', to: 'evaluation#show'
   # '/' Route
   get 'welcome/show'
   get 'students/hello'
+  
+  # links
+  
+  get 'evaluation/:id/selectq' => 'evaluation#selectq', :as => :selectq
+  get 'evaluation/save' => 'evaluation#save', :as => :save
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,23 @@
+<h1>Create Evaluations</h1>
+
+<table id="questions">
+    <thead>
+        <tr>
+            <th>Selected &nbsp; &nbsp; &nbsp;</th>
+            <th># &nbsp; &nbsp; &nbsp;</th>
+            <th>Title &nbsp; &nbsp; &nbsp;</th>
+        </tr>
+    </thead>
+  
+    <tbody>
+        <% @questions.each do |question| %>
+          <tr>
+            <td><%= button_to 'Select', selectq_path(question.qid)%> </td>
+            <td><%= question.qid %></td>
+            <td><%= question.content %></td>
+          </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<div><%= button_to 'Save', save_path()%></div>

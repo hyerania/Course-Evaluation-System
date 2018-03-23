@@ -1,5 +1,14 @@
-class EvalutionController < ApplicationController
+class EvaluationController < ApplicationController
+    
     def show
-        
-    end 
+        @questions=Question.all
+    end
+    
+    def selectq
+        logger.info params[:id]
+    end
+    
+    def save
+
+    end
 end

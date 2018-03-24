@@ -22,7 +22,8 @@ Rails.application.routes.draw do
   
   # links
   
-  get 'evaluation/:id/selectq' => 'evaluation#selectq', :as => :selectq
-  get 'evaluation/save' => 'evaluation#save', :as => :save
+  post 'evaluation/:id/selectq' => 'evaluation#selectq', :as => :selectq
+  post 'evaluation/selectr' => 'evaluation#selectr', :as => :selectr
+  post 'evaluation/save' => 'evaluation#save', :as => :save
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

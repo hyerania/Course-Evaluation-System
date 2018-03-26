@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'questions/show'
+  end
+
+  namespace :admin do
+    get 'questions/edit'
+  end
+
+  namespace :admin do
+    get 'questions/new'
+  end
+
   get 'admin/show'
 
   get 'students/show'

@@ -6,25 +6,6 @@ class Admin::QuestionsController < ApplicationController
   
   def create
     @question = Question.create!(question_params)
-    
-    puts '--- Content ---'
-    puts @question.content
-    
-    puts '--- Answer ---'
-    puts @question.answer
-    
-    puts '--- Choice 1 ---'
-    puts @question.c1
-    
-    puts '--- Choice 2 ---'
-    puts @question.c2
-    
-    puts '--- Choice 3 ---'
-    puts @question.c3
-    
-    puts '--- Choice 4 ---'
-    puts @question.c4
-    
     redirect_to action: "show"
   end
 

@@ -9,7 +9,7 @@ Most tasks will be possible by branching off of `develop`. The name of the branc
 ```
 git checkout develop
 git pull
-git branch -b feature/create-and-setup-initial-student-database
+git checkout -b feature/create-and-setup-initial-student-database
 git push --set-upstream origin feature/create-and-setup-initial-student-database
 ```
 

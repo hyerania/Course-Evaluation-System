@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  
+  namespace :admin do
+    post 'questions/create'
+  end
+  
   namespace :admin do
     get 'questions/show'
   end

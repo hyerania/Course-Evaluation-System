@@ -1,2 +1,23 @@
 <h1>Admin::Questions#show</h1>
 <p>Find me in app/views/admin/questions/show.html.erb</p>
+
+    <table>
+        <tr>
+            <th>Details</th>
+            <th>Answer</th>
+            <th>Choice 1</th>
+            <th>Choice 2</th>
+            <th>Choice 3</th>
+            <th>Choice 4</th>
+        </tr>
+        <% @all_questions.each do |question| %>
+            <tr>
+                <td><%= question.content %></td>
+                <td><%= question.answer %></td>
+                <td><%= question.c1 %></td>
+                <td><%= question.c2 %></td>
+                <td><%= question.c3 %></td>
+                <td><%= question.c4 %></td>
+            </tr>
+        <% end %>
+    </table>

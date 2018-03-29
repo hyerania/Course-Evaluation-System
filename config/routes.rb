@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  get 'students/welcome'
+
   get 'admin/show'
 
   get 'welcome/show'
@@ -7,21 +10,27 @@ Rails.application.routes.draw do
   
   get 'students/show'
 
-  get 'questions/view'
+  #get 'questions/view'
 
   get 'questions/edit'
 
   get 'questions/remove'
   
+  match '/questions', to: 'questions#view', via: [:get, :post]
+  
+  resources :students
+  
+  resources :questions, only: [:view], via: [:post]
+  
   root to: 'welcome#show'
-  #root to: 'students#hello'
+
   get 'about', to: 'about#show'
   #Yang: just for testing
   get 'admin', to: 'admin#show'
   # '/' Route
   
 
-  resources :students
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

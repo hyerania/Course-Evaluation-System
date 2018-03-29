@@ -29,3 +29,7 @@ Question.create([{
     c4: "Pink",
     c5: "Orange",
 }])
+
+AccessCode.Create([{
+    code: "CSCE120-2018"
+}])

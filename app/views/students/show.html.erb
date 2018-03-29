@@ -1,2 +1,9 @@
 <h1>Students#show</h1>
-<p>Find me in app/views/students/show.html.erb</p>
+<p>
+    
+    <%= form_tag( {controller: "questions", action: "view"}, method: "post") do %>
+        <%= "UIN: "%> <br> <%= number_field_tag :uin %><br>
+        <%= "Access Code:" %> <br> <%= text_field_tag :access_code %><br>
+        <%= submit_tag "Begin Test" %>
+    <% end %>
+</p>

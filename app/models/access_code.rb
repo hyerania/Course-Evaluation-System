@@ -1,0 +1,2 @@
+class AccessCode < ApplicationRecord
+end

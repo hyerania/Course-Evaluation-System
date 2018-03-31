@@ -1,6 +1,13 @@
 <h1>Students#welcome</h1>
 <p>
+ <%= form_tag do%>
+  <%= "UIN: "%><%= number_field_tag :uin %><br>
+  <%= submit_tag "Login" %><br>
+ <% end %>
+ 
+ <% if flash[:notice] %>
+  <div class="notice" style="color: red"><%= flash[:notice] %></div>
+ <% end %>
+ 
  <%= link_to "Register", controller: "students", action: "hello" %>
- <br>
- <%= link_to "Proceed to Exam", controller: "students", action: "show" %>
 </p>

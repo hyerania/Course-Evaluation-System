@@ -9,12 +9,15 @@ Rails.application.routes.draw do
   get 'students/hello'
   
   get 'students/show'
+  
+  post 'students/welcome'
 
   #get 'questions/view'
 
   get 'questions/edit'
 
   get 'questions/remove'
+  
   
   match '/questions', to: 'questions#view', via: [:get, :post]
   

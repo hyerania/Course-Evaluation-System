@@ -1,9 +1,28 @@
-<h1>Students#show</h1>
+<h1>Records</h1>
 <p>
-    
-    <%= form_tag( {controller: "questions", action: "view"}, method: "post") do %>
-        <%= "UIN: "%> <br> <%= number_field_tag :uin %><br>
-        <%= "Access Code:" %> <br> <%= text_field_tag :access_code %><br>
-        <%= submit_tag "Begin Test" %>
+    <table style = "width:100%", border = "1px solid black">
+        <tr>
+            <th>UIN</th>
+            <th>Name</th>
+            <th>Section</th>
+            <th>Attempts</th>
+            <th>Score</th>
+        </tr>
+        <tr>
+            <td><%= @student.uin %></td>
+            <td><%= @student.name %></td>
+            <td><%= @student.section %></td>
+            <td><%= @student.attempts %></td>
+            <td><%= @student.score %></td>
+        </tr>
+    </table>
+</p>
+
+
+<h1>Begin Test</h1>
+<p>
+    <%= form_tag do%>
+       <%= "Access Code: "%><%= text_field_tag :access_code %><br>
+       <%= submit_tag "Begin" %><br>
     <% end %>
 </p>

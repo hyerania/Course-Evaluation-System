@@ -1,0 +1,23 @@
+<h1>Evaluations In database</h1>
+
+<table id="evaluations">
+    <thead>
+        <tr>
+            <th># &nbsp; &nbsp; &nbsp;</th>
+            <th>Title &nbsp; &nbsp; &nbsp;</th>
+            <th>Content &nbsp; &nbsp; &nbsp;</th>
+        </tr>
+    </thead>
+  
+    <tbody>
+        <% @allevaluations.each do |evaluation| %>
+          <tr>
+            <td><%= evaluation.eid %></td>
+            <td><%= evaluation.title %></td>
+            <td><%= evaluation.content %></td>
+          </tr>
+        <% end %>
+    </tbody>
+</table>
+<li><%= link_to 'Add new evaluation', new_evaluation_path %></li>
+

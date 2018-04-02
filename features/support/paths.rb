@@ -18,6 +18,8 @@ module NavigationHelpers
     
     when /^the student page$/
       '/'
+    when /^the Evaluations page$/
+      '/evaluations'
       
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

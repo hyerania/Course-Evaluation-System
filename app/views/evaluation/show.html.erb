@@ -1,5 +1,7 @@
 <h1>Create Evaluations</h1>
 
+<div text-align:center>
+
 <table id="questions">
     <thead>
         <tr>
@@ -10,7 +12,7 @@
     </thead>
   
     <tbody>
-        <% @questions.each do |question| %>
+        <% @questions.values.each do |question| %>
           <tr>
             <td><%= button_to 'Select', selectq_path(question.qid)%> </td>
             <td><%= question.qid %></td>
@@ -19,6 +21,28 @@
         <% end %>
     </tbody>
 </table>
+
+<table id="selected">
+    <thead>
+        <tr>
+            <th>Selected &nbsp; &nbsp; &nbsp;</th>
+            <th># &nbsp; &nbsp; &nbsp;</th>
+            <th>Title &nbsp; &nbsp; &nbsp;</th>
+        </tr>
+    </thead>
+  
+    <tbody>
+        <% @selected_questions.each do |question| %>
+          <tr>
+            <td><%= button_to 'Unselect', selectq_path(:id=>question.qid)%> </td>
+            <td><%= question.qid %></td>
+            <td><%= question.content %></td>
+          </tr>
+        <% end %>
+    </tbody>
+</table>
+
+</div>
 
 <div><%= button_to 'Save', save_path()%></div>
 <div><%= button_to 'Random', selectr_path()%></div>

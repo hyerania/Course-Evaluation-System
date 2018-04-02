@@ -14,9 +14,9 @@ class EvaluationsController < ApplicationController
         logger.info session[:content]
         @questions=Question.all
         @selected_questions=[]
-        if(session[:content]==nil)
-            session[:content]=[]
-        end
+        #if(session[:content]==nil)
+        #    session[:content]=[]
+        #end
     end
     
     def create
@@ -30,13 +30,15 @@ class EvaluationsController < ApplicationController
             @question=Evaluation.create!(:eid =>(Evaluation.maximum(:eid)==nil) ? 1 : Evaluation.maximum(:eid)+1,:title =>params[:title],:content =>params[:questions].values)
             flash[:notice] = "Question #{@question.title} was successfully created."
             flash.keep
+            
+            redirect_to evaluations_path
         else
             flash[:error] = "Some parameter is missing."
             flash.keep
         end
         session[:content]=[]
         
-        redirect_to evaluations_path
+        
     end
     
     def selectr

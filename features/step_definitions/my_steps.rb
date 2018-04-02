@@ -1,10 +1,6 @@
 #background
 
-Given(/^the following students exist:$/) do |table|
-    table.hashes.each do |student|
-        Student.create(student)
-    end
-end
+
 Given(/^the following questions exist:$/) do |table|
     table.hashes.each do |question|
         Question.create(question)
@@ -14,12 +10,6 @@ Given(/^the following evaluations exist:$/) do |table|
     table.hashes.each do |evaluation|
         Evaluation.create(evaluation)
     end
-end
-Then (/I should see all the students/) do
-  students = Student.all
-  students.each do |student|
-    step %{I should see "#{student.score}"}
-  end
 end
 
 And (/I should see the average is "(.*)"$/) do |val|

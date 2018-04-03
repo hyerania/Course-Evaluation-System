@@ -28,5 +28,5 @@ Scenario: cancelling a new question
   And I fill in "c3" with "3"
   And I fill in "c4" with "4"
   And I select "1" from "answer"
-  And I press "Cancel"
+  And I follow "Cancel"
   Then I should not see "Question 3:"

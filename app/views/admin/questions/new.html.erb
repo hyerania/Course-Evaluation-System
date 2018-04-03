@@ -23,8 +23,7 @@
 </h2>
 <%= tinymce %>
 <div class="form-group" style="margin: 20px 0px">
-    <%= button_to "Cancel", { action: "show"}, :id => "cancel-question-btn",
-      :class => "btn btn-primary btn-lg", :method => :get %>
+    <a href="/admin/questions/show" class="btn btn-primary btn-lg">Cancel</a>
     <button class="btn btn-success btn-lg" style="float: right" type="submit">Save</button>
 </div>
 

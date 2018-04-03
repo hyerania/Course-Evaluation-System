@@ -45,7 +45,7 @@ class StudentsController < ApplicationController
       if(@access_code.code == params[:access_code])
         redirect_to controller: 'questions', action: 'view'
       else
-        flash[:notice] = "Invalid Access Coded!"
+        flash[:notice] = "Invalid Access Code!"
       end
     end
   end

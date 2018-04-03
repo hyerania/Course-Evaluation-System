@@ -24,6 +24,14 @@ git checkout <ORIGINAL-BRANCH>
 git merge <ORIGINAL-BRANCH> develop
 ```
 
+### Test Cases
+All test cases should pass whenever code is finalized and about to be pushed it develop. It is the job of the developer to fix any already committed test cases and to ensure that all code is 100% covered. In order to run the tests, run the following commands:
+
+cucumber
+rspec
+
+To see to your coverage, view the **index.html**
+
 ### Releases
 All releases will be on the master branch tagged with the release/iteration complete number. Once it is time to release, merge develop into master and tag master. Ex:
 ```

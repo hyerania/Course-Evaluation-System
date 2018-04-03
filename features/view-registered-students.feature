@@ -8,8 +8,3 @@ Background: student records in database
   | 123000124    | Amulya Agarwal  | 500          |   0          |  -1  |2018-03-10 17:00:00 UTC |2018-03-10 20:00:00 UTC |           |          |
   | 123000125    | Siru Li         | 500          |   0          |  -1  |2018-03-10 17:00:00 UTC |2018-03-10 20:00:00 UTC |           |          |
   
-
-Scenario:Performance of the students
-  When I am on the student page 
-  Then I should see all the students
-  

@@ -6,6 +6,20 @@ Given(/^the following questions exist:$/) do |table|
         Question.create(question)
     end
 end
+
+Given(/^the following access_code exist:$/) do |table|
+  table.hashes.each do |access_code|
+    AccessCode.create(access_code)
+  end
+end
+
+Then (/^I should see all the students/) do
+  students = Student.all
+  students.each do |student|
+    step %{I should see "#{student.score}"}
+  end
+end
+
 Given(/^the following evaluations exist:$/) do |table|
     table.hashes.each do |evaluation|
         Evaluation.create(evaluation)
@@ -29,4 +43,9 @@ Then (/I should not see any question twice/) do
       true
     end
   end
+end
+
+Then (/^the access code should be "(.*)"$/) do |code|
+  access_code = AccessCode.all.first
+  expect(access_code.code).to eq code
 end

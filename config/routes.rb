@@ -15,20 +15,38 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'questions/new'
   end
+  get 'students/welcome'
 
   get 'admin/show'
 
-  get 'students/show'
+  get 'welcome/show'
 
-  resources :students
-  get 'questions/view'
+  get 'students/register'
+  
+  get 'students/show'
+  
+  post 'students/welcome'
+  
+  post 'students/show'
+  
+  post 'admin/show'
+  
+
+  #get 'questions/view'
 
   get 'questions/edit'
 
   get 'questions/remove'
+  
+  
+  match '/questions', to: 'questions#view', via: [:get, :post]
+  
+  resources :students
+  
+  resources :questions, only: [:view], via: [:post]
+  
+  root to: 'welcome#show'
 
-  #root to: 'welcome#show'
-  root to: 'students#hello'
   get 'about', to: 'about#show'
   #Yang: just for testing
   get 'admin', to: 'admin#show'

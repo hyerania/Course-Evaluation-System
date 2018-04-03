@@ -1,0 +1,14 @@
+default:
+  plugins:
+    - code
+    - image
+    - link
+    - wordcount
+    - save
+
+alternate:
+  selector: textarea.table-editor
+  toolbar: styleselect | bold italic | undo redo | table | save
+  plugins:
+    - table
+    - save

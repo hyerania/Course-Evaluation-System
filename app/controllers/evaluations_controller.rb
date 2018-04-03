@@ -31,7 +31,7 @@ class EvaluationsController < ApplicationController
             flash[:notice] = "Question #{@question.title} was successfully created."
             flash.keep
             
-            redirect_to evaluations_path
+            redirect_to action: "show"
         else
             flash[:error] = "Some parameter is missing."
             flash.keep

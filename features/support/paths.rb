@@ -20,11 +20,13 @@ module NavigationHelpers
       '/'
     
     when /^the Evaluations page$/
-      '/evaluations'
+      '/admin/evaluations'
     
     when /^the New page$/
-      '/evaluations/new'
+      '/admin/evaluations/new'
       
+    when /^the new question page$/
+      '/admin/questions/new'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

@@ -1,0 +1,30 @@
+<%= form_for @new_question, :url => {:action => "create"} do |f| %>
+<h1>Create a new question:</h1>
+<p>For more information about the text editor, go to <a target="_blank" href="https://www.tinymce.com/">https://www.tinymce.com/</a></p>
+
+<h2>Question Details:</h2>
+<%= text_area_tag :content, 'Enter question details...', :class => "tinymce", :rows => 15, :cols => 120 %>
+
+<h2>Answer Choice 1:</h2>
+<%= text_area_tag :c1, 'Answer choice 1', :class => "tinymce", :rows => 10, :cols => 120 %>
+
+<h2>Answer Choice 2:</h2>
+<%= text_area_tag :c2, 'Answer choice 2', :class => "tinymce", :rows => 10, :cols => 120 %>
+
+<h2>Answer Choice 3:</h2>
+<%= text_area_tag :c3, 'Answer choice 3', :class => "tinymce", :rows => 10, :cols => 120 %>
+
+<h2>Answer Choice 4:</h2>
+<%= text_area_tag :c4, 'Answer choice 4', :class => "tinymce", :rows => 10, :cols => 120 %>
+
+<h2>Correct Answer Choice:
+<%= select_tag(:answer, options_for_select([['1', '1'], ['2', '2'], ['3', '3'], ['4', '4']]))%>
+
+</h2>
+<%= tinymce %>
+<div class="form-group" style="margin: 20px 0px">
+    <a href="/admin/questions/show" class="btn btn-primary btn-lg">Cancel</a>
+    <button class="btn btn-success btn-lg" style="float: right" type="submit">Save</button>
+</div>
+
+<% end %>

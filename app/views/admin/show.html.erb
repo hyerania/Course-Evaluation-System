@@ -1,4 +1,7 @@
 <h1>All students</h1>
+
+<h4> Overall Average: <%=@average%></h4>
+
 <table id="t01">
     <thead>
         <tr>
@@ -21,14 +24,18 @@
           </tr>
         <% end %>
     </tbody>
-     <thead>
-        <tr>
-            <th>Average &nbsp; &nbsp; &nbsp;</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><%=@average%>
-        </tr>
-    </tbody>
 </table>
+
+<h1>Control Panel</h1>
+<p>
+    <div>Current Access Code: <%= @access_code.code %></div>
+    <%= form_tag do%>
+      <%= "Change Access Code To: "%><%= text_field_tag :access_code %><br>
+      <%= submit_tag "Change" %><br>
+    <% end %>
+</p>
+
+<div class="form-group" style="margin: 20px 0px">
+    <a href="/admin/questions/show" class="btn btn-primary btn-lg" role="button">Questions Manager</a>
+    <a href="/admin/evaluations" class="btn btn-primary btn-lg" role="button">Evaluations Manager</a>
+</div>

@@ -18,7 +18,29 @@ module NavigationHelpers
     
     when /^the student page$/
       '/'
+    
+    when /^the Evaluations page$/
+      '/admin/evaluations'
+    
+    when /^the New page$/
+      '/admin/evaluations/new'
       
+    when /^the new question page$/
+      '/admin/questions/new'
+    when /^the student registration page$/
+      '/students/register'
+
+    when /^the student login page$/
+      '/students/welcome'
+      
+    when /^the student personal page$/
+      '/students/show'
+      
+    when /^the admin page$/
+      '/admin/show'
+    
+    when /^the student questions page$/
+      '/questions'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

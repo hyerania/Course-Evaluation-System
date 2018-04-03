@@ -6,11 +6,16 @@ Rails.application.routes.draw do
 
   get 'welcome/show'
 
-  get 'students/hello'
+  get 'students/register'
   
   get 'students/show'
   
   post 'students/welcome'
+  
+  post 'students/show'
+  
+  post 'admin/show'
+  
 
   #get 'questions/view'
 

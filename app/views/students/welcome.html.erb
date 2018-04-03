@@ -1,4 +1,4 @@
-<h1>Students#welcome</h1>
+<h1>Student Login</h1>
 <p>
  <%= form_tag do%>
   <%= "UIN: "%><%= number_field_tag :uin %><br>
@@ -9,5 +9,5 @@
   <div class="notice" style="color: red"><%= flash[:notice] %></div>
  <% end %>
  
- <%= link_to "Register", controller: "students", action: "hello" %>
+ <%= link_to "Register", controller: "students", action: "register" %>
 </p>

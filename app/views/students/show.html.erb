@@ -25,4 +25,7 @@
        <%= "Access Code: "%><%= text_field_tag :access_code %><br>
        <%= submit_tag "Begin" %><br>
     <% end %>
+    <% if flash[:notice] %>
+      <div class="notice" style="color: red"><%= flash[:notice] %></div>
+    <% end %>
 </p>

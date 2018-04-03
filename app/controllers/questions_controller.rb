@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def view
-    @student = Student.where(uin: params[:uin]).first
+    @student = Student.where(uin: session[:uin]).first
   end
 
   def edit

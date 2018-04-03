@@ -32,3 +32,12 @@
         </tr>
     </tbody>
 </table>
+
+<h1>Control Panel</h1>
+<p>
+    <div>Current Access Code: <%= @access_code.code %></div>
+    <%= form_tag do%>
+      <%= "Change Access Code To: "%><%= text_field_tag :access_code %><br>
+      <%= submit_tag "Change" %><br>
+    <% end %>
+</p>

@@ -1,2 +1,31 @@
-<h1>Students#show</h1>
-<p>Find me in app/views/students/show.html.erb</p>
+<h1>Records</h1>
+<p>
+    <table style = "width:100%", border = "1px solid black">
+        <tr>
+            <th>UIN</th>
+            <th>Name</th>
+            <th>Section</th>
+            <th>Attempts</th>
+            <th>Score</th>
+        </tr>
+        <tr>
+            <td><%= @student.uin %></td>
+            <td><%= @student.name %></td>
+            <td><%= @student.section %></td>
+            <td><%= @student.attempts %></td>
+            <td><%= @student.score %></td>
+        </tr>
+    </table>
+</p>
+
+
+<h1>Begin Test</h1>
+<p>
+    <%= form_tag do%>
+       <%= "Access Code: "%><%= text_field_tag :access_code %><br>
+       <%= submit_tag "Begin" %><br>
+    <% end %>
+    <% if flash[:notice] %>
+      <div class="notice" style="color: red"><%= flash[:notice] %></div>
+    <% end %>
+</p>

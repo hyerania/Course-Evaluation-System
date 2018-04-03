@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   get 'about', to: 'about#show'
   #Yang: just for testing
   get 'admin', to: 'admin#show'
-  get 'evaluations', to: 'evaluations#show'
-  post 'evaluations', to: 'evaluations#show'
+  get 'admin/evaluations', to: 'evaluations#show'
+  post 'admin/evaluations', to: 'evaluations#show'
   # '/' Route
   get 'welcome/show'
   get 'students/hello'

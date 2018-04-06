@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get 'questions/edit'
+    get 'questions/edit/:id', to: 'questions#edit'
   end
 
   namespace :admin do

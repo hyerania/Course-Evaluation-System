@@ -25,6 +25,23 @@ class Admin::QuestionsController < ApplicationController
   end
 
   def edit
+    
+    if params[:id]
+
+      questions = Question.where(qid: params[:id])
+      if questions.count == 0
+        flash[:notice] = "Invalid quesiton ID. Please try again."
+        redirect_to action: "show"
+      else
+        @question = questions[0]
+        @answer = @question.getCorrectAnswerNum
+      end
+      
+    else
+      flash[:notice] = "Invalid quesiton ID. Please try again."
+      redirect_to action: "show"
+    end
+    
   end
 
   def new

@@ -18,7 +18,6 @@ class Admin::QuestionsController < ApplicationController
     answer = question_params[:answer]
 
     @question.answer = @question.c1
-    puts answer
     if answer == "2"
       @question.answer = @question.c2
     elsif answer == "3"
@@ -38,10 +37,7 @@ class Admin::QuestionsController < ApplicationController
   end
 
   def update
-    puts params
     qid = question_params[:qid].to_i
-    puts 'QID'
-    puts question_params
     
     questions = Question.where(qid: qid)
     
@@ -58,7 +54,6 @@ class Admin::QuestionsController < ApplicationController
       answer = question_params[:answer]
   
       @question.answer = @question.c1
-      puts answer
       if answer == "2"
         @question.answer = @question.c2
       elsif answer == "3"
@@ -75,22 +70,15 @@ class Admin::QuestionsController < ApplicationController
 
   def edit
     
-    if params[:id]
-
-      questions = Question.where(qid: params[:id])
-      if questions.count == 0
-      flash[:warning] = "Unable to find question. Please try again."
-        redirect_to action: "show"
-      else
-        @question = questions[0]
-        @answer = @question.getCorrectAnswerNum
-      end
-      
-    else
+    questions = Question.where(qid: params[:id])
+    if questions.count == 0
       flash[:warning] = "Unable to find question. Please try again."
       redirect_to action: "show"
+    else
+      @question = questions[0]
+      @answer = @question.getCorrectAnswerNum
     end
-    
+      
   end
   
 

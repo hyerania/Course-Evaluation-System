@@ -15,7 +15,19 @@ class Admin::QuestionsController < ApplicationController
     @question.c2 = question_params[:c2]
     @question.c3 = question_params[:c3]
     @question.c4 = question_params[:c4]
-    @question.answer = question_params[:answer]
+    answer = question_params[:answer]
+
+    @question.answer = @question.c1
+    puts answer
+    if answer == "2"
+      @question.answer = @question.c2
+    elsif answer == "3"
+      @question.answer = @question.c3
+    elsif answer == "4"
+      @question.answer = @question.c4
+    end
+    
+    
     @question.save
     redirect_to action: "show"
   end

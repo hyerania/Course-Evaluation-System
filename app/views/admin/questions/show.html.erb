@@ -1,5 +1,8 @@
 <h1>Admin::Questions Manager</h1>
-<p id="flash"><%= flash[:notice] %></p>
+<% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <table id="t01">
     <tr>
         <th>ID</th>
@@ -12,7 +15,7 @@
     </tr>
     <% @all_questions.each do |question| %>
         <tr>
-            <td><%= question.qid %></td>
+            <td><%= link_to question.qid, "/admin/questions/edit/#{question.qid}" %></td>
             <td><%= question.content %></td>
             <td><%= question.answer %></td>
             <td><%= question.c1 %></td>

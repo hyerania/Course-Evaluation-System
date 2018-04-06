@@ -1,5 +1,6 @@
-<%= form_for @question, :url => {:action => "create"} do |f| %>
+<%= form_for @question, :url => {:action => "update"} do |f| %>
     <h1>Edit Question: <%= @question.qid %></h1>
+    <%= hidden_field_tag :qid, @question.qid %>
 
     <p>For more information about the text editor, go to <a target="_blank" href="https://www.tinymce.com/">https://www.tinymce.com/</a></p>
     

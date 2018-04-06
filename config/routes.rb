@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  namespace :admin do
+    patch 'questions/update'
+  end
   
   namespace :admin do
     post 'questions/create'

@@ -26,28 +26,28 @@ Scenario: editing the question content 1
   When I am on the edit question page for "1000"
   And I select "1" from "answer"
   And I press "Save"
-  Then I should see "Question successfully updated."
+  Then I should see "Question 1000 successfully updated."
   And the question 1000 answer should be 1
   
 Scenario: editing the question content 2
   When I am on the edit question page for "1000"
   And I select "2" from "answer"
   And I press "Save"
-  Then I should see "Question successfully updated."
+  Then I should see "Question 1000 successfully updated."
   And the question 1000 answer should be 2
   
 Scenario: editing the question content 3
   When I am on the edit question page for "1000"
   And I select "3" from "answer"
   And I press "Save"
-  Then I should see "Question successfully updated."
+  Then I should see "Question 1000 successfully updated."
   And the question 1000 answer should be 3
   
 Scenario: editing the question content 4
   When I am on the edit question page for "1000"
   And I select "4" from "answer"
   And I press "Save"
-  Then I should see "Question successfully updated."
+  Then I should see "Question 1000 successfully updated."
   And the question 1000 answer should be 4
   
 Scenario: deleted question while editing

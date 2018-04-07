@@ -12,6 +12,7 @@
         <th>Choice 2</th>
         <th>Choice 3</th>
         <th>Choice 4</th>
+        <th>Delete</th>
     </tr>
     <% @all_questions.each do |question| %>
         <tr>
@@ -22,6 +23,7 @@
             <td><%= question.c2 %></td>
             <td><%= question.c3 %></td>
             <td><%= question.c4 %></td>
+            <td><%= link_to 'Remove', "/admin/questions/delete/#{question.qid}", :method => :delete %></td>
         </tr>
     <% end %>
 </table>

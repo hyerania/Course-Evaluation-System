@@ -15,10 +15,15 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'questions/edit/:id', to: 'questions#edit'
   end
+  
+  namespace :admin do
+    delete 'questions/delete/:id', to: 'questions#delete'
+  end
 
   namespace :admin do
     get 'questions/new'
   end
+
   get 'students/welcome'
 
   get 'admin/show'

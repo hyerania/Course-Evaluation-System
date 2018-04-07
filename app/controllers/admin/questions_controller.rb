@@ -63,7 +63,7 @@ class Admin::QuestionsController < ApplicationController
       end
       
       @question.save
-      flash[:success] = "Question successfully updated."
+      flash[:success] = "Question #{@question.qid} successfully updated."
       redirect_to action: "show"
     end
   end
@@ -86,5 +86,20 @@ class Admin::QuestionsController < ApplicationController
     @new_question = Question.new
   end
   
+  
+  def delete
+    questions = Question.where(qid: params[:id])
+    if questions.count == 0
+      flash[:warning] = "Unable to find question. Please try again."
+      redirect_to action: "show"
+    else
+      @question = questions[0]
+      @question.delete
+      flash[:success] = "Question #{@question.qid} successfully deleted."
+      redirect_to action: "show"
+    end
+    
+
+  end
   
 end

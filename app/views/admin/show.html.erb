@@ -5,11 +5,11 @@
 <table id="t01">
     <thead>
         <tr>
-            <th>UIN &nbsp; &nbsp; &nbsp;</th>
-            <th>Student Name &nbsp; &nbsp; &nbsp;</th>
-            <th>Section &nbsp; &nbsp; &nbsp;</th>
-            <th>Attempts &nbsp; &nbsp; &nbsp;</th>
-            <th>Score &nbsp; &nbsp; &nbsp;</th>
+            <th>UIN</th>
+            <th>Student Name</th>
+            <th>Section</th>
+            <th>Attempts</th>
+            <th>Score</th>
         </tr>
     </thead>
   
@@ -26,15 +26,16 @@
     </tbody>
 </table>
 
-<h1>Control Panel</h1>
+<h1>Access Code</h1>
+
 <p>
     <div>Current Access Code: <%= @access_code.code %></div>
     <%= form_tag do%>
       <%= "Change Access Code To: "%><%= text_field_tag :access_code %><br>
-      <%= submit_tag "Change" %><br>
+      <%= submit_tag "Change", :class=>"btn btn-primary btn-sm" %><br>
     <% end %>
 </p>
-
+<br>
 <div class="form-group" style="margin: 20px 0px">
     <a href="/admin/questions/show" class="btn btn-primary btn-lg" role="button">Questions Manager</a>
     <a href="/admin/evaluations" class="btn btn-primary btn-lg" role="button">Evaluations Manager</a>

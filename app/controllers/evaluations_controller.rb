@@ -1,9 +1,5 @@
 class EvaluationsController < ApplicationController
     
-    #def evaluation_params
-    #    params.permit(:utf8,:title,:question,:authenticity_token,:commit)
-    #end
-    
     def show
         session[:content]=[]
         @allevaluations=Evaluation.all
@@ -14,19 +10,11 @@ class EvaluationsController < ApplicationController
         logger.info session[:content]
         @questions=Question.all
         @selected_questions=[]
-        #if(session[:content]==nil)
-        #    session[:content]=[]
-        #end
     end
     
     def create
         logger.info "create"
-        #max_id=Evaluation.maximum('eid')+1
         if(params[:title]!=nil&&params[:title]!=""&&params[:questions]!=nil)
-            #logger.info params[:title]
-            #logger.info params[:questions]
-            #logger.info (session[:content])
-            
             @question=Evaluation.create!(:eid =>(Evaluation.maximum(:eid)==nil) ? 1 : Evaluation.maximum(:eid)+1,:title =>params[:title],:content =>params[:questions].values)
             flash[:notice] = "Question #{@question.title} was successfully created."
             flash.keep
@@ -60,7 +48,7 @@ class EvaluationsController < ApplicationController
             end
         end
         already_seen.each do |q|
-            session[:content] << q#Question.where(:qid => q).pluck(:content).first
+            session[:content] << q
         end
         puts session[:content]
         

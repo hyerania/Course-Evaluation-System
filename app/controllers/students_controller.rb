@@ -16,6 +16,9 @@ class StudentsController < ApplicationController
     end
   end
   
+  def instructions
+  end
+  
   def login(uin)
     #first check if input is legal
     if(uin.to_i > 999999999 || uin.to_i < 100000000)

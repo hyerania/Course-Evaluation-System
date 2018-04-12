@@ -48,23 +48,17 @@ Rails.application.routes.draw do
   root to: 'welcome#show'
 
   get 'about', to: 'about#show'
-  #Yang: just for testing
   get 'admin', to: 'admin#show'
   get 'admin/evaluations', to: 'evaluations#show'
   post 'admin/evaluations', to: 'evaluations#show'
   # '/' Route
   get 'welcome/show'
   get 'students/hello'
-  
-  
-  # links
-  
-  #post 'evaluation/:id/selectq' => 'evaluation#selectq', :as => :selectq
-  #post 'evaluation/selectr' => 'evaluation#selectr', :as => :selectr
-  #post 'evaluation/save' => 'evaluation#save', :as => :save
+
   post 'admin/evaluations/new' => 'evaluations#create', :as => :create
   post 'admin/evaluations/selectr' => 'evaluations#selectr', :as => :selectr_evaluation
   get 'admin/evaluations/new' => 'evaluations#new', :as => :new_evaluation
+  get 'questions/instructions' => 'students#instructions', :as => :instructions_student
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
 end

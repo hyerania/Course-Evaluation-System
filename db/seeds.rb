@@ -38,3 +38,7 @@ Question.create([{
 AccessCode.create([{
     code: "CSCE120-2018"
 }])
+
+AdminKey.create([{
+    key: "99f427c0c6a2411bc8a046f26c8aa4cb45bba27f"
+}])

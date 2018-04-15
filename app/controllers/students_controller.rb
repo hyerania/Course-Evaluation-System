@@ -6,6 +6,8 @@ class StudentsController < ApplicationController
     @all_students = Student.all
     
     @student = Student.new
+    
+    @sections = Section.all.order('section_number asc')
   end
   
   def welcome
@@ -37,6 +39,13 @@ class StudentsController < ApplicationController
   end
     
   def show
+    if(session[:uin].nil?)
+      redirect_to controller: 'students', action: 'welcome'
+    end
+  
+    @sections = Section.all.order('section_number asc')
+    @list_of_sections = Section.pluck(:section_number).sort
+  
     @student = Student.where(uin: session[:uin]).first
     if(params[:access_code].nil?)
       flash[:notice] = ""
@@ -48,6 +57,18 @@ class StudentsController < ApplicationController
         flash[:notice] = "Invalid Access Code!"
       end
     end
+    
+    #update student section
+    if(!params[:section].nil? and !params[:uin].nil?)
+      update(params[:uin], params[:section])
+    end
+  end
+  
+  def update uin,section
+    @student = Student.where(uin: params[:uin].keys[0]).first
+    @student.section = params[:section]
+    @student.save
+    redirect_to controller: 'students', action: 'show'
   end
   
   def create
@@ -94,5 +115,10 @@ class StudentsController < ApplicationController
     flash[:notice] = "Student Added!"
     
     return true
+  end
+  
+  def logout
+    session[:uin] = nil
+    redirect_to controller: 'students', action: 'welcome'
   end
 end

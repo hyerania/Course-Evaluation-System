@@ -22,7 +22,11 @@ end
 
 Given(/^the following evaluations exist:$/) do |table|
     table.hashes.each do |evaluation|
-        Evaluation.create(evaluation)
+        @evaluation = Evaluation.new
+        @evaluation.eid=evaluation[:eid].to_i
+        @evaluation.title=evaluation[:title]
+        @evaluation.content=evaluation[:content].tr('[]','').split(',')
+        @evaluation.save
     end
 end
 

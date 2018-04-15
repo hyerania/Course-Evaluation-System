@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   QUESTIONS_PER_PAGE = 1
   def view
     questions=[]
-    @evaluation = Evaluation.pluck(:content).last
+    @evaluation = Evaluation.pluck(:content)
     @evaluation.each do |question|
       questions << question
     end
@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
   end
   private
     def set_page
-       @page = params[:page].to_i || 0
+       @page = (params[:page] || 0).to_i
     end
   def edit
     

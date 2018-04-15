@@ -1,6 +1,10 @@
 Feature: View for the students test
 
 Background: evaluations in database
+  Given the following students exist:
+  | uin          | name            | section      |    attempts  | score|last_start              |last_end                |created_at |updated_at|
+  | 123000123    | Ruth Morris     | 500          |   0          |  -1  |2018-03-10 17:00:00 UTC |2018-03-10 20:00:00 UTC |           |          |
+  
   Given the following questions exist:
   | qid   | content                               | answer  |c1     | c2    | c3    | c4    | c5    |
   | 1002  | "What is the color of the blood?"     | "Green" |"Green"|"Pink" |"White"|"Blue" |"Red"  |
@@ -15,6 +19,12 @@ Background: evaluations in database
     |CSCE120    | 
   
 Scenario: view for the student's test
+  Given I am on the home page
+  And I follow "For Students"
+  Then I should be on the student login page
+  And I fill in "uin" with "123000123"
+  And I press "Login"
+  Then I should be on the student personal page
   When I am on the student questions page
   Then I should see "What is the color of the blood?"
   And  I should see "Green"
@@ -33,4 +43,5 @@ Scenario: view for the student's test
   
   When I press "Submit"
   Then I should be on the student personal page
+  
   

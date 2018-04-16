@@ -15,14 +15,16 @@ Background: evaluations in database
 Scenario: creating a new evaluation
   When I am on the Evaluations page
   And  I follow "Add new evaluation"
-  And  I fill in "size" with "2"
-  And  I press "Random"
   And  I fill in "title" with "Evaluation 3"
+  And  I fill in "size" with "2"
+  And  I press "evaluations_random"
   And  I press "Save Changes" 
-  Then  I should not see any question twice
+  Then I should see "Evaluation 3"
+  And I should not see any question twice
  
 Scenario: creating a new evaluation without filling in parameters
   When I am on the Evaluations page
   And  I follow "Add new evaluation"
+  And  I check "questions[1001]"
   And  I press "Save Changes" 
   Then I should be on the New page

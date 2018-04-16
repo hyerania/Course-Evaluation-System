@@ -3,7 +3,7 @@
 
 <%=form_for :evaluation, :url => {:controller => 'evaluations',:action => "create"} do |e|%>
 	<%= label :title_label, 'Title:'%>
-	<%= text_field_tag :title%>
+	<%= text_field_tag :title, session[:title]%>
 	<%= simple_format " \n " %>
 	<%= label :question_label,'Question:'%>
 	<%= simple_format " \n " %>
@@ -13,11 +13,14 @@
 	    <%= question.content %>
 	    <%= simple_format " \n " %>
 	<% end %>
+	<%= label :random_label, 'Random questions:'%>
+	<%= text_field_tag :size %>
+	<%= submit_tag 'Random',:id=>"evaluations_random" %>
 	<%= submit_tag 'Save Changes',:id=>"evaluations_submit" %>
 <% end %>
 
-<%=form_for :random, :url => {:controller => 'evaluations',:action => "selectr"} do |f|%>
-	<%= label :random_label, 'Random questions:'%>
-	<%= text_field_tag :size %>
-	<%= submit_tag 'Random',:id=>"evaluations_submit" %>
-<% end %>
+<%#=form_for :random, :url => {:controller => 'evaluations',:action => "selectr"} do |f|%>
+	<%#= label :random_label, 'Random questions:'%>
+	<%#= text_field_tag :size %>
+	<%#= submit_tag 'Random',:id=>"evaluations_submit" %>
+<%# end %>

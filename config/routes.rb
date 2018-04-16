@@ -57,6 +57,7 @@ Rails.application.routes.draw do
 
   post 'admin/evaluations/new' => 'evaluations#create', :as => :create
   post 'admin/evaluations/selectr' => 'evaluations#selectr', :as => :selectr_evaluation
+  get 'admin/evaluations/selectr' => 'evaluations#selectr', :as => :selectr_evaluation_get
   get 'admin/evaluations/new' => 'evaluations#new', :as => :new_evaluation
   get 'questions/instructions' => 'students#instructions', :as => :instructions_student
   get 'questions/save' => 'questions#save', :as => :save_test

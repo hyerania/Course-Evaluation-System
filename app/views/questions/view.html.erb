@@ -1,33 +1,38 @@
 <h1>Self-Evaluation Exam</h1>
 
-<table id="questions">
-    <thead>
-        <tr>
-            <th>Content &nbsp; &nbsp; &nbsp;</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @questions.each do |question| %>
-          <tr>
-            <td><%= question.content %></td>
-            <td><%= radio_button_tag :question,'question.c1' %></td>
-            <td><%= question.c1%></td>
-            <td><%= radio_button_tag :question, 'question.c2' %></td>
-            <td><%= question.c2%></td>
-            <td><%= radio_button_tag :question, 'question.c3' %></td>
-            <td><%= question.c3%></td>
-            <td><%= radio_button_tag :question,'question.c4' %></td>
-            <td><%= question.c4%></td>
-            <td><%= radio_button_tag :question, 'question.c5' %></td>
-            <td><%= question.c5%></td>
-          </tr>
-        <% end %>
-    </tbody>
-</table>
-<% if @page == @questions.count %>
-    <%= button_to "Submit", students_show_path %>
-<% else %>
-    <%= link_to "Next", questions_path(page: @page + 1) %>
-<% end %>
 <li><%= link_to 'Personal Evaluation',instructions_student_path %></li>
 
+<%=form_for :questions_form, :url => {:controller => 'questions',:action => "view"} do |q|%>
+    <table id="questions">
+        <thead>
+            <tr>
+                <th>Content &nbsp; &nbsp; &nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @questions.each do |question| %>
+              <tr>
+                <td><%= question.content %></td>
+                <td><%= radio_button_tag :choice, question.c1 %></td>
+                <td><%= question.c1%></td>
+                <td><%= radio_button_tag :choice, question.c2 %></td>
+                <td><%= question.c2%></td>
+                <td><%= radio_button_tag :choice, question.c3 %></td>
+                <td><%= question.c3%></td>
+                <td><%= radio_button_tag :choice,question.c4 %></td>
+                <td><%= question.c4%></td>
+                <td><%= radio_button_tag :choice, question.c5 %></td>
+                <td><%= question.c5%></td>
+              </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <% if session[:page] == @evaluation.count-1 %>
+        <%= submit_tag 'Submit',:id=>"questions_next"%>
+    <% else %>
+        <%= hidden_field_tag(:page, session[:page]+1) %>
+        <%= submit_tag 'Next',:id=>"questions_next"%>
+    <% end %>
+<% end %>
+
+    

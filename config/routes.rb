@@ -59,6 +59,7 @@ Rails.application.routes.draw do
   post 'admin/evaluations/selectr' => 'evaluations#selectr', :as => :selectr_evaluation
   get 'admin/evaluations/new' => 'evaluations#new', :as => :new_evaluation
   get 'questions/instructions' => 'students#instructions', :as => :instructions_student
+  get 'questions/save' => 'questions#save', :as => :save_test
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
 end

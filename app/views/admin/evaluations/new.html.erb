@@ -1,0 +1,23 @@
+<h1>Enter the new evaluation</h1>
+
+
+<%=form_for :evaluation, :url => {:controller => 'evaluations',:action => "create"} do |e|%>
+	<%= label :title_label, 'Title:'%>
+	<%= text_field_tag :title%>
+	<%= simple_format " \n " %>
+	<%= label :question_label,'Question:'%>
+	<%= simple_format " \n " %>
+	<% @questions.each do |question| %>
+		<%= check_box_tag "questions[#{question.qid}]",question.content,(session[:content]!=nil&&session[:content].include?(question.qid)), :multiple=> true %>
+	    <%= question.qid %>
+	    <%= question.content %>
+	    <%= simple_format " \n " %>
+	<% end %>
+	<%= submit_tag 'Save Changes',:id=>"evaluations_submit" %>
+<% end %>
+
+<%=form_for :random, :url => {:controller => 'evaluations',:action => "selectr"} do |f|%>
+	<%= label :random_label, 'Random questions:'%>
+	<%= text_field_tag :size %>
+	<%= submit_tag 'Random',:id=>"evaluations_submit" %>
+<% end %>

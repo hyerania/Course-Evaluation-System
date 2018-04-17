@@ -21,6 +21,12 @@ ActiveRecord::Schema.define(version: 20180417021853) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "admin_keys", force: :cascade do |t|
+    t.string "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "evaluations", force: :cascade do |t|
     t.integer "eid"
     t.string "title"
@@ -46,6 +52,12 @@ ActiveRecord::Schema.define(version: 20180417021853) do
     t.integer "c4_count"
     t.integer "c5_count"
     t.index ["qid"], name: "index_questions_on_qid"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.integer "section_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "students", force: :cascade do |t|

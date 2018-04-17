@@ -1,0 +1,2 @@
+class AdminKey < ApplicationRecord
+end

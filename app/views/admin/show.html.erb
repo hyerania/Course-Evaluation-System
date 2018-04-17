@@ -10,6 +10,7 @@
             <th>Section &nbsp; &nbsp; &nbsp;</th>
             <th>Attempts &nbsp; &nbsp; &nbsp;</th>
             <th>Score &nbsp; &nbsp; &nbsp;</th>
+            <th>Change Section</th>
         </tr>
     </thead>
   
@@ -21,21 +22,62 @@
             <td><%= student.section %></td>
             <td><%= student.attempts %></td>
             <td><%= student.score %></td>
+            <td><%= form_tag do %>
+                <%= select_tag 'section', options_for_select(@list_of_sections, @selected_section) %>
+                <%= submit_tag "Update", :name => "uin[#{student.uin}]" %>
+                <% end %>
+            </td>
           </tr>
         <% end %>
     </tbody>
 </table>
 
-<h1>Control Panel</h1>
+<h1>Access Code</h1>
+
 <p>
     <div>Current Access Code: <%= @access_code.code %></div>
     <%= form_tag do%>
       <%= "Change Access Code To: "%><%= text_field_tag :access_code %><br>
-      <%= submit_tag "Change" %><br>
+      <%= submit_tag "Change", :class=>"btn btn-primary btn-sm" %><br>
     <% end %>
 </p>
+<p>
+<table id="sections">
+    <thead>
+        <tr>
+            <th>section</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @sections.each do |section| %>
+          <tr>
+            <td><%= section.section_number %></td>
+            <td><%= button_to("Delete", action: "delete", value: section.section_number) %></td>
+          </tr>
+        <% end %>
+    </tbody>
+</table>
+</p>
+<%= form_tag do%>
+    <%= "Section Number: "%><%= number_field_tag :section_number %><br>
+    <%= submit_tag "Add" %><br>
+<% end %>
+
 
 <div class="form-group" style="margin: 20px 0px">
     <a href="/admin/questions/show" class="btn btn-primary btn-lg" role="button">Questions Manager</a>
     <a href="/admin/evaluations" class="btn btn-primary btn-lg" role="button">Evaluations Manager</a>
 </div>
+
+<%= form_tag do%>
+    <div>Please type the following text in the text box to confirm deletion:</div>
+    <div>I want to delete all students in the database, and I understand that once deleted, they are not recoverable.</div>
+    <%= "disclaimer: "%><%= text_field_tag :disclaimer %><br>
+    <%= submit_tag "Reset Student Database" %><br>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="notice" style="color: red"><%= flash[:notice] %></div>
+<% end %>
+
+<%= link_to "Logout", controller: "admin", action: "logout" %>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  namespace :admin do
+    patch 'questions/update'
+  end
   
   namespace :admin do
     post 'questions/create'
@@ -9,13 +13,21 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get 'questions/edit'
+    get 'questions/edit/:id', to: 'questions#edit'
+  end
+  
+  namespace :admin do
+    delete 'questions/delete/:id', to: 'questions#delete'
   end
 
   namespace :admin do
     get 'questions/new'
   end
+  get 'students/logout'
+  
   get 'students/welcome'
+
+  get 'admin/login'
 
   get 'admin/show'
 
@@ -25,11 +37,19 @@ Rails.application.routes.draw do
   
   get 'students/show'
   
+  get 'admin/logout'
+  
   post 'students/welcome'
+  
+  post 'admin/delete'
+  
+  post 'admin/update'
   
   post 'students/show'
   
   post 'admin/show'
+  
+  post 'admin/login'
   
 
   #get 'questions/view'

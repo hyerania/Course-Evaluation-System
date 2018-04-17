@@ -24,3 +24,21 @@ Scenario: Delete a section in used
   Then I should be on the admin page
   And I press "Delete"
   Then the section of "Ruth Morris" should be ""
+  
+Scenario: Reset Database
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I fill in "disclaimer" with "I want to delete all students in the database, and I understand that once deleted, they are not recoverable."
+  And I press "Reset Student Database"
+  And I should see "Databse Reset"
+  
+Scenario: Reset Database with invalid disclaimer
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I fill in "disclaimer" with "Random Text."
+  And I press "Reset Student Database"
+  And I should see "Disclaimer does not match. Database unchanged."

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180329082908) do
+ActiveRecord::Schema.define(version: 20180417021853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,11 @@ ActiveRecord::Schema.define(version: 20180329082908) do
     t.string "parameters"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "c1_count"
+    t.integer "c2_count"
+    t.integer "c3_count"
+    t.integer "c4_count"
+    t.integer "c5_count"
     t.index ["qid"], name: "index_questions_on_qid"
   end
 

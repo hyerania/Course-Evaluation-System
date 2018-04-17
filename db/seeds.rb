@@ -27,7 +27,8 @@ Question.create([{
     c2: "Blue",
     c3: "White",
     c4: "Pink",
-    c5: "Orange"},
+    c5: "Orange",
+},
     {qid: 1002, content: "What is the color of the grass?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M")},
     {qid: 1003, content: "What is the color of the blood?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M")},
     {qid: 1004, content: "What is the color of the hair?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M")},
@@ -37,4 +38,8 @@ Question.create([{
 
 AccessCode.create([{
     code: "CSCE120-2018"
+}])
+
+AdminKey.create([{
+    key: "99f427c0c6a2411bc8a046f26c8aa4cb45bba27f"
 }])

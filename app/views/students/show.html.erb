@@ -1,3 +1,5 @@
+<%= link_to "Logout", controller: "students", action: "logout" %>
+
 <h1>Records</h1>
 <p>
     <table style = "width:100%", border = "1px solid black">
@@ -7,6 +9,7 @@
             <th>Section</th>
             <th>Attempts</th>
             <th>Score</th>
+            <th>Change Section</th>
         </tr>
         <tr>
             <td><%= @student.uin %></td>
@@ -14,6 +17,11 @@
             <td><%= @student.section %></td>
             <td><%= @student.attempts %></td>
             <td><%= @student.score %></td>
+            <td><%= form_tag do %>
+                <%= select_tag 'section', options_for_select(@list_of_sections, @selected_section) %>
+                <%= submit_tag "Update", :name => "uin[#{@student.uin}]" %>
+                <% end %>
+            </td>
         </tr>
     </table>
 </p>

@@ -1,0 +1,13 @@
+<h1>Admin Login</h1>
+<p>
+    <%= form_tag do%>
+        <%= "Key: "%><%= text_field_tag :key %><br>
+        <%= submit_tag "Login" %><br>
+    <% end %>
+ 
+  <% if flash[:notice] %>
+  <div class="notice" style="color: red"><%= flash[:notice] %></div>
+ <% end %>
+ 
+ <%= link_to "HomePage", controller: "welcome", action: "show" %>
+</p>

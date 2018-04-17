@@ -10,21 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180329082908) do
+ActiveRecord::Schema.define(version: 20180413000058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "access_codes", force: :cascade do |t|
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "admin_keys", force: :cascade do |t|
+    t.string "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "evaluations", force: :cascade do |t|
     t.integer "eid"
     t.string "title"
     t.string "content", default: [], array: true
-  end
-  
-  create_table "access_codes", force: :cascade do |t|
-    t.string "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "questions", force: :cascade do |t|
@@ -40,7 +46,14 @@ ActiveRecord::Schema.define(version: 20180329082908) do
     t.string "parameters"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "numAnswers", null: false
     t.index ["qid"], name: "index_questions_on_qid"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.integer "section_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "students", force: :cascade do |t|

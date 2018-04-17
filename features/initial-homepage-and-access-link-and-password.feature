@@ -8,7 +8,11 @@ Background: students in database
   Given the following access_code exist:
     |code       |
     |CSCE120    | 
-
+  
+  Given the following admin_keys exist:
+    |key                                      |
+    |99f427c0c6a2411bc8a046f26c8aa4cb45bba27f |
+  
 Scenario: Login to student page
   Given I am on the home page
   And I follow "For Students"
@@ -20,6 +24,8 @@ Scenario: Login to student page
 Scenario: View and change access code
   Given I am on the home page
   And I follow "For Professor"
+  And I fill in "key" with "dshell"
+  And I press "Login"
   Then I should be on the admin page
   And I fill in "access_code" with "CSCE606"
   And I press "Change"
@@ -58,3 +64,11 @@ Scenario: Enter invalid access code
   And I fill in "access_code" with "CSCE606"
   And I press "Begin"
   Then I should see "Invalid Access Code!"
+  
+Scenario: Logout
+  Given I am on the student login page
+  And I fill in "uin" with "123000123"
+  And I press "Login"
+  Then I should be on the student personal page
+  And I follow "Logout"
+  Then I should be on the student login page

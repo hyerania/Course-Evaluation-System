@@ -27,6 +27,7 @@ module NavigationHelpers
       
     when /^the new question page$/
       '/admin/questions/new'
+      
     
     when /^the admin questions page$/
       '/admin/questions/show'
@@ -49,7 +50,12 @@ module NavigationHelpers
     when /^the student questions page$/
       '/questions'
       
-    
+    when /^the student home page$/
+      '/students/show'
+      
+    when /^the admin login page$/
+      '/admin/login'
+      
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

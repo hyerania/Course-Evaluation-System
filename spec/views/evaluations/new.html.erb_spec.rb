@@ -5,10 +5,10 @@ RSpec.describe "evaluations/new", type: :view do
     assign(:evaluation, Evaluation.new())
   end
 
-  it "renders new evaluation form" do
-    render
+  # it "renders new evaluation form" do
+  #   render
 
-    assert_select "form[action=?][method=?]", evaluations_path, "post" do
-    end
-  end
+  #   assert_select "form[action=?][method=?]", evaluations_path, "post" do
+  #   end
+  # end
 end

@@ -8,7 +8,7 @@ RSpec.describe "evaluations/index", type: :view do
     ])
   end
 
-  it "renders a list of evaluations" do
-    render
-  end
+  # it "renders a list of evaluations" do
+  #   render
+  # end
 end

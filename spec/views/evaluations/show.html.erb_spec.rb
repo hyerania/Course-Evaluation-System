@@ -5,7 +5,7 @@ RSpec.describe "evaluations/show", type: :view do
     @evaluation = assign(:evaluation, Evaluation.create!())
   end
 
-  it "renders attributes in <p>" do
-    render
-  end
+  # it "renders attributes in <p>" do
+  #   render
+  # end
 end

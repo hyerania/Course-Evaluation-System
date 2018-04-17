@@ -3,30 +3,26 @@
 <li><%= link_to 'Personal Evaluation',instructions_student_path %></li>
 
 <%=form_for :questions_form, :url => {:controller => 'questions',:action => "view"} do |q|%>
-    <table id="questions">
-        <thead>
-            <tr>
-                <th>Content &nbsp; &nbsp; &nbsp;</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @questions.each do |question| %>
-              <tr>
-                <td><%= question.content %></td>
-                <td><%= radio_button_tag :choice, question.c1 %></td>
-                <td><%= question.c1%></td>
-                <td><%= radio_button_tag :choice, question.c2 %></td>
-                <td><%= question.c2%></td>
-                <td><%= radio_button_tag :choice, question.c3 %></td>
-                <td><%= question.c3%></td>
-                <td><%= radio_button_tag :choice,question.c4 %></td>
-                <td><%= question.c4%></td>
-                <td><%= radio_button_tag :choice, question.c5 %></td>
-                <td><%= question.c5%></td>
-              </tr>
-            <% end %>
-        </tbody>
-    </table>
+    <p>Content &nbsp; &nbsp; &nbsp;</p>
+    <% @questions.each do |question| %>
+        <%= text_area_tag :question_content, question.content, :class => "tinymce", :rows => 10, :cols => 120 %>
+        <%= simple_format " \n " %>
+        <%= radio_button_tag :choice, question.c1 %>
+        <%= text_area_tag :c1_q, question.c1, :class => "tinymce", :rows => 10, :cols => 120 %>
+        <%= simple_format " \n " %>
+        <%= radio_button_tag :choice, question.c2 %>
+        <%= text_area_tag :c2_q, question.c2, :class => "tinymce", :rows => 10, :cols => 120 %>
+        <%= simple_format " \n " %>
+        <%= radio_button_tag :choice, question.c3 %>
+        <%= text_area_tag :c3_q, question.c3, :class => "tinymce", :rows => 10, :cols => 120 %>
+        <%= simple_format " \n " %>
+        <%= radio_button_tag :choice,question.c4 %>
+        <%= text_area_tag :c4_q, question.c4, :class => "tinymce", :rows => 10, :cols => 120 %>
+        <%= simple_format " \n " %>
+        <%= radio_button_tag :choice, question.c5 %>
+        <%= text_area_tag :c5_q, question.c5, :class => "tinymce", :rows => 10, :cols => 120 %>
+        <%= simple_format " \n " %>
+    <% end %>
     <% if session[:page] == @evaluation.count-1 %>
         <%= submit_tag 'Submit',:id=>"questions_next"%>
     <% else %>
@@ -35,4 +31,4 @@
     <% end %>
 <% end %>
 
-    
+<%= tinymce %>

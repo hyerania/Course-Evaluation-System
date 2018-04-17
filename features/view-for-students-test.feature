@@ -11,7 +11,7 @@ Background: evaluations in database
   | 1003  | "What is the color of the hair?"      | Black | Black | Pink |"White"|"Blue" |"Red"  |
  
   Given the following evaluations exist:
-  | eid        | title            | content                                                                       |
+  | eid        | title            | content                                                              |
   | 1          | Evaluation 1     | ["What is the color of the blood?","What is the color of the hair?"] |
   
   Given the following access_code exist:

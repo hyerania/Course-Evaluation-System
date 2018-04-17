@@ -43,6 +43,21 @@ class AdminController < ApplicationController
     if(!params[:section].nil? and !params[:uin].nil?)
       update(params[:uin], params[:section])
     end
+    
+    #reset database
+    if(!params[:disclaimer].nil?)
+      resetStudentsDB(params[:disclaimer])
+    end
+  end
+  
+  def resetStudentsDB disclaimer
+    disclaimerString = "I want to delete all students in the database, and I understand that once deleted, they are not recoverable."
+    if(disclaimer == disclaimerString)
+      Student.destroy_all
+      flash[:notice] = "Databse Reset"
+    else
+      flash[:notice] = "Disclaimer does not match. Database unchanged."
+    end
   end
   
   def delete

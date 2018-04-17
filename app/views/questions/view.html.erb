@@ -1,3 +1,7 @@
+<% flash.each do |key, value|%>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <h1>Self-Evaluation Exam</h1>
 
 <li><%= link_to 'Personal Evaluation',instructions_student_path %></li>

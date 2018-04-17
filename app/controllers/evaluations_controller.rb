@@ -31,7 +31,6 @@ class EvaluationsController < ApplicationController
                 redirect_to action: "show"
             else
                 flash[:error] = "Some parameter is missing."
-                flash.keep
                 session[:content]=[]
                 if params[:questions]!=nil
                     params[:questions].keys.each do |q|

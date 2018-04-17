@@ -1,4 +1,9 @@
+<% flash.each do |key, value|%>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <h1>Enter the new evaluation</h1>
+
 
 
 <%=form_for :evaluation, :url => {:controller => 'evaluations',:action => "create"} do |e|%>

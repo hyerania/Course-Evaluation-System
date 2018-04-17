@@ -50,9 +50,9 @@ class QuestionsController < ApplicationController
   
   
   def view
+    @evaluation = Evaluation.pluck(:content).last
     if params[:commit]==nil||params[:commit]=="Next"
       questions=[]
-      @evaluation = Evaluation.pluck(:content).last
       @evaluation.each do |question|
         questions << question
       end
@@ -65,6 +65,7 @@ class QuestionsController < ApplicationController
       end
     else
       session[:choice] << params[:choice]
+      
       redirect_to :controller=> "questions", :action=> "save"
     end
   end
@@ -72,33 +73,26 @@ class QuestionsController < ApplicationController
     def set_page
       puts "session before:"
       puts session[:page]
-      puts session[:maxpage]
       puts params[:page]
       
       if session[:page]==nil
         session[:page]=0
       end
       
-      if session[:maxpage]==nil
-        session[:maxpage]=0
-      end
       
       #commented out for testing
       
-      if params[:commit]!=nil&&params[:commit]=="Next"&&params[:page]!=nil&&params[:page].to_i>session[:page]&&params[:choice]!=nil&&session[:page]==session[:maxpage]
+      if params[:commit]!=nil&&params[:commit]=="Next"&&params[:page]!=nil&&params[:page].to_i>session[:page]&&params[:choice]!=nil
         puts "set page allowed"
         session[:page] = (params[:page]).to_i
-        session[:maxpage] = session[:page]
-      elsif session[:page]!=session[:maxpage]
-        session[:page] = session[:maxpage]
-        puts "reset to page max"
+      elsif params[:choice]==nil
+        flash[:notice] = "You have to pick an answer."
       else
         puts "set page denied"
       end
       
       puts "session after:"
       puts session[:page]
-      puts session[:maxpage]
       
       
     end

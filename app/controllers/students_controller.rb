@@ -57,6 +57,8 @@ class StudentsController < ApplicationController
       if(@access_code.code == params[:access_code])
         session[:page]=0
         session[:choice]=[]
+        @student.choices=[]
+        @student.save
         redirect_to controller: 'questions', action: 'view'
       else
         flash[:notice] = "Invalid Access Code!"

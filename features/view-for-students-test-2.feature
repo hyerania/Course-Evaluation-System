@@ -1,4 +1,4 @@
-Feature: View for the students test
+Feature: View for the students test 2
 
 Background: evaluations in database
   Given the following students exist:
@@ -17,7 +17,7 @@ Background: evaluations in database
  
   Given the following evaluations exist:
   | eid        | title            | content                                                              |
-  | 1          | Evaluation 1     | ["What is the color of the blood?","What is the color of the hair?","What is the color of the blood2?","What is the color of the hair3?","What is the color of the blood4?","What is the color of the hair5?"] |
+  | 1          | Evaluation 1     | ["What is the color of the blood?"] |
   
   Given the following access_code exist:
   |code       |
@@ -38,62 +38,52 @@ Scenario: view for the student's test
   And  I should see "Blue"
   And  I should see "Red"
   
-  When I press "Next"
-  Then I should be on the student questions page
-  
-  When I choose "choice_1"
-  And I press "Next"
-  Then I should see "What is the color of the hair?"
-  And  I should see "Black"
-  And  I should see "Pink"
-  And  I should see "White"
-  And  I should see "Blue"
-  And  I should see "Red"
-
-  When I choose "choice_2"
-  And I press "Next"
-  Then I should see "What is the color of the blood2?"
-  And  I should see "Green"
-  And  I should see "Pink"
-  And  I should see "White"
-  And  I should see "Blue"
-  And  I should see "Red"
-  
-  When I choose "choice_3"
-  And I press "Next"
-  Then I should see "What is the color of the hair3?"
-  And  I should see "Black"
-  And  I should see "Pink"
-  And  I should see "White"
-  And  I should see "Blue"
-  And  I should see "Red"
-  
-  When I am on the student question page without arguments
-  Then I should be on the student questions page
-  
-  When I choose "choice_4"
-  And I press "Next"
-  Then I should see "What is the color of the blood4?"
-  And  I should see "Green"
-  And  I should see "Pink"
-  And  I should see "White"
-  And  I should see "Blue"
-  And  I should see "Red"
-  
-  When I choose "choice_5"
-  And I press "Next"
-  Then I should see "What is the color of the hair5?"
-  And  I should see "Black"
-  And  I should see "Pink"
-  And  I should see "White"
-  And  I should see "Blue"
-  And  I should see "Red"
-  
-  When I press "Submit"
-  Then I should be on the student questions page
-  
   When I choose "choice_1"
   And I press "Submit"
   Then I should be on the student personal page
   
+  When I am on the student questions page
+  Then I should see "What is the color of the blood?"
+  And  I should see "Green"
+  And  I should see "Pink"
+  And  I should see "White"
+  And  I should see "Blue"
+  And  I should see "Red"
+  When I choose "choice_2"
+  And I press "Submit"
+  Then I should be on the student personal page
   
+  When I am on the student questions page
+  Then I should see "What is the color of the blood?"
+  And  I should see "Green"
+  And  I should see "Pink"
+  And  I should see "White"
+  And  I should see "Blue"
+  And  I should see "Red"
+  When I choose "choice_3"
+  And I press "Submit"
+  Then I should be on the student personal page
+  
+  When I am on the student questions page
+  Then I should see "What is the color of the blood?"
+  And  I should see "Green"
+  And  I should see "Pink"
+  And  I should see "White"
+  And  I should see "Blue"
+  And  I should see "Red"
+  When I choose "choice_4"
+  And I press "Submit"
+  Then I should be on the student personal page
+  
+  When I am on the student questions page
+  Then I should see "What is the color of the blood?"
+  And  I should see "Green"
+  And  I should see "Pink"
+  And  I should see "White"
+  And  I should see "Blue"
+  And  I should see "Red"
+  When I choose "choice_5"
+  And I press "Submit"
+  Then I should be on the student personal page
+  
+  Then I follow "About Us"

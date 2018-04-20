@@ -70,3 +70,7 @@ Then(/^the section of "(.*)" should be "(.*)"$/) do |name, section|
   @student = Student.find_by_name(name)
   expect(@student.section.to_s).to eq section
 end
+
+When(/^I go back$/) do
+  page.go_back
+end

@@ -26,6 +26,11 @@ class Admin::QuestionsController < ApplicationController
       @question.answer = @question.c4
     end
     
+    @question.c1_count=0
+    @question.c2_count=0
+    @question.c3_count=0
+    @question.c4_count=0
+    @question.c5_count=0
     
     @question.save
     redirect_to action: "show"

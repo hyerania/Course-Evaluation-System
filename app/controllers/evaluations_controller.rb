@@ -15,6 +15,7 @@ class EvaluationsController < ApplicationController
     end
     
     def create
+        flash[:error] = ""
         if params[:commit]!=nil&&params[:commit]=="Random"&&params[:size]!=""
             if params[:title]!=nil&&params[:title]!=""
                 session[:title]=params[:title]

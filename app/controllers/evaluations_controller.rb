@@ -9,7 +9,7 @@ class EvaluationsController < ApplicationController
     def new
         logger.info "new"
         logger.info session[:content]
-        @questions=Question.all
+        @questions=Question.all.order(:qid)
         @selected_questions=[]
         if session[:title]==nil then session[:title]="" end
     end
@@ -27,7 +27,7 @@ class EvaluationsController < ApplicationController
             if(params[:title]!=nil&&params[:title]!=""&&params[:questions]!=nil)
                 @question=Evaluation.create!(:eid =>(Evaluation.maximum(:eid)==nil) ? 1 : Evaluation.maximum(:eid)+1,:title =>params[:title],:content =>params[:questions].values)
                 flash[:notice] = "Question #{@question.title} was successfully created."
-                flash.keep
+                #flash.keep
                 
                 redirect_to action: "show"
             else
@@ -72,4 +72,15 @@ class EvaluationsController < ApplicationController
         redirect_to new_evaluation_path
     end
     
+    def edit
+    
+    end
+    
+    def update
+    
+    end
+    
+    def destroy
+    
+    end
 end

@@ -61,7 +61,9 @@ Rails.application.routes.draw do
   
   match '/questions', to: 'questions#view', via: [:get, :post]
   
-  resources :students
+  resources :students do
+    collection {post :import}
+  end
   
   resources :questions, only: [:view], via: [:post]
   

@@ -2,14 +2,14 @@
 
 <h4> Overall Average: <%=@average%></h4>
 
-<table id="t01">
+<table id="t01", class="table table-hover">
     <thead>
         <tr>
-            <th>UIN &nbsp; &nbsp; &nbsp;</th>
-            <th>Student Name &nbsp; &nbsp; &nbsp;</th>
-            <th>Section &nbsp; &nbsp; &nbsp;</th>
-            <th>Attempts &nbsp; &nbsp; &nbsp;</th>
-            <th>Score &nbsp; &nbsp; &nbsp;</th>
+            <th>UIN </th>
+            <th>Student Name </th>
+            <th>Section </th>
+            <th>Attempts </th>
+            <th>Score </th>
             <th>Change Section</th>
         </tr>
     </thead>
@@ -31,7 +31,7 @@
         <% end %>
     </tbody>
 </table>
-
+<%= link_to "Export data", controller: "students", action: "index" %>
 <h1>Access Code</h1>
 
 <p>

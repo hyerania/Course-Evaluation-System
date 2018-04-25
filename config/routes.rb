@@ -1,6 +1,30 @@
 Rails.application.routes.draw do
 
   namespace :admin do
+    namespace :questions do
+      get 'new/c2'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      get 'new/c3'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      get 'new/c4'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      get 'new/c5'
+    end
+  end
+  
+  namespace :admin do
     patch 'questions/update'
   end
   
@@ -67,10 +91,13 @@ Rails.application.routes.draw do
   
   root to: 'welcome#show'
 
+  
+  
   get 'about', to: 'about#show'
   get 'admin', to: 'admin#show'
   get 'admin/evaluations', to: 'evaluations#show'
   post 'admin/evaluations', to: 'evaluations#show'
+  get 'admin/evaluations/view/:id', to: 'evaluations#view'
   # '/' Route
   get 'welcome/show'
   get 'students/hello'

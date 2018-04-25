@@ -24,6 +24,8 @@ class Admin::QuestionsController < ApplicationController
       @question.answer = @question.c3
     elsif answer == "4"
       @question.answer = @question.c4
+    elsif answer == "5"
+      @question.answer = @question.c5
     end
     
     

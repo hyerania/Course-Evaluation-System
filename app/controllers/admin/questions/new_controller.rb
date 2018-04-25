@@ -28,8 +28,6 @@ class Admin::Questions::NewController < ApplicationController
       redirect_to '/admin/questions/new/c4'
     elsif numAnswers == "5"
       redirect_to '/admin/questions/new/c5'
-    else
-      redirect_to '/'
     end
         
   end

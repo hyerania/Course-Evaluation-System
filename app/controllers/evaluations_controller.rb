@@ -1,5 +1,4 @@
 class EvaluationsController < ApplicationController
-    
     def show
         session[:content]=[]
         session[:title]=""
@@ -70,5 +69,21 @@ class EvaluationsController < ApplicationController
         
         redirect_to new_evaluation_path
     end
+    
+    def view
+        eid = params[:id]
+        @evaluation = Evaluation.where(eid: eid)[0]
+        # puts @evaluation.content
+        evalQuestions = []
+        @evaluation.content.each do |question|
+            evalQuestions << question
+        end
+        @questions = Question.where(:content => evalQuestions)
+    end
+    
+    def delete
+        
+    end
+    
     
 end

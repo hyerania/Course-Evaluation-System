@@ -33,7 +33,7 @@ class Admin::QuestionsController < ApplicationController
 
   def show
     @all_questions = Question.order(:qid)
-    
+    @num_answers = "2"
   end
 
   def update

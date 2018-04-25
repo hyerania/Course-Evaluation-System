@@ -84,6 +84,7 @@ class StudentsController < ApplicationController
     @student = Student.new(params[:student])
     @student.attempts = 0
     @student.score = -1
+    @student.scoretotal=-1
     @student.created_at =  DateTime.now
     res = validate_entry(@student)
     #debugger

@@ -38,6 +38,9 @@ Given(/^the following evaluations exist:$/) do |table|
         @evaluation.eid=evaluation[:eid].to_i
         @evaluation.title=evaluation[:title]
         @evaluation.content=evaluation[:content].tr('[]','').split(',')
+        if evaluation[:scales]!=nil
+          @evaluation.scales=evaluation[:scales].tr('[]','').split(',').map(&:to_i)
+        end
         @evaluation.save
     end
 end

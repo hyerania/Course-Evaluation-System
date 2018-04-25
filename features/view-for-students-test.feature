@@ -16,8 +16,8 @@ Background: evaluations in database
 
  
   Given the following evaluations exist:
-  | eid        | title            | content                                                              |
-  | 1          | Evaluation 1     | ["What is the color of the blood?","What is the color of the hair?","What is the color of the blood2?","What is the color of the hair3?","What is the color of the blood4?","What is the color of the hair5?"] |
+  | eid        | title            | content                                                                                                                                                                                                        |scales|
+  | 1          | Evaluation 1     | ["What is the color of the blood?","What is the color of the hair?","What is the color of the blood2?","What is the color of the hair3?","What is the color of the blood4?","What is the color of the hair5?"] |[1,2,3,4,5,5,4,3,2,1,1,2,3,4,5,5,4,3,2,1,1,2,3,4,5,5,4,3,2,1]|
   
   Given the following access_code exist:
   |code       |

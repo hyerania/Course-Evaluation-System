@@ -15,7 +15,7 @@ class EvaluationsController < ApplicationController
     end
     
     def create
-        flash[:error] = ""
+        flash[:error]=""
         if params[:commit]!=nil&&params[:commit]=="Random"&&params[:size]!=""
             if params[:title]!=nil&&params[:title]!=""
                 session[:title]=params[:title]
@@ -25,7 +25,16 @@ class EvaluationsController < ApplicationController
         else
             logger.info "create"
             if(params[:title]!=nil&&params[:title]!=""&&params[:questions]!=nil)
-                @question=Evaluation.create!(:eid =>(Evaluation.maximum(:eid)==nil) ? 1 : Evaluation.maximum(:eid)+1,:title =>params[:title],:content =>params[:questions].values)
+                scales=[]
+                if params[:scales]!=nil
+                    params[:scales].each do |k,v|
+                        if params[:questions][k.split(",")[0]]!=nil
+                           scales << v.to_i 
+                        end
+                    end
+                end
+                #puts scales
+                @question=Evaluation.create!(:eid =>(Evaluation.maximum(:eid)==nil) ? 1 : Evaluation.maximum(:eid)+1,:title =>params[:title],:content =>params[:questions].values, :scales=> scales)
                 flash[:notice] = "Question #{@question.title} was successfully created."
                 #flash.keep
                 

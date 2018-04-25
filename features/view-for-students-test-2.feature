@@ -16,8 +16,8 @@ Background: evaluations in database
 
  
   Given the following evaluations exist:
-  | eid        | title            | content                                                              |
-  | 1          | Evaluation 1     | ["What is the color of the blood?"] |
+  | eid        | title            | content                             |scales|
+  | 1          | Evaluation 1     | ["What is the color of the blood?"] | [1,2,3,4,5] |
   
   Given the following access_code exist:
   |code       |

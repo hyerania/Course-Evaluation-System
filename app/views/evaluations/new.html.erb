@@ -10,6 +10,10 @@
 	<%= label :title_label, 'Title:'%>
 	<%= text_field_tag :title, session[:title]%>
 	<%= simple_format " \n " %>
+	<%= label :random_label, 'How many random questions do you want?'%>
+	<%= text_field_tag :size %>
+	<%= submit_tag 'Random',:id=>"evaluations_random" %>
+	<%= simple_format " \n " %>
 	<%= label :question_label,'Question:'%>
 	<%= simple_format " \n " %>
 	<% @questions.each do |question| %>
@@ -17,35 +21,32 @@
 	    <%= question.qid %>
 	    <%= text_area_tag :question_content, question.content, :rows => 5, :cols => 60, :disabled => true %>
 	    <% if question.c1!=nil&&question.c1!="" %>
-	    	<%= select_tag(:c1_scale, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]])) %>
+	    	<%= select_tag("scales[#{question.qid},1]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]])) %>
 	    	<%= question.c1 %>
 	    	<%= simple_format " \n " %>
 	    <% end %>
 	   	<% if question.c2!=nil&&question.c2!="" %>
-	    	<%= select_tag(:c2_scale, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]])) %>
+	    	<%= select_tag("scales[#{question.qid},2]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]])) %>
 	    	<%= question.c2 %>
 	    	<%= simple_format " \n " %>
 	    <% end %>
 	    <% if question.c3!=nil&&question.c3!="" %>
-	    	<%= select_tag(:c3_scale, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]])) %>
+	    	<%= select_tag("scales[#{question.qid},3]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]])) %>
 	    	<%= question.c3 %>
 	    	<%= simple_format " \n " %>
 	    <% end %>
 	    <% if question.c4!=nil&&question.c4!="" %>
-	    	<%= select_tag(:c4_scale, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]])) %>
+	    	<%= select_tag("scales[#{question.qid},4]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]])) %>
 	    	<%= question.c4 %>
 	    	<%= simple_format " \n " %>
 	    <% end %>
 	    <% if question.c5!=nil&&question.c5!="" %>
-	    	<%= select_tag(:c5_scale, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]])) %>
+	    	<%= select_tag("scales[#{question.qid},5]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]])) %>
 	    	<%= question.c5 %>
 	    	<%= simple_format " \n " %>
 	    <% end %>
 	    <%= simple_format " \n " %>
 	<% end %>
-	<%= label :random_label, 'How many random questions do you want?'%>
-	<%= text_field_tag :size %>
-	<%= submit_tag 'Random',:id=>"evaluations_random" %>
 	<%= submit_tag 'Save Changes',:id=>"evaluations_submit" %>
 <% end %>
 

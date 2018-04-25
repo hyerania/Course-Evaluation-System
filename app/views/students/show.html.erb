@@ -16,7 +16,7 @@
             <td><%= @student.name %></td>
             <td><%= @student.section %></td>
             <td><%= @student.attempts %></td>
-            <td><%= @student.score %></td>
+            <td><%= @student.score.to_s+"/"+@student.scoretotal.to_s+"(#{((@student.score+0.0)/((@student.scoretotal.nonzero?||1)+0.0)).round(2)})" %></td>
             <td><%= form_tag do %>
                 <%= select_tag 'section', options_for_select(@list_of_sections, @selected_section) %>
                 <%= submit_tag "Update", :name => "uin[#{@student.uin}]" %>

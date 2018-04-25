@@ -12,9 +12,16 @@ class QuestionsController < ApplicationController
     i=0
     
     @evaluation = Evaluation.pluck(:content).last
-    
+    @this_evaluation=Evaluation.last
     
     @student=Student.where(:uin=>session[:uin]).first
+    
+    choices_seen=0
+    
+    #puts @this_evaluation.scales
+    
+    total_score=0
+    
     @evaluation.each do |question|
       
       #question_choice_stat
@@ -27,17 +34,36 @@ class QuestionsController < ApplicationController
       #puts session[:choice][i]
       #puts "|"
       #puts Question.where(:content => question).pluck(:answer).first
-      if @student.choices[i].to_i==Question.where(:content => question).first.getCorrectAnswerNum
-        score+=1
-      end
+      
+      temp_question=Question.where(:content => question).first
+      
+      temp_question_choice_count=0
+      
+      temp_question_max_score=0
+      
+      if temp_question.c1!=nil then temp_question_choice_count+=1 end
+      if temp_question.c2!=nil then temp_question_choice_count+=1 end
+      if temp_question.c3!=nil then temp_question_choice_count+=1 end
+      if temp_question.c4!=nil then temp_question_choice_count+=1 end
+      if temp_question.c5!=nil then temp_question_choice_count+=1 end
+      
+      
+      #if @student.choices[i].to_i==temp_question.getCorrectAnswerNum
+      score+=@this_evaluation.scales[choices_seen+@student.choices[i].to_i-1]
+      temp_question_max_score=@this_evaluation.scales[choices_seen..(choices_seen+temp_question_choice_count)].max
+      #end
       i+=1
+      choices_seen+=temp_question_choice_count
+      total_score+=temp_question_max_score
     end
     puts "score:"
     puts score
+    puts total_score
     
     session[:choice]=[]
     
     @student.score=score
+    @student.scoretotal=total_score
     @student.attempts+=1
     @student.choices=[]
     @student.save

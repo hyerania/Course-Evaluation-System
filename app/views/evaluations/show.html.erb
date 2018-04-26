@@ -26,10 +26,20 @@
           </tr>
         <% end %>
     </tbody>
-    <% if flash[:notice] %>
-        <div class="notice" style="color: red"><%= flash[:notice] %></div>
-    <% end %>
 </table>
 
 <br>
 <%= link_to 'Add new evaluation', new_evaluation_path, :class=>"btn btn-primary btn-lg" %>
+
+<h1>Instructions:</h1>
+<%= form_for @instructions, :url => {:action => "update_instructions"} do |f| %>
+<%= text_area_tag :content, @instructions.content, :class => "tinymce", :rows => 10, :cols => 120 %>
+   <% if flash[:notice] %>
+        <div class="notice" style="color: red"><%= flash[:notice] %></div>
+    <% end %>
+<%= tinymce %>
+<div class="form-group" style="margin: 20px 0px">
+    <button class="btn btn-success btn-lg" style="float: right" type="submit">Update Instruction</button>
+</div>
+<% end %>
+

@@ -48,7 +48,8 @@ class StudentsController < ApplicationController
   
     @sections = Section.all.order('section_number asc')
     @list_of_sections = Section.pluck(:section_number).sort
-  
+    @instructions = Instruction.all.first
+    
     @student = Student.where(uin: session[:uin]).first
     if(params[:access_code].nil?)
       flash[:notice] = ""

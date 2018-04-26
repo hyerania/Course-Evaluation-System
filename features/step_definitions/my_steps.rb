@@ -25,6 +25,12 @@ Given(/^the following admin_keys exist:$/) do |table|
   end
 end
 
+Given(/^the following instructions exist:$/) do |table|
+  table.hashes.each do |content|
+    Instruction.create(content)
+  end
+end
+
 Then (/^I should see all the students/) do
   students = Student.all
   students.each do |student|

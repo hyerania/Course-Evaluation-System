@@ -15,6 +15,10 @@ Background: evaluations in database
   Given the following admin_keys exist:
   |key                                      |
   |99f427c0c6a2411bc8a046f26c8aa4cb45bba27f |
+  
+  Given the following instructions exist:
+  |content                  |
+  |"This exam is not timed" |
     
 Scenario: creating a new evaluation
   Given I am on the admin login page

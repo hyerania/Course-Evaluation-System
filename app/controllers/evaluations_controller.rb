@@ -4,8 +4,8 @@ class EvaluationsController < ApplicationController
         if(session[:admin] != "login")
           redirect_to controller: 'admin', action: 'login'
         end
-        
-        flash[:notice] = ''
+
+        @instructions = Instruction.all.first
         session[:content]=[]
         session[:title]=""
         @allevaluations=Evaluation.all.order('eid asc')
@@ -61,6 +61,14 @@ class EvaluationsController < ApplicationController
             
         end
         
+    end
+    
+    def update_instructions
+        @instructions = Instruction.all.first
+        @instructions.content = params[:content]
+        @instructions.save
+        flash[:notice] = "Instruction updated!"
+        redirect_to('/admin/evaluations')
     end
     
     def selectr

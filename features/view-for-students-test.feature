@@ -14,6 +14,10 @@ Background: evaluations in database
   | eid        | title            | content                                                              | access_code |
   | 1          | Evaluation 1     | ["What is the color of the blood?","What is the color of the hair?"] | CSCE120     |
   
+  Given the following instructions exist:
+  |content                  |
+  |"This exam is not timed" |
+  
 Scenario: view for the student's test
   Given I am on the home page
   And I follow "For Students"

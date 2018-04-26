@@ -56,6 +56,8 @@ Rails.application.routes.draw do
   
   resources :questions, only: [:view], via: [:post]
   
+  resources :instructions
+  
   root to: 'welcome#show'
 
   get 'about', to: 'about#show'
@@ -67,11 +69,13 @@ Rails.application.routes.draw do
   get 'students/hello'
 
   post 'admin/evaluations/new' => 'evaluations#create', :as => :create
+  #post 'admin/evaluations' => 'evaluations#update_instructions', :as => :update_instructions
   post 'admin/evaluations/selectr' => 'evaluations#selectr', :as => :selectr_evaluation
   get 'admin/evaluations/selectr' => 'evaluations#selectr', :as => :selectr_evaluation_get
   get 'admin/evaluations/new' => 'evaluations#new', :as => :new_evaluation
   get 'questions/instructions' => 'students#instructions', :as => :instructions_student
   get 'questions/save' => 'questions#save', :as => :save_test
+  patch 'admin/evaluations' => 'evaluations#update_instructions', :as => :update_instructions
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
 end

@@ -4,8 +4,6 @@
 
 <h1>Self-Evaluation Exam</h1>
 
-<li><%= link_to 'Personal Evaluation',instructions_student_path %></li>
-
 <%=form_for :questions_form, :url => {:controller => 'questions',:action => "view"} do |q|%>
     <p>Content &nbsp; &nbsp; &nbsp;</p>
     <% @questions.each do |question| %>

@@ -126,10 +126,13 @@ Rails.application.routes.draw do
   
   root to: 'welcome#show'
 
+  
+  
   get 'about', to: 'about#show'
   get 'admin', to: 'admin#show'
   get 'admin/evaluations', to: 'evaluations#show'
   post 'admin/evaluations', to: 'evaluations#show'
+  get 'admin/evaluations/view/:id', to: 'evaluations#view'
   # '/' Route
   get 'welcome/show'
   get 'students/hello'

@@ -8,10 +8,6 @@ Background: students and sections in database
   Given the following sections exist:
     |section_number    |
     |501               |
-
-  Given the following access_code exist:
-    |code       |
-    |CSCE120    | 
   
   Given the following admin_keys exist:
     |key                                      |

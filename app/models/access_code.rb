@@ -1,2 +1,0 @@
-class AccessCode < ApplicationRecord
-end

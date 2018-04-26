@@ -12,8 +12,17 @@ Background: evaluations in database
   | 1          | Evaluation 1     | ["What is the color of the blood?","What is the color of the hair?"] |
   | 2          | Evaluation 2     | ["What is the color of the grass?","What is the color of the hair?"] |
   
+  Given the following admin_keys exist:
+  |key                                      |
+  |99f427c0c6a2411bc8a046f26c8aa4cb45bba27f |
+    
 Scenario: creating a new evaluation
-  When I am on the Evaluations page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Evaluations Manager"
+  Then I should be on the Evaluations page
   And  I follow "Add new evaluation"
   And  I fill in "title" with "Evaluation 3"
   And  I fill in "size" with "2"
@@ -23,7 +32,12 @@ Scenario: creating a new evaluation
   And I should not see any question twice
  
 Scenario: creating a new evaluation without filling in parameters
-  When I am on the Evaluations page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Evaluations Manager"
+  Then I should be on the Evaluations page
   And  I follow "Add new evaluation"
   And  I check "questions[1001]"
   And  I press "Save Changes" 

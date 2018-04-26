@@ -52,14 +52,17 @@ class StudentsController < ApplicationController
     @student = Student.where(uin: session[:uin]).first
     if(params[:access_code].nil?)
       flash[:notice] = ""
+    elsif(params[:access_code] == "")
+      flash[:notice] = "Please enter an access code!"
     else
-      @access_code = AccessCode.all.first
-      if(@access_code.code == params[:access_code])
-        session[:page]=0
-        session[:choice]=[]
-        redirect_to controller: 'questions', action: 'view'
+      @evaluations = Evaluation.where(access_code: params[:access_code]).first
+      if(@evaluations.nil?)
+        flash[:notice] = "Error: No evaluation exists with the corresponding access code!"
       else
-        flash[:notice] = "Invalid Access Code!"
+        session[:eid] = @evaluations.eid
+        session[:page] = 0
+        session[:choice] = []
+        redirect_to controller: 'questions', action: 'view'
       end
     end
     

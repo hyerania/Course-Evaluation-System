@@ -8,8 +8,18 @@ Background: questions in database
     | qid   | content       | answer    | c1 | c2 | c3 | c4 | c5 |
     | 1000  | "Question 1:" | 10        | 1  | 2  | 3  | 4  | 5  |
 
+  Given the following admin_keys exist:
+    |key                                      |
+    |99f427c0c6a2411bc8a046f26c8aa4cb45bba27f |
+
 Scenario: creating a new question answer 1
-  When I am on the new question page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
+  And I follow "Add Question"
+  Then I should be on the new question page
   And I fill in "content" with "Question 2:"
   And I fill in "c1" with "Answer1"
   And I fill in "c2" with "2"
@@ -21,7 +31,13 @@ Scenario: creating a new question answer 1
   And the question 1001 answer should be 1
 
 Scenario: creating a new question answer 2
-  When I am on the new question page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
+  And I follow "Add Question"
+  Then I should be on the new question page
   And I fill in "content" with "Question 2:"
   And I fill in "c1" with "Answer1"
   And I fill in "c2" with "2"
@@ -34,7 +50,13 @@ Scenario: creating a new question answer 2
   
 
 Scenario: creating a new question answer 3
-  When I am on the new question page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
+  And I follow "Add Question"
+  Then I should be on the new question page
   And I fill in "content" with "Question 2:"
   And I fill in "c1" with "Answer1"
   And I fill in "c2" with "2"
@@ -47,7 +69,13 @@ Scenario: creating a new question answer 3
   
   
 Scenario: creating a new question answer 4
-  When I am on the new question page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
+  And I follow "Add Question"
+  Then I should be on the new question page
   And I fill in "content" with "Question 2:"
   And I fill in "c1" with "Answer1"
   And I fill in "c2" with "2"
@@ -59,7 +87,13 @@ Scenario: creating a new question answer 4
   And the question 1001 answer should be 4
   
 Scenario: cancelling a new question
-  When I am on the new question page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
+  And I follow "Add Question"
+  Then I should be on the new question page
   And I fill in "content" with "Question 3:"
   And I fill in "c1" with "1"
   And I fill in "c2" with "2"

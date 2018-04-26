@@ -32,6 +32,9 @@ class Admin::QuestionsController < ApplicationController
   end
 
   def show
+    if(session[:admin] != "login")
+      redirect_to('/admin/login')
+    end
     @all_questions = Question.order(:qid)
     
   end
@@ -83,6 +86,9 @@ class Admin::QuestionsController < ApplicationController
   
 
   def new
+    if(session[:admin] != "login")
+      redirect_to('/admin/login')
+    end
     @new_question = Question.new
   end
   

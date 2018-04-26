@@ -1,12 +1,30 @@
 class EvaluationsController < ApplicationController
     
     def show
+        if(session[:admin] != "login")
+          redirect_to controller: 'admin', action: 'login'
+        end
+        
+        flash[:notice] = ''
         session[:content]=[]
         session[:title]=""
-        @allevaluations=Evaluation.all
+        @allevaluations=Evaluation.all.order('eid asc')
+        
+        #update evaluation access_code
+        if(!params[:access_code].nil? and !params[:eid].nil?)
+            if(check_access_code_uniqueness(params[:access_code]) == true)
+              update(params[:access_code], params[:eid]) 
+            else
+              flash[:notice] = "Access code already exists for another evaluation!"
+            end
+        end
     end
     
     def new
+        if(session[:admin] != "login")
+          redirect_to controller: 'admin', action: 'login'
+        end
+        
         logger.info "new"
         logger.info session[:content]
         @questions=Question.all
@@ -71,4 +89,19 @@ class EvaluationsController < ApplicationController
         redirect_to new_evaluation_path
     end
     
+    def update access_code, eid
+       @evaluation = Evaluation.where(eid: params[:eid].keys[0]).first
+       @evaluation.access_code = access_code
+       @evaluation.save
+       redirect_to controller: 'evaluations', action: 'show'
+    end
+    
+    def check_access_code_uniqueness code
+      @evaluation = Evaluation.where(access_code: code)
+      if(@evaluation.size == 0)
+          return true
+      else
+          return false
+      end
+    end
 end

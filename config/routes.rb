@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   namespace :admin do
     patch 'questions/update'
   end
@@ -23,41 +22,33 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'questions/new'
   end
-  get 'students/logout'
   
-  get 'students/welcome'
-
-  get 'admin/login'
-
-  get 'admin/show'
-
+  #GET
   get 'welcome/show'
-
-  get 'students/register'
   
-  get 'students/show'
-  
+  get 'admin/login'
+  get 'admin/show'
   get 'admin/logout'
   
+  get 'students/welcome'
+  get 'students/register'
+  get 'students/logout'
+  get 'students/show'
+  
+  get 'admin/questions/show'
+  
+  get 'questions/edit'
+  get 'questions/remove'
+  
+  #POST
   post 'students/welcome'
   
   post 'admin/delete'
-  
   post 'admin/update'
   
   post 'students/show'
-  
-  post 'admin/show'
-  
   post 'admin/login'
-  
-
-  #get 'questions/view'
-
-  get 'questions/edit'
-
-  get 'questions/remove'
-  
+  post 'admin/show'
   
   match '/questions', to: 'questions#view', via: [:get, :post]
   

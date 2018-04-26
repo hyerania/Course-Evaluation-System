@@ -10,16 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180417021853) do
+ActiveRecord::Schema.define(version: 20180423010035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "access_codes", force: :cascade do |t|
-    t.string "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "admin_keys", force: :cascade do |t|
     t.string "key"
@@ -31,6 +25,7 @@ ActiveRecord::Schema.define(version: 20180417021853) do
     t.integer "eid"
     t.string "title"
     t.string "content", default: [], array: true
+    t.string "access_code"
   end
 
   create_table "questions", force: :cascade do |t|

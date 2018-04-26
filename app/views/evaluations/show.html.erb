@@ -6,6 +6,8 @@
             <th>ID</th>
             <th>Title</th>
             <th>Content</th>
+            <th>Access Code</th>
+            <th>Change Access Code</th>
         </tr>
     </thead>
   
@@ -15,9 +17,18 @@
             <td><%= evaluation.eid %></td>
             <td><%= evaluation.title %></td>
             <td><%= evaluation.content %></td>
+            <td><%= evaluation.access_code %></td>
+            <td><%= form_tag do %>
+                <%= text_field_tag :access_code %><br>
+                <%= submit_tag "Update", :name => "eid[#{evaluation.eid}]" %><br>
+                <% end %>
+            </td>
           </tr>
         <% end %>
     </tbody>
+    <% if flash[:notice] %>
+        <div class="notice" style="color: red"><%= flash[:notice] %></div>
+    <% end %>
 </table>
 
 <br>

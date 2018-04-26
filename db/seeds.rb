@@ -36,10 +36,6 @@ Question.create([{
     {qid: 1006, content: "What is the color of the blood3?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M")}
 ])
 
-AccessCode.create([{
-    code: "CSCE120-2018"
-}])
-
 AdminKey.create([{
     key: "99f427c0c6a2411bc8a046f26c8aa4cb45bba27f"
 }])

@@ -56,6 +56,10 @@ module NavigationHelpers
     when /^the admin login page$/
       '/admin/login'
       
+    when /^the questions manager page$/
+      '/admin/questions/show'
+      
+      
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

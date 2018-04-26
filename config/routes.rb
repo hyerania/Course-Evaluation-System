@@ -23,6 +23,11 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'questions/new'
   end
+  
+  namespace :admin do
+    put 'questions/copy/:id', to: 'questions#copy'
+  end
+  
   get 'students/logout'
   
   get 'students/welcome'

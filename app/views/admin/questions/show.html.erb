@@ -13,6 +13,7 @@
         <th>Choice 3</th>
         <th>Choice 4</th>
         <th>Delete</th>
+        <th>Copy</th>
     </tr>
     <% @all_questions.each do |question| %>
         <tr>
@@ -24,6 +25,7 @@
             <td><%= question.c3 %></td>
             <td><%= question.c4 %></td>
             <td><%= link_to 'Remove', "/admin/questions/delete/#{question.qid}", :method => :delete %></td>
+            <td><%= link_to 'Copy', "/admin/questions/copy/#{question.qid}", :method => :put %></td>
         </tr>
     <% end %>
 </table>

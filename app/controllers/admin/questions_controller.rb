@@ -98,8 +98,42 @@ class Admin::QuestionsController < ApplicationController
       flash[:success] = "Question #{@question.qid} successfully deleted."
       redirect_to action: "show"
     end
-    
 
+  end
+  
+  def copy
+  
+    questions = Question.where(qid: params[:id])
+    if questions.count == 0
+      flash[:warning] = "Unable to find question. Please try again."
+      redirect_to action: "show"
+    else
+      all_questions = Question.all
+      question = questions[0]
+      last_question =  all_questions.last
+
+      new_question = Question.new
+      new_question.qid = last_question.qid + 1
+      new_question.content = question.content
+      new_question.qtype = question.qtype
+      new_question.answer = question.answer
+      new_question.c1 = question.c1
+      new_question.c2 = question.c2
+      new_question.c3 = question.c3
+      new_question.c4 = question.c4
+      new_question.c5 = question.c5
+      new_question.answer = question.answer
+      new_question.parameters = question.parameters
+      new_question.c1_count = 0
+      new_question.c2_count = 0
+      new_question.c3_count = 0
+      new_question.c4_count = 0
+      new_question.c5_count = 0
+      new_question.save!
+      flash[:success] = "Question #{question.qid} successfully copied."
+      redirect_to action: "show"
+    end
+    
   end
   
 end

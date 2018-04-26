@@ -48,7 +48,8 @@ class QuestionsController < ApplicationController
       if temp_question.c5!=nil then temp_question_choice_count+=1 end
       
       
-      #if @student.choices[i].to_i==temp_question.getCorrectAnswerNum
+      if @student.choices[i].to_i==temp_question.getCorrectAnswerNum then puts"correct" end
+      
       score+=@this_evaluation.scales[choices_seen+@student.choices[i].to_i-1]
       temp_question_max_score=@this_evaluation.scales[choices_seen..(choices_seen+temp_question_choice_count)].max
       #end

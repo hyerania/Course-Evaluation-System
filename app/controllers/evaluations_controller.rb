@@ -82,7 +82,7 @@ class EvaluationsController < ApplicationController
     end
     
     def delete
-        
+        # Function to delete evaluations 
     end
     
     

@@ -8,12 +8,13 @@ class EvaluationsController < ApplicationController
     def new
         logger.info "new"
         logger.info session[:content]
-        @questions=Question.all
+        @questions=Question.all.order(:qid)
         @selected_questions=[]
         if session[:title]==nil then session[:title]="" end
     end
     
     def create
+        flash[:error]=""
         if params[:commit]!=nil&&params[:commit]=="Random"&&params[:size]!=""
             if params[:title]!=nil&&params[:title]!=""
                 session[:title]=params[:title]
@@ -23,9 +24,18 @@ class EvaluationsController < ApplicationController
         else
             logger.info "create"
             if(params[:title]!=nil&&params[:title]!=""&&params[:questions]!=nil)
-                @question=Evaluation.create!(:eid =>(Evaluation.maximum(:eid)==nil) ? 1 : Evaluation.maximum(:eid)+1,:title =>params[:title],:content =>params[:questions].values)
+                scales=[]
+                if params[:scales]!=nil
+                    params[:scales].each do |k,v|
+                        if params[:questions][k.split(",")[0]]!=nil
+                           scales << v.to_i 
+                        end
+                    end
+                end
+                #puts scales
+                @question=Evaluation.create!(:eid =>(Evaluation.maximum(:eid)==nil) ? 1 : Evaluation.maximum(:eid)+1,:title =>params[:title],:content =>params[:questions].values, :scales=> scales, :qids=> params[:questions].keys.map(&:to_i))
                 flash[:notice] = "Question #{@question.title} was successfully created."
-                flash.keep
+                #flash.keep
                 
                 redirect_to action: "show"
             else
@@ -70,6 +80,17 @@ class EvaluationsController < ApplicationController
         redirect_to new_evaluation_path
     end
     
+    def edit
+    
+    end
+    
+    def update
+    
+    end
+    
+    def destroy
+    
+    end
     def view
         eid = params[:id]
         @evaluation = Evaluation.where(eid: eid)[0]

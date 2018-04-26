@@ -65,6 +65,8 @@ module NavigationHelpers
     when /^the admin login page$/
       '/admin/login'
       
+    when /^the student question page without arguments$/
+      'questions?page=1'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180425203525) do
+ActiveRecord::Schema.define(version: 20180426012926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20180425203525) do
     t.integer "eid"
     t.string "title"
     t.string "content", default: [], array: true
+    t.integer "scales", default: [], array: true
+    t.integer "qids", default: [], array: true
   end
 
   create_table "questions", force: :cascade do |t|
@@ -71,6 +73,8 @@ ActiveRecord::Schema.define(version: 20180425203525) do
     t.datetime "last_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "choices", default: [], array: true
+    t.integer "scoretotal", default: 0
     t.index ["uin"], name: "index_students_on_uin"
   end
 

@@ -38,6 +38,9 @@ Given(/^the following evaluations exist:$/) do |table|
         @evaluation.eid=evaluation[:eid].to_i
         @evaluation.title=evaluation[:title]
         @evaluation.content=evaluation[:content].tr('[]','').split(',')
+        if evaluation[:scales]!=nil
+          @evaluation.scales=evaluation[:scales].tr('[]','').split(',').map(&:to_i)
+        end
         @evaluation.save
     end
 end
@@ -69,4 +72,8 @@ end
 Then(/^the section of "(.*)" should be "(.*)"$/) do |name, section|
   @student = Student.find_by_name(name)
   expect(@student.section.to_s).to eq section
+end
+
+When(/^I go back$/) do
+  page.go_back
 end

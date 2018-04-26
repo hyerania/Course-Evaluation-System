@@ -57,6 +57,8 @@ class StudentsController < ApplicationController
       if(@access_code.code == params[:access_code])
         session[:page]=0
         session[:choice]=[]
+        @student.choices=[]
+        @student.save
         redirect_to controller: 'questions', action: 'view'
       else
         flash[:notice] = "Invalid Access Code!"
@@ -82,6 +84,7 @@ class StudentsController < ApplicationController
     @student = Student.new(params[:student])
     @student.attempts = 0
     @student.score = -1
+    @student.scoretotal=-1
     @student.created_at =  DateTime.now
     res = validate_entry(@student)
     #debugger

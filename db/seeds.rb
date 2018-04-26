@@ -28,13 +28,18 @@ Question.create([{
     c3: "White",
     c4: "Pink",
     c5: "Orange",
-    numAnswers: 5,
+    c1_count:0,
+    c2_count:0,
+    c3_count:0,
+    c4_count:0,
+    c5_count:0,
+    numAnswers:5,
 },
-    {qid: 1002, numAnswers: 5, content: "What is the color of the grass?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M")},
-    {qid: 1003, numAnswers: 5, content: "What is the color of the blood?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M")},
-    {qid: 1004, numAnswers: 5, content: "What is the color of the hair?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M")},
-    {qid: 1005, numAnswers: 5, content: "What is the color of the blood2?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M")},
-    {qid: 1006, numAnswers: 5, content: "What is the color of the blood3?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M")}
+    {qid: 1002, numAnswers:5, content: "What is the color of the grass?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"), c1_count:0,c2_count:0,c3_count:0,c4_count:0,c5_count:0},
+    {qid: 1003, numAnswers:5, content: "What is the color of the blood?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"), c1_count:0,c2_count:0,c3_count:0,c4_count:0,c5_count:0},
+    {qid: 1004, numAnswers:5, content: "What is the color of the hair?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"), c1_count:0,c2_count:0,c3_count:0,c4_count:0,c5_count:0},
+    {qid: 1005, numAnswers:5, content: "What is the color of the blood2?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"), c1_count:0,c2_count:0,c3_count:0,c4_count:0,c5_count:0},
+    {qid: 1006, numAnswers:5, content: "What is the color of the blood3?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"), c1_count:0,c2_count:0,c3_count:0,c4_count:0,c5_count:0}
 ])
 
 AccessCode.create([{

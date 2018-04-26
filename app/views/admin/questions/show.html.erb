@@ -13,6 +13,11 @@
         <th>Choice 3</th>
         <th>Choice 4</th>
         <th>Choice 5</th>
+        <th>Choice 1 Count</th>
+        <th>Choice 2 Count</th>
+        <th>Choice 3 Count</th>
+        <th>Choice 4 Count</th>
+        <th>Choice 5 Count</th>
         <th>Delete</th>
         <th>Copy</th>
     </tr>
@@ -26,6 +31,12 @@
             <td><%= question.c3 %></td>
             <td><%= question.c4 %></td>
             <td><%= question.c5 %></td>
+            <td><%= question.c1_count %></td>
+            <td><%= question.c2_count %></td>
+            <td><%= question.c3_count %></td>
+            <td><%= question.c4_count %></td>
+            <td><%= question.c5_count %></td>
+            
             <td><%= link_to 'Remove', "/admin/questions/delete/#{question.qid}", :method => :delete %></td>
             <td><%= link_to 'Copy', "/admin/questions/copy/#{question.qid}", :method => :put %></td>
         </tr>

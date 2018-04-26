@@ -32,6 +32,15 @@ module NavigationHelpers
     when /^the admin questions page$/
       '/admin/questions/show'
       
+    when /^the edit question c3 page for "(.*)"/
+      "/admin/questions/edit/c3/#{$1}"
+    
+    when /^the edit question c4 page for "(.*)"/
+      "/admin/questions/edit/c4/#{$1}"
+      
+    when /^the edit question c5 page for "(.*)"/
+      "/admin/questions/edit/c5/#{$1}"
+      
     when /^the edit question page for "(.*)"/
       "/admin/questions/edit/#{$1}"
     

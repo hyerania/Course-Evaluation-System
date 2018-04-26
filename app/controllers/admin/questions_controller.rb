@@ -1,10 +1,12 @@
 class Admin::QuestionsController < ApplicationController
   
   def question_params
-    params.permit(:qid, :content, :c1, :c2, :c3, :c4, :c5, :answer)
+    params.permit(:qid, :content, :c1, :c2, :c3, :c4, :c5, :answer, :numAnswers)
   end
   
   def create
+    puts question_params
+    
     @all_questions = Question.all
     last_question =  @all_questions.last
     
@@ -29,11 +31,7 @@ class Admin::QuestionsController < ApplicationController
       @question.answer = @question.c5
     end
     
-    if @question.c5 == nil
-      puts 'No answer for 5'
-    end
-    
-    @question.numAnswers = 5
+    @question.numAnswers = params[:numAnswers].to_i
     @question.save
     redirect_to action: "show"
   end
@@ -52,6 +50,8 @@ class Admin::QuestionsController < ApplicationController
       flash[:warning] = "Unable to find question. Please try again."
       redirect_to action: "show"
     else
+      puts question_params
+      
       @question = questions[0]
       @question.content = question_params[:content]
       @question.c1 = question_params[:c1]
@@ -72,6 +72,7 @@ class Admin::QuestionsController < ApplicationController
         @question.answer = @question.c5
       end
       
+      puts @question.answer
       @question.save
       flash[:success] = "Question #{@question.qid} successfully updated."
       redirect_to action: "show"
@@ -79,7 +80,7 @@ class Admin::QuestionsController < ApplicationController
   end
 
   def edit
-    
+    puts params
     questions = Question.where(qid: params[:id])
     if questions.count == 0
       flash[:warning] = "Unable to find question. Please try again."
@@ -87,15 +88,15 @@ class Admin::QuestionsController < ApplicationController
     else
       @question = questions[0]
       @answer = @question.getCorrectAnswerNum
-      
+      puts @question.numAnswers
       if @question.numAnswers == 2
-        @select_options = [1, 2]  
+        redirect_to "/admin/questions/edit/c2/#{@question.qid}"
       elsif @question.numAnswers == 3
-        @select_options = [1, 2, 3]  
+        redirect_to "/admin/questions/edit/c3/#{@question.qid}"
       elsif @question.numAnswers == 4
-        @select_options = [1, 2, 3, 4]  
+        redirect_to "/admin/questions/edit/c4/#{@question.qid}"
       elsif @question.numAnswers == 5
-        @select_options = [1, 2, 3, 4, 5]
+        redirect_to "/admin/questions/edit/c5/#{@question.qid}"
       end
       
     end

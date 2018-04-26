@@ -2,7 +2,6 @@ Given (/^the following questions exist in questions:/) do |questions_table|
   questions_table.hashes.each do |question|
       Question.create!(question)
   end
-  expect(Question.all.count).to eq 1
 end
 
 Then("the question {int} answer should be {int}") do |int, int2|
@@ -16,4 +15,8 @@ When("I delete question {string}") do |string|
   questions = Question.where(qid: qid)
   question = questions[0]
   question.delete
+end
+
+When("the edit question page for two {string}") do |string|
+  "/admin/questions/edit/c2/#{$1}"
 end

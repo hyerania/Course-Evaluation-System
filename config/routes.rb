@@ -2,6 +2,30 @@ Rails.application.routes.draw do
   
   namespace :admin do
     namespace :questions do
+      get 'edit/c2/:id', to: 'edit#c2'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      get 'edit/c3/:id', to: 'edit#c3'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      get 'edit/c4/:id', to: 'edit#c4'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      get 'edit/c5/:id', to: 'edit#c5'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
       get 'new/c2'
     end
   end

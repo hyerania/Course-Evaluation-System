@@ -34,7 +34,7 @@ class EvaluationsController < ApplicationController
                     end
                 end
                 #puts scales
-                @question=Evaluation.create!(:eid =>(Evaluation.maximum(:eid)==nil) ? 1 : Evaluation.maximum(:eid)+1,:title =>params[:title],:content =>params[:questions].values, :scales=> scales)
+                @question=Evaluation.create!(:eid =>(Evaluation.maximum(:eid)==nil) ? 1 : Evaluation.maximum(:eid)+1,:title =>params[:title],:content =>params[:questions].values, :scales=> scales, :qids=> params[:questions].keys.map(&:to_i))
                 flash[:notice] = "Question #{@question.title} was successfully created."
                 #flash.keep
                 

@@ -1,4 +1,4 @@
-<h1>Evaluations In database</h1>
+<h1>Evaluations In Database</h1>
 
 <table id="t01">
     <thead>
@@ -6,6 +6,7 @@
             <th>ID</th>
             <th>Title</th>
             <th>Content</th>
+            <th>QuestionIDs</th>
         </tr>
     </thead>
   
@@ -15,6 +16,7 @@
             <td><%= evaluation.eid %></td>
             <td><%= evaluation.title %></td>
             <td><%= evaluation.content %></td>
+            <td><%= evaluation.qids %></td>
           </tr>
         <% end %>
     </tbody>

@@ -151,6 +151,7 @@ class Admin::QuestionsController < ApplicationController
       new_question.c3_count = 0
       new_question.c4_count = 0
       new_question.c5_count = 0
+      new_question.numAnswers = question.numAnswers
       new_question.save!
       flash[:success] = "Question #{question.qid} successfully copied."
       redirect_to action: "show"

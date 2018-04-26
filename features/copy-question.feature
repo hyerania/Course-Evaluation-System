@@ -5,8 +5,8 @@ Feature: Duplicate a question from the question database
   
 Background: questions in database
   Given the following questions exist in questions:
-    | qid   | content       | answer    | c1 | c2 | c3 | c4 | c5 |
-    | 1000  | "Question 1:" | 10        | 1  | 2  | 3  | 4  | 5  |
+    | qid   | content       | answer    | c1 | c2 | c3 | c4 | c5 | numAnswers |
+    | 1000  | "Question 1:" | 10        | 1  | 2  | 3  | 4  | 5  | 5         |
 
 Scenario: Duplicating the first question
   When I am on the admin questions page

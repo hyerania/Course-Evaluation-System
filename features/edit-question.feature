@@ -77,3 +77,9 @@ Scenario: deleted question while editing
   And I delete question "1000"
   And I press "Save"
   Then I should see "Unable to find question. Please try again."
+  
+Scenario: deleted question before editing
+  When I am on the admin questions page
+  And I delete question "1000"
+  And I follow "1000"
+  Then I should see "Unable to find question. Please try again."

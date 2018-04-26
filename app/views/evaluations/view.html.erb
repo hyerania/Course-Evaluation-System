@@ -17,17 +17,31 @@
         <%= text_area_tag :choice2, question.c2 %>
         <%= simple_format " \n " %>
         
-        <h4> Answer Choice 3: </h4>
-        <%= text_area_tag :choice3, question.c3 %>
-        <%= simple_format " \n " %>
-        
-        <h4> Answer Choice 4: </h4>
-        <%= text_area_tag :choice4,question.c4 %>
-        <%= simple_format " \n " %>
-        
-        <h4> Answer Choice 5: </h4>
-        <%= text_area_tag :choice5,question.c5 %>
-        <%= simple_format " \n " %>
+        <% if question.numAnswers == 3 %>
+            <h4> Answer Choice 3: </h4>
+            <%= text_area_tag :choice3, question.c3 %>
+            <%= simple_format " \n " %>
+        <% elsif question.numAnswers == 4 %>
+            <h4> Answer Choice 3: </h4>
+            <%= text_area_tag :choice3, question.c3 %>
+            <%= simple_format " \n " %>
+            
+            <h4> Answer Choice 4: </h4>
+            <%= text_area_tag :choice4,question.c4 %>
+            <%= simple_format " \n " %>
+        <% elsif question.numAnswers == 5 %>
+            <h4> Answer Choice 3: </h4>
+            <%= text_area_tag :choice3, question.c3 %>
+            <%= simple_format " \n " %>
+            
+            <h4> Answer Choice 4: </h4>
+            <%= text_area_tag :choice4,question.c4 %>
+            <%= simple_format " \n " %>
+            
+            <h4> Answer Choice 5: </h4>
+            <%= text_area_tag :choice5,question.c5 %>
+            <%= simple_format " \n " %>
+        <% end %>
         
         <h4>Correct Answer Choice:</h4>
         <% if question.getCorrectAnswerNum == 1 %>

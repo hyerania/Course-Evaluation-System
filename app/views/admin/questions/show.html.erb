@@ -12,6 +12,7 @@
         <th>Choice 2</th>
         <th>Choice 3</th>
         <th>Choice 4</th>
+        <th>Choice 5</th>
         <th>Delete</th>
         <th>Copy</th>
     </tr>
@@ -24,12 +25,21 @@
             <td><%= question.c2 %></td>
             <td><%= question.c3 %></td>
             <td><%= question.c4 %></td>
+            <td><%= question.c5 %></td>
             <td><%= link_to 'Remove', "/admin/questions/delete/#{question.qid}", :method => :delete %></td>
             <td><%= link_to 'Copy', "/admin/questions/copy/#{question.qid}", :method => :put %></td>
         </tr>
     <% end %>
 </table>
 
-<div class="form-group" style="margin: 20px 0px">
-    <a href="/admin/questions/new" class="btn btn-primary btn-lg" role="button">Add Question</a>
-</div>
+<hr>
+<%= form_for @num_answers, :url => {:controller => "/admin/questions/new", :action => "show"} do |f| %>
+    <div class="form-group">
+        <h4>Create a new question</h4>
+        <label>Number of answer choices:</label>
+        <%= select_tag(:answer, options_for_select([2,3,4,5]), :id => "numAnswers")%>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" role="button">Add Question</button>
+    </div>
+<% end %>

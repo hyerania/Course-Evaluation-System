@@ -2,10 +2,10 @@ Feature: create a evaluation
 
 Background: evaluations in database
   Given the following questions exist:
-  | qid   | content                               | answer  |
-  | 1001  | "What is the color of the grass?"     | "Green" |
-  | 1002  | "What is the color of the blood?"     | "Green" |
-  | 1003  | "What is the color of the hair?"      | "Green" |
+  | qid   | content                               | answer  | numAnswers |
+  | 1001  | "What is the color of the grass?"     | "Green" | 5          |
+  | 1002  | "What is the color of the blood?"     | "Green" | 5          |
+  | 1003  | "What is the color of the hair?"      | "Green" | 5          |
  
   Given the following evaluations exist:
   | eid        | title            | content                                                              |

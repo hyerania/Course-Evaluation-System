@@ -102,15 +102,12 @@ class AdminController < ApplicationController
       if(params[:student_ids].nil?)
         if(session[:student_ids].nil?)
           @students = Student.all
-          puts '1'
         else
           @students = Student.where(id: session[:student_ids])
-          puts '2'
         end
       else
         @students = Student.where(id: params[:student_ids])
         session[:student_ids] = params[:student_ids]
-        puts '3'
       end  
     end
     respond_to do |format|
@@ -118,4 +115,13 @@ class AdminController < ApplicationController
       format.csv{send_data @students.to_csv,:filename => "students.csv", :disposition => 'attachment' }
     end
   end
+  
+  def export_questions
+    @questions=Question.all
+    respond_to do |format|
+      format.html
+      format.csv{send_data @questions.to_csv,:filename => "questions.csv", :disposition => 'attachment' }
+    end
+  end
+  
 end

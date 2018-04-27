@@ -33,24 +33,9 @@
 </table>
 <div class="col-xs-12">
    <a href="/admin/export" class="btn btn-primary btn-lg" role="button">Export Manager</a>
-    <%#= link_to "Export data", controller: "admin", action: "export" %>
 </div>
-<div class="col-lg-5">
-    <h1>Access Code</h1>
-    <p>
-        <label>Current Access Code: <%= @access_code.code %></label>
-        <%= form_tag do%>
-          <div class="form-group">
-              <label>Change Access Code To:</label>
-              <div>
-                  <%= text_field_tag :access_code, nil, class: "form-control" %>
-              </div>
-          </div>
-          <%= submit_tag "Change", :class=>"btn btn-primary btn-sm" %><br>
-        <% end %>
-    </p>
-</div>
-<div class="col-lg-1"></div>
+
+<!--<div class="col-lg-1"></div>-->
 <div class="col-lg-6">
     <table id="sections">
     <thead>

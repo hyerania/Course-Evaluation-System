@@ -35,8 +35,11 @@ tr#t01:nth-child(even) {
 tr#t01:nth-child(odd) {
     background: #FFF;
 }
-.btn, .btn:hover, .btn:focus, .btn:active {
+.btn, .btn:focus, .btn:active {
     color: white;
     background-color: maroon;
     border-color: maroon;
+}
+.btn:hover{
+    background-color: IndianRed;
 }

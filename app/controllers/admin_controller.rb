@@ -1,4 +1,6 @@
 class AdminController < ApplicationController
+  before_action :check_admin_login, only: [:show]
+  
   def login
     if(!params[:key].nil?)
       @input_hash = Digest::SHA1.hexdigest(params[:key])
@@ -14,7 +16,9 @@ class AdminController < ApplicationController
   end
   
   def show
+    
     if(session[:admin] != "login")
+      flash.now[:danger]= "You are not logged in!"
       redirect_to controller: 'admin', action: 'login'
     end
     
@@ -28,10 +32,14 @@ class AdminController < ApplicationController
     #control panel
     #add new section
     if(!params[:section_number].nil? and unique_section(params[:section_number]))
-      @new_section = Section.new
-      @new_section.section_number = params[:section_number]
-      @new_section.save
-      redirect_to controller: 'admin', action: 'show'
+      if(params[:section_number] == "")
+        flash[:notice] = "Section number cannot be empty!"
+      else
+        @new_section = Section.new
+        @new_section.section_number = params[:section_number]
+        @new_section.save
+      end
+        redirect_to controller: 'admin', action: 'show'
     end
     
     #update a student's section
@@ -56,6 +64,10 @@ class AdminController < ApplicationController
   end
   
   def delete
+    if(session[:admin] != "login")
+      return
+    end
+    
     Section.where(section_number: params[:value]).first.destroy
     
     #set all students with this section number their section number to null
@@ -72,6 +84,7 @@ class AdminController < ApplicationController
   def unique_section entry
     ret = Section.where(section_number: entry)
     if !ret.empty?
+      flash[:notice] = "Section already exists!"
       return false
     else
       return true
@@ -88,5 +101,15 @@ class AdminController < ApplicationController
   def logout
     session[:admin] = ""
     redirect_to controller: 'admin', action: 'show'
+  end
+  
+  def logged_in?
+      session[:admin] == "login"
+  end
+      
+  def check_admin_login
+    unless logged_in?
+        redirect_to controller: 'admin', action: 'login'
+    end
   end
 end

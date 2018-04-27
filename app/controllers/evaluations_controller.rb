@@ -14,7 +14,7 @@ class EvaluationsController < ApplicationController
             if(check_access_code_uniqueness(params[:access_code]) == true)
               update(params[:access_code], params[:eid]) 
             else
-              flash[:notice] = "Access code already exists for another evaluation!"
+              flash.now[:notice] = "Access code already exists for another evaluation!"
             end
         end
     end
@@ -32,7 +32,7 @@ class EvaluationsController < ApplicationController
     end
     
     def create
-        flash[:error]=""
+        #flash[:error]=""
         if params[:commit]!=nil&&params[:commit]=="Random"&&params[:size]!=""
             if params[:title]!=nil&&params[:title]!=""
                 session[:title]=params[:title]
@@ -52,12 +52,12 @@ class EvaluationsController < ApplicationController
                 end
                 #puts scales
                 @question=Evaluation.create!(:eid =>(Evaluation.maximum(:eid)==nil) ? 1 : Evaluation.maximum(:eid)+1,:title =>params[:title],:content =>params[:questions].values, :scales=> scales, :qids=> params[:questions].keys.map(&:to_i))
-                flash[:notice] = "Question #{@question.title} was successfully created."
+                flash.now[:notice] = "Question #{@question.title} was successfully created."
                 #flash.keep
                 
                 redirect_to action: "show"
             else
-                flash[:error] = "Some parameter is missing."
+                flash.now[:error] = "Some parameter is missing."
                 session[:content]=[]
                 if params[:questions]!=nil
                     params[:questions].keys.each do |q|
@@ -76,7 +76,7 @@ class EvaluationsController < ApplicationController
         @instructions = Instruction.all.first
         @instructions.content = params[:content]
         @instructions.save
-        flash[:notice] = "Instruction updated!"
+        flash.now[:notice] = "Instruction updated!"
         redirect_to('/admin/evaluations')
     end
     

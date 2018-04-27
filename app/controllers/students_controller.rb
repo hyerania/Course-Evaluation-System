@@ -10,7 +10,7 @@ class StudentsController < ApplicationController
   end
   
   def welcome
-    flash[:notice] = ""
+    #flash[:notice] = ""
     if(!params[:uin].nil?)
       uin = params[:uin]
       login(uin)
@@ -23,14 +23,14 @@ class StudentsController < ApplicationController
   def login(uin)
     #first check if input is legal
     if(uin.to_i > 999999999 || uin.to_i < 100000000)
-      flash[:notice] = "Please enter a valid UIN!"
+      flash.now[:notice] = "Please enter a valid UIN!"
       return false
     end
     
     #then validate
     @student = Student.where(uin: uin.to_i).first
     if(@student.nil?)
-      flash[:notice] = "UIN not registered!"
+      flash.now[:notice] = "UIN not registered!"
       return false
     else
       #set session key
@@ -51,13 +51,13 @@ class StudentsController < ApplicationController
     
     @student = Student.where(uin: session[:uin]).first
     if(params[:access_code].nil?)
-      flash[:notice] = ""
+      #flash[:notice] = ""
     elsif(params[:access_code] == "")
-      flash[:notice] = "Please enter an access code!"
+      flash.now[:notice] = "Please enter an access code!"
     else
       @evaluations = Evaluation.where(access_code: params[:access_code]).first
       if(@evaluations.nil?)
-        flash[:notice] = "Error: No evaluation exists with the corresponding access code!"
+        flash.now[:notice] = "Error: No evaluation exists with the corresponding access code!"
       else
         session[:eid] = @evaluations.eid
         session[:page]=0
@@ -94,7 +94,7 @@ class StudentsController < ApplicationController
   end
   
   def create
-    flash[:notice] = ""
+    #flash[:notice] = ""
     params.permit! #allow mass assignment
     @student = Student.new(params[:student])
     @student.attempts = 0
@@ -117,25 +117,25 @@ class StudentsController < ApplicationController
     
     #nil entry
     if(entry.uin.nil? ||entry.name.nil? || entry.section.nil?)
-      flash[:notice] = "Please fill in all required fields!!"
+      flash.now[:notice] = "Please fill in all required fields!!"
       return false
     end
 
     
     #inavlid uin
     if(entry.uin > 999999999 || entry.uin < 100000000)
-      flash[:notice] = "Invalid UIN!"
+      flash.now[:notice] = "Invalid UIN!"
       return false
     end
     
     #uin uniqueness
     ret = Student.where(uin: entry.uin)
     if !ret.empty?
-      flash[:notice] = "UIN already exist!"
+      flash.now[:notice] = "UIN already exist!"
       return false
     end
     
-    flash[:notice] = "Student Added!"
+    flash.now[:notice] = "Student Added!"
     
     return true
   end

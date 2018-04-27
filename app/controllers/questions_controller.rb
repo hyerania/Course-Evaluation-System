@@ -176,14 +176,14 @@ class QuestionsController < ApplicationController
       if session[:page]==nil
         session[:page]=0
       end
-      flash[:notice] = ""
+      #flash[:notice] = ""
       
       #commented out for testing
       
       if params[:commit]!=nil&&params[:commit]=="Next"&&params[:page]!=nil&&params[:page].to_i>session[:page]&&params[:choice]!=nil
         puts "set page allowed"
       elsif params[:choice]==nil&&(params[:commit]=="Next"||params[:commit]=="Submit")
-        flash[:notice] = "You have to pick an answer"
+        flash.now[:notice] = "You have to pick an answer"
       end
       
       #puts "session after:"

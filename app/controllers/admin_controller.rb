@@ -5,10 +5,10 @@ class AdminController < ApplicationController
       @key_hash = AdminKey.first.key
       if(@input_hash == @key_hash)
         session[:admin] = "login"
-        flash[:notice] = ""
+        #flash[:notice] = ""
         redirect_to controller: 'admin', action: 'show'
       else
-        flash[:notice] = "Incorrect Key!"
+        flash.now[:notice] = "Incorrect Key!"
       end
     end
   end
@@ -49,9 +49,9 @@ class AdminController < ApplicationController
     disclaimerString = "I want to delete all students in the database, and I understand that once deleted, they are not recoverable."
     if(disclaimer == disclaimerString)
       Student.destroy_all
-      flash[:notice] = "Databse Reset"
+      flash.now[:notice] = "Databse Reset"
     else
-      flash[:notice] = "Disclaimer does not match. Database unchanged."
+      flash.now[:notice] = "Disclaimer does not match. Database unchanged."
     end
   end
   

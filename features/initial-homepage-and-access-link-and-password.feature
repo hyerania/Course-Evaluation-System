@@ -11,16 +11,16 @@ Background: students in database
   | 1003  | "What is the color of the hair?"      | Black | Black | Pink |"White"|"Blue" |"Red"  | 5          |
  
   Given the following evaluations exist:
-  | eid        | title            | content                                                              |
-  | 1          | Evaluation 1     | ["What is the color of the blood?","What is the color of the hair?"] |  
-  
-  Given the following access_code exist:
-    |code       |
-    |CSCE120    | 
+  | eid        | title            |access_code         | content                                                               |
+  | 1          | Evaluation 1     |CSCE120             | ["What is the color of the blood?","What is the color of the hair?"]  |
   
   Given the following admin_keys exist:
     |key                                      |
     |99f427c0c6a2411bc8a046f26c8aa4cb45bba27f |
+    
+  Given the following instructions exist:
+  |content                  |
+  |"This exam is not timed" |
   
 Scenario: Login to student page
   Given I am on the home page
@@ -36,9 +36,23 @@ Scenario: View and change access code
   And I fill in "key" with "dshell"
   And I press "Login"
   Then I should be on the admin page
-  And I fill in "access_code" with "CSCE606"
-  And I press "Change"
-  Then the access code should be "CSCE606"
+  And I follow "Evaluations Manager"
+  And I should be on the Evaluations page
+  And I fill in "access_code" with "eval1"
+  And I press "Update"
+  Then the access code of "1" should be "eval1"
+
+Scenario: Enter an access_code that is already assigned to one of the evaluation
+  Given I am on the home page
+  And I follow "For Professor"
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Evaluations Manager"
+  And I should be on the Evaluations page
+  And I fill in "access_code" with "CSCE120"
+  And I press "Update"
+  Then I should see "Access code already exists for another evaluation!"
   
 Scenario: Enter invalid uin
   Given I am on the student login page
@@ -72,7 +86,18 @@ Scenario: Enter invalid access code
   Then I should be on the student personal page
   And I fill in "access_code" with "CSCE606"
   And I press "Begin"
-  Then I should see "Invalid Access Code!"
+  Then I should see "Error: No evaluation exists with the corresponding access code!"
+
+Scenario: Empty access_code field
+  Given I am on the home page
+  And I follow "For Students"
+  Then I should be on the student login page
+  And I fill in "uin" with "123000123"
+  And I press "Login"
+  Then I should be on the student personal page
+  And I fill in "access_code" with ""
+  And I press "Begin"
+  Then I should see "Please enter an access code!"
   
 Scenario: Logout
   Given I am on the student login page

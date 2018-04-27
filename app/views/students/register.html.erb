@@ -9,33 +9,10 @@
       <%= f.submit %>
     <% end %>
     
+    
     <% if flash[:notice] %>
         <div class="notice" style="color: red"><%= flash[:notice] %></div>
     <% end %>
     
     <%= link_to "Home Page", controller: "welcome", action: "show" %>
-    
-    <table>
-        <tr>
-            <th>UIN</th>
-            <th>Name</th>
-            <th>Section</th>
-            <th>Attempts</th>
-            <th>Score</th>
-            <th>Last Start</th>
-            <th>Last End</th>
-        </tr>
-        <% #debugger %>
-        <% @all_students.each do |student| %>
-            <tr>
-                <td><%= student.uin %></td>
-                <td><%= student.name %></td>
-                <td><%= student.section %></td>
-                <td><%= student.attempts %></td>
-                <td><%= student.score %></td>
-                <td><%= student.last_start %></td>
-                <td><%= student.last_end %></td>
-            </tr>
-        <% end %>
-    </table>
 </p>

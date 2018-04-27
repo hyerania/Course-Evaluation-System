@@ -14,9 +14,19 @@ Background: evaluations in database
         | eid        | title            | content                                                              |
         | 1          | Testing1         | ["What is the color of the blood?","What is the color of the hair?"] |
         | 2          | Evaluation2      | ["What is the color of the grass?","What is the color of the hair?"] |
-    
+    Given the following admin_keys exist:
+        |key                                      |
+        |99f427c0c6a2411bc8a046f26c8aa4cb45bba27f |
+
+    Given the following instructions exist:
+        |content                  |
+        |"This exam is not timed" |
 Scenario: viewing the individual evaluation
-  When I am on the Evaluations page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Evaluations Manager"
   And I follow "1"
   Then I should see "Evaluation 1: Testing1"
   And I should see "What is the color of the blood?"

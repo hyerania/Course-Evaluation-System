@@ -65,6 +65,9 @@ module NavigationHelpers
     when /^the admin login page$/
       '/admin/login'
       
+    when /^the questions manager page$/
+      '/admin/questions/show'
+      
     when /^the student question page without arguments$/
       'questions?page=1'
     # Add more mappings here.

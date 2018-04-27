@@ -27,6 +27,22 @@
 </p>
 
 
+<h1>Instructions</h1>
+<%= text_area_tag :content, @instructions.content, :rows => 10, :cols => 120%>
+<%= simple_format " \n " %>
+
+<%= tinymce %>
+
+<script type="text/javascript">
+  tinyMCE.init({
+    selector: 'textarea',
+    branding: false,
+    menubar: false,
+    toolbar: false,
+    readonly: 1,
+  });
+</script>
+
 <h1>Begin Test</h1>
 <p>
     <%= form_tag do%>

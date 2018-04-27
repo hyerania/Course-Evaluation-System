@@ -2,11 +2,10 @@ require 'net/https'
 require 'uri'
 
 class StudentsController < ApplicationController
+  
   def register
     @all_students = Student.all
-    
     @student = Student.new
-    
     @sections = Section.all.order('section_number asc')
   end
   
@@ -48,20 +47,36 @@ class StudentsController < ApplicationController
   
     @sections = Section.all.order('section_number asc')
     @list_of_sections = Section.pluck(:section_number).sort
-  
+    @instructions = Instruction.all.first
+    
     @student = Student.where(uin: session[:uin]).first
     if(params[:access_code].nil?)
       flash[:notice] = ""
+    elsif(params[:access_code] == "")
+      flash[:notice] = "Please enter an access code!"
     else
-      @access_code = AccessCode.all.first
-      if(@access_code.code == params[:access_code])
+      @evaluations = Evaluation.where(access_code: params[:access_code]).first
+      if(@evaluations.nil?)
+        flash[:notice] = "Error: No evaluation exists with the corresponding access code!"
+      else
+        session[:eid] = @evaluations.eid
         session[:page]=0
         session[:choice]=[]
         @student.choices=[]
         @student.save
         redirect_to controller: 'questions', action: 'view'
-      else
-        flash[:notice] = "Invalid Access Code!"
+        # if(@access_code.code == params[:access_code])
+        #   session[:page]=0
+        #   session[:choice]=[]
+        #   @student.choices=[]
+        #   @student.save
+        #   redirect_to controller: 'questions', action: 'view'
+        # else
+        #   session[:eid] = @evaluations.eid
+        #   session[:page] = 0
+        #   session[:choice] = []
+        #   redirect_to controller: 'questions', action: 'view'
+        # end
       end
     end
     

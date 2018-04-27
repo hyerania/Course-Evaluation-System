@@ -5,6 +5,7 @@ class AdminController < ApplicationController
       @key_hash = AdminKey.first.key
       if(@input_hash == @key_hash)
         session[:admin] = "login"
+        flash[:notice] = ""
         redirect_to controller: 'admin', action: 'show'
       else
         flash[:notice] = "Incorrect Key!"
@@ -25,12 +26,6 @@ class AdminController < ApplicationController
     @average=Student.all.average(:score)
     
     #control panel
-    @access_code = AccessCode.all.first
-    if(!params[:access_code].nil?)
-      AccessCode.all.update_all(code: params[:access_code])
-      redirect_to controller: 'admin', action: 'show'
-    end
-    
     #add new section
     if(!params[:section_number].nil? and unique_section(params[:section_number]))
       @new_section = Section.new

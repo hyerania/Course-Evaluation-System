@@ -42,10 +42,10 @@ Question.create([{
     {qid: 1006, numAnswers:5, content: "What is the color of the blood3?", qtype: "ML", answer: "Green", c1: "Blue", c2: "Green", c3: "Brown", c4: "Violet", c5: "Red", created_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"),updated_at: DateTime.strptime("03/24/2018 17:00", "%m/%d/%Y %H:%M"), c1_count:0,c2_count:0,c3_count:0,c4_count:0,c5_count:0}
 ])
 
-AccessCode.create([{
-    code: "CSCE120-2018"
-}])
-
 AdminKey.create([{
     key: "99f427c0c6a2411bc8a046f26c8aa4cb45bba27f"
+}])
+
+Instruction.create([{
+    content: "Please enter an instruction..."
 }])

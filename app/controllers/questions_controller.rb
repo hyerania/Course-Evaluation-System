@@ -49,7 +49,6 @@ class QuestionsController < ApplicationController
       
       
       if @student.choices[i].to_i==temp_question.getCorrectAnswerNum then puts"correct" end
-      
       score+=@this_evaluation.scales[choices_seen+@student.choices[i].to_i-1]
       temp_question_max_score=@this_evaluation.scales[choices_seen..(choices_seen+temp_question_choice_count)].max
       #end
@@ -77,13 +76,8 @@ class QuestionsController < ApplicationController
   
   def view
     @student=Student.where(:uin=>session[:uin]).first
-    @evaluation = Evaluation.pluck(:content).last
-    
-    puts "choice count"
-    puts @student.choices.count
-    
+    @evaluation = Evaluation.where(eid: session[:eid]).pluck(:content).first
     @questions=Question.where(:content => @evaluation[@student.choices.count])
-    
     if params[:commit]=="Next"||(params[:commit]!="Submit"&&@student.choices.count==0)
       questions=[]
       @evaluation.each do |question|
@@ -176,7 +170,9 @@ class QuestionsController < ApplicationController
       #puts "session before:"
       #puts session[:page]
       #puts params[:page]
-      
+      if(session[:uin].nil?)
+        redirect_to controller: 'students', action: 'welcome'
+      end
       if session[:page]==nil
         session[:page]=0
       end
@@ -192,7 +188,6 @@ class QuestionsController < ApplicationController
       
       #puts "session after:"
       #puts session[:page]
-      
       
     end
   

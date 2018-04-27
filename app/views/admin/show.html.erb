@@ -32,15 +32,7 @@
     </tbody>
 </table>
 
-<h1>Access Code</h1>
-
-<p>
-    <div>Current Access Code: <%= @access_code.code %></div>
-    <%= form_tag do%>
-      <%= "Change Access Code To: "%><%= text_field_tag :access_code %><br>
-      <%= submit_tag "Change", :class=>"btn btn-primary btn-sm" %><br>
-    <% end %>
-</p>
+<h1>Control Panel</h1>
 <p>
 <table id="sections">
     <thead>
@@ -71,7 +63,7 @@
 
 <%= form_tag do%>
     <div>Please type the following text in the text box to confirm deletion:</div>
-    <div>I want to delete all students in the database, and I understand that once deleted, they are not recoverable.</div>
+    <div>"I want to delete all students in the database, and I understand that once deleted, they are not recoverable."</div>
     <%= "disclaimer: "%><%= text_field_tag :disclaimer %><br>
     <%= submit_tag "Reset Student Database" %><br>
 <% end %>

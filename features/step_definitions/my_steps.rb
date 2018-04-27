@@ -25,6 +25,12 @@ Given(/^the following admin_keys exist:$/) do |table|
   end
 end
 
+Given(/^the following instructions exist:$/) do |table|
+  table.hashes.each do |content|
+    Instruction.create(content)
+  end
+end
+
 Then (/^I should see all the students/) do
   students = Student.all
   students.each do |student|
@@ -38,6 +44,7 @@ Given(/^the following evaluations exist:$/) do |table|
         @evaluation.eid=evaluation[:eid].to_i
         @evaluation.title=evaluation[:title]
         @evaluation.content=evaluation[:content].tr('[]','').split(',')
+        @evaluation.access_code=evaluation[:access_code]
         if evaluation[:scales]!=nil
           @evaluation.scales=evaluation[:scales].tr('[]','').split(',').map(&:to_i)
         end
@@ -64,9 +71,9 @@ Then (/I should not see any question twice/) do
   end
 end
 
-Then (/^the access code should be "(.*)"$/) do |code|
-  access_code = AccessCode.all.first
-  expect(access_code.code).to eq code
+Then (/^the access code of "(.*)" should be "(.*)"$/) do |eid, code|
+  evaluation = Evaluation.where(eid: eid).first
+  expect(evaluation.access_code).to eq code
 end
 
 Then(/^the section of "(.*)" should be "(.*)"$/) do |name, section|

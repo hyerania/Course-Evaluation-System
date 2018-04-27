@@ -16,13 +16,13 @@ Background: evaluations in database
 
  
   Given the following evaluations exist:
-  | eid        | title            | content                             |scales|
-  | 1          | Evaluation 1     | ["What is the color of the blood?"] | [1,2,3,4,5] |
+  | eid        | title            |access_code         | content                              | scales |
+  | 1          | Evaluation 1     |CSCE120             | ["What is the color of the blood?"]  | [1, 2, 3, 4, 5] |
   
-  Given the following access_code exist:
-  |code       |
-  |CSCE120    | 
-  
+  Given the following instructions exist:
+  |content                  |
+  |"This exam is not timed" |
+
 Scenario: view for the student's test
   Given I am on the home page
   And I follow "For Students"
@@ -30,6 +30,8 @@ Scenario: view for the student's test
   And I fill in "uin" with "123000123"
   And I press "Login"
   Then I should be on the student personal page
+  And I fill in "access_code" with "CSCE120"
+  And I press "Begin"
   When I am on the student questions page
   Then I should see "What is the color of the blood?"
   And  I should see "Green"
@@ -37,11 +39,19 @@ Scenario: view for the student's test
   And  I should see "White"
   And  I should see "Blue"
   And  I should see "Red"
-  
   When I choose "choice_1"
   And I press "Submit"
   Then I should be on the student personal page
   
+Scenario: view for the student's test2
+  Given I am on the home page
+  And I follow "For Students"
+  Then I should be on the student login page
+  And I fill in "uin" with "123000123"
+  And I press "Login"
+  Then I should be on the student personal page
+  And I fill in "access_code" with "CSCE120"
+  And I press "Begin"
   When I am on the student questions page
   Then I should see "What is the color of the blood?"
   And  I should see "Green"
@@ -53,6 +63,15 @@ Scenario: view for the student's test
   And I press "Submit"
   Then I should be on the student personal page
   
+Scenario: view for the student's test3
+  Given I am on the home page
+  And I follow "For Students"
+  Then I should be on the student login page
+  And I fill in "uin" with "123000123"
+  And I press "Login"
+  Then I should be on the student personal page
+  And I fill in "access_code" with "CSCE120"
+  And I press "Begin"
   When I am on the student questions page
   Then I should see "What is the color of the blood?"
   And  I should see "Green"
@@ -63,7 +82,16 @@ Scenario: view for the student's test
   When I choose "choice_3"
   And I press "Submit"
   Then I should be on the student personal page
-  
+
+Scenario: view for the student's test4
+  Given I am on the home page
+  And I follow "For Students"
+  Then I should be on the student login page
+  And I fill in "uin" with "123000123"
+  And I press "Login"
+  Then I should be on the student personal page
+  And I fill in "access_code" with "CSCE120"
+  And I press "Begin"
   When I am on the student questions page
   Then I should see "What is the color of the blood?"
   And  I should see "Green"
@@ -75,6 +103,15 @@ Scenario: view for the student's test
   And I press "Submit"
   Then I should be on the student personal page
   
+Scenario: view for the student's test5
+  Given I am on the home page
+  And I follow "For Students"
+  Then I should be on the student login page
+  And I fill in "uin" with "123000123"
+  And I press "Login"
+  Then I should be on the student personal page
+  And I fill in "access_code" with "CSCE120"
+  And I press "Begin"
   When I am on the student questions page
   Then I should see "What is the color of the blood?"
   And  I should see "Green"

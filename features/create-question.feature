@@ -7,33 +7,58 @@ Background: questions in database
   Given the following questions exist in questions:
     | qid   | content       | answer    | c1 | c2 | c3 | c4 | c5 | numAnswers |
     | 1000  | "Question 1:" | 10        | 1  | 2  | 3  | 4  | 5  | 5          |
+  Given the following admin_keys exist:
+    |key                                      |
+    |99f427c0c6a2411bc8a046f26c8aa4cb45bba27f |
 
 Scenario: creating a new question with 2 answers
-  When I am on the admin questions page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
   And I select "2" from "numAnswers"
   And I press "Add Question"
   Then I should see "2 Answers"
 
 Scenario: creating a new question with 3 answers
-  When I am on the admin questions page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
   And I select "3" from "numAnswers"
   And I press "Add Question"
   Then I should see "3 Answers"
   
 Scenario: creating a new question with 4 answers
-  When I am on the admin questions page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
   And I select "4" from "numAnswers"
   And I press "Add Question"
   Then I should see "4 Answers"
   
 Scenario: creating a new question with 5 answers
-  When I am on the admin questions page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
   And I select "5" from "numAnswers"
   And I press "Add Question"
   Then I should see "5 Answers"
 
+
+
 Scenario: creating a new question answer 1
-  When I am on the admin questions page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
   And I select "5" from "numAnswers"
   And I press "Add Question"
   And I fill in "content" with "Question 2:"
@@ -48,7 +73,11 @@ Scenario: creating a new question answer 1
   And the question 1001 answer should be 1
   
 Scenario: creating a new question answer 2
-  When I am on the admin questions page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
   And I select "5" from "numAnswers"
   And I press "Add Question"
   And I fill in "content" with "Question 2:"
@@ -63,7 +92,11 @@ Scenario: creating a new question answer 2
   And the question 1001 answer should be 2
   
 Scenario: creating a new question answer 3
-  When I am on the admin questions page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
   And I select "5" from "numAnswers"
   And I press "Add Question"
   And I fill in "content" with "Question 2:"
@@ -78,7 +111,11 @@ Scenario: creating a new question answer 3
   And the question 1001 answer should be 3
 
 Scenario: creating a new question answer 4
-  When I am on the admin questions page
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
   And I select "5" from "numAnswers"
   And I press "Add Question"
   And I fill in "content" with "Question 2:"
@@ -92,8 +129,12 @@ Scenario: creating a new question answer 4
   Then I should see "Question 2:"
   And the question 1001 answer should be 4
   
-Scenario: creating a new question answer 5
-  When I am on the admin questions page
+Scenario: cancelling a new question
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Questions Manager"
   And I select "5" from "numAnswers"
   And I press "Add Question"
   And I fill in "content" with "Question 2:"

@@ -128,8 +128,33 @@ class StudentsController < ApplicationController
   end
    #https://gorails.com/episodes/export-to-csv
    
+  # def index
+  #   debugger
+  #   case params[:commit]
+    
+  #   when "To CSV" then send_data @students.to_csv(@student_ids), filename: 'students.csv'
+  #   end
+  # end
+  
   def index
-    @students=Student.all
+    if(params[:display_all] == "1")
+      @students = Student.all
+    else
+      if(params[:student_ids].nil?)
+        if(session[:student_ids].nil?)
+          @students = Student.all
+          puts '1'
+        else
+          @students = Student.where(id: session[:student_ids])
+          puts '2'
+        end
+      else
+        @students = Student.where(id: params[:student_ids])
+        session[:student_ids] = params[:student_ids]
+        puts '3'
+      end  
+    end
+    
     respond_to do |format|
       format.html
       format.csv{send_data @students.to_csv,:filename => "students.csv", :disposition => 'attachment' }

@@ -1,5 +1,7 @@
 <h1>All students</h1>
 
+<%= button_to "Display all", {:controller => "students", :action => "index", :display_all => 1}, :method => :post %>
+
 <table id="t01", class="table table-hover">
     <thead>
         <tr>
@@ -13,19 +15,22 @@
     </thead>
   
     <tbody>
+    <%= form_tag students_path, controller: 'student',action: 'index',  method: :post do %>
     <%#=form_for :export_form, :url => {:controller => 'admin',:action => "index"} do |q|%>
+         <%# Student.new.attributes.keys[0...Student.new.attributes.keys.length-1].each_with_index do |student, index| %>
         <% @students.each do |student| %>
           <tr>
             <td><%= check_box_tag "student_ids[]", student.id, checked = true %></td>
-            <td><%= student.uin %></td>
+            <td><%= student.uin%></td>
             <td><%= student.name %></td>
             <td><%= student.section %></td>
             <td><%= student.attempts %></td>
             <td><%= student.score %></td>
           </tr>
-
+        <% end %>
         <%#= submit_tag 'Export to CSV',:id=>"export_to_csv"%>
+        <%= submit_tag 'Update', controller: 'students', action: "index" %>
     <% end %>
     </tbody>
 </table>
-<%= link_to 'Export to CSV', students_path(format: 'csv') %>
+<%= button_to 'Export to CSV', students_path(format: 'csv') %>

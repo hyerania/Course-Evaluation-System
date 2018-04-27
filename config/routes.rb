@@ -56,7 +56,6 @@ Rails.application.routes.draw do
   post 'admin/show'
   
   post 'admin/login'
-  
 
   #get 'questions/view'
 
@@ -68,7 +67,7 @@ Rails.application.routes.draw do
   match '/questions', to: 'questions#view', via: [:get, :post]
   
   resources :students do
-    collection {post :import}
+    collection {post :index}
   end
   
   resources :questions, only: [:view], via: [:post]

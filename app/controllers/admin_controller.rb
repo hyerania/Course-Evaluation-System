@@ -95,22 +95,27 @@ class AdminController < ApplicationController
     redirect_to controller: 'admin', action: 'show'
   end
   
-  # def index
-  # @students=Student.all
-  # @selected_students = Student.where(id: params[:student_ids])
-  # puts @selected_students
-  # if(@selected_students.count > 0)
-  #   session[:selected_students] = @selected_students
-  #   redirect_to('/admin/students.csv')
-  # end
-  # end
-  
-  # def students
-  #   @selected_students = session[:selected_students]
-  #     respond_to do |format|
-  #     format.html
-  #     format.csv{send_data @selected_students.to_csv,:filename => "students.csv", :disposition => 'attachment' }
-  #   end
-  #   return
-  # end
+  def export
+    if(params[:display_all] == "1")
+      @students = Student.all
+    else
+      if(params[:student_ids].nil?)
+        if(session[:student_ids].nil?)
+          @students = Student.all
+          puts '1'
+        else
+          @students = Student.where(id: session[:student_ids])
+          puts '2'
+        end
+      else
+        @students = Student.where(id: params[:student_ids])
+        session[:student_ids] = params[:student_ids]
+        puts '3'
+      end  
+    end
+    respond_to do |format|
+      format.html
+      format.csv{send_data @students.to_csv,:filename => "students.csv", :disposition => 'attachment' }
+    end
+  end
 end

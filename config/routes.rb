@@ -23,11 +23,14 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'questions/new'
   end
+  
   get 'students/logout'
   
   get 'students/welcome'
 
   get 'admin/login'
+  
+  get 'admin/export'
 
   get 'admin/show'
   
@@ -66,8 +69,8 @@ Rails.application.routes.draw do
   
   match '/questions', to: 'questions#view', via: [:get, :post]
   
-  resources :students do
-    collection {post :index}
+  resources :admin do
+    collection {post :export}
   end
   
   resources :questions, only: [:view], via: [:post]
@@ -88,6 +91,7 @@ Rails.application.routes.draw do
   get 'admin/evaluations/new' => 'evaluations#new', :as => :new_evaluation
   get 'questions/instructions' => 'students#instructions', :as => :instructions_student
   get 'questions/save' => 'questions#save', :as => :save_test
+  post 'admin/export' => 'admin#export', :as => :export_admin
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
 end

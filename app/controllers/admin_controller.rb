@@ -94,4 +94,23 @@ class AdminController < ApplicationController
     session[:admin] = ""
     redirect_to controller: 'admin', action: 'show'
   end
+  
+  # def index
+  # @students=Student.all
+  # @selected_students = Student.where(id: params[:student_ids])
+  # puts @selected_students
+  # if(@selected_students.count > 0)
+  #   session[:selected_students] = @selected_students
+  #   redirect_to('/admin/students.csv')
+  # end
+  # end
+  
+  # def students
+  #   @selected_students = session[:selected_students]
+  #     respond_to do |format|
+  #     format.html
+  #     format.csv{send_data @selected_students.to_csv,:filename => "students.csv", :disposition => 'attachment' }
+  #   end
+  #   return
+  # end
 end

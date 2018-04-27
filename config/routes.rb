@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   get 'admin/login'
 
   get 'admin/show'
+  
+  get 'admin/index'
 
   get 'welcome/show'
 
@@ -39,11 +41,15 @@ Rails.application.routes.draw do
   
   get 'admin/logout'
   
+  get 'admin/students'
+  
   post 'students/welcome'
   
   post 'admin/delete'
   
   post 'admin/update'
+  
+  post 'admin/index'
   
   post 'students/show'
   

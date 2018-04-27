@@ -5,14 +5,23 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-h1{
-    border-bottom: 1px solid Grey;
+* {
+    font-family: "Segoe UI";
 }
 
 table#t01 th{
   border: 2px solid white;
   font-weight: bold;
   background-color: LightGrey;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    opacity: 0.3;
 }
 
 table#t01 th, table#t01 td {
@@ -26,7 +35,8 @@ tr#t01:nth-child(even) {
 tr#t01:nth-child(odd) {
     background: #FFF;
 }
-.btn {
+.btn, .btn:hover, .btn:focus, .btn:active {
     color: white;
     background-color: maroon;
+    border-color: maroon;
 }

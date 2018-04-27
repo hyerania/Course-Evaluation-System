@@ -3,6 +3,7 @@
 <table id="t01", class="table table-hover">
     <thead>
         <tr>
+            <th>Check</th>
             <th>UIN </th>
             <th>Student Name </th>
             <th>Section </th>
@@ -12,15 +13,19 @@
     </thead>
   
     <tbody>
+    <%#=form_for :export_form, :url => {:controller => 'admin',:action => "index"} do |q|%>
         <% @students.each do |student| %>
           <tr>
+            <td><%= check_box_tag "student_ids[]", student.id, checked = true %></td>
             <td><%= student.uin %></td>
             <td><%= student.name %></td>
             <td><%= student.section %></td>
             <td><%= student.attempts %></td>
             <td><%= student.score %></td>
           </tr>
-        <% end %>
+
+        <%#= submit_tag 'Export to CSV',:id=>"export_to_csv"%>
+    <% end %>
     </tbody>
 </table>
-<%=link_to 'Export to CSV', students_path(format: 'csv')%>
+<%= link_to 'Export to CSV', students_path(format: 'csv') %>

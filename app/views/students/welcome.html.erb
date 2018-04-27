@@ -1,14 +1,28 @@
-<h1>Student Login</h1>
-<p>
- <%= form_tag do%>
-  <%= "UIN: "%><%= number_field_tag :uin %><br>
-  <%= submit_tag "Login" %><br>
- <% end %>
- 
- <% if flash[:notice] %>
-  <div class="notice" style="color: red"><%= flash[:notice] %></div>
- <% end %>
- 
- <%= link_to "Register", controller: "students", action: "register" %>
- <%= link_to "HomePage", controller: "welcome", action: "show" %>
-</p>
+<div class="row">
+ <div class="col-lg-4"></div>
+ <div class="col-lg-4 text-center">
+  <h1>Student Login</h1>
+  <p>
+   <%= form_tag({}, {:class=> "form-horizontal"}) do%>
+    <div class="form-group">
+     <div class="col-sm-12">
+      <%= number_field_tag :uin, nil, class: "form-control", placeholder: "UIN" %>
+     </div>
+    </div>
+    <%= submit_tag "Login", class: "btn btn-primary col-sm-12" %>
+   <% end %>
+   
+   <% if flash[:notice] %>
+    <div class="notice" style="color: red"><%= flash[:notice] %></div>
+   <% end %>
+   
+   <div class="small text-right">
+    <%= link_to "Register", controller: "students", action: "register" %>
+   </div>
+   <div class="small text-right">
+    <%= link_to "HomePage", controller: "welcome", action: "show" %>
+   </div>
+  </p>
+ </div>
+ <div class="col-lg-4"></div>
+</div>

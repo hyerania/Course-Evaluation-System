@@ -24,6 +24,16 @@
           <ul class="nav navbar-nav foo" id="menu">
             <li class="<%= 'active' if params[:controller] == 'welcome' %>"><a href="/">Home</a></li>
             <li class="<%= 'active' if params[:controller] == 'about' %>"><a href="/about">About Us</a></li>
+            <li class="">
+              <% if session[:admin]!="" %>
+                <a href="/admin/logout">Logout as Professor</a>
+              <% end %>
+            </li>
+            <li class="">
+              <% if session[:uin] %>
+                <%= link_to "Logout as Student", controller: "students", action: "logout" %>
+              <% end %>
+            </li>
             <!--<li>-->
             <!--  <a href="/contact">-->
             <!--    <span class='glyphicon glyphicon-hand-right'></span>-->
@@ -51,6 +61,9 @@
     </nav>
     <div class="container">
       <%= yield %>
+    </div>
+    <div class="footer">
+      <%= image_tag "CSCE_logo_HMaroon.png" %>
     </div>
   </body>
 </html>

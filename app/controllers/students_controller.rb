@@ -127,15 +127,14 @@ class StudentsController < ApplicationController
     redirect_to controller: 'students', action: 'welcome'
   end
    #https://gorails.com/episodes/export-to-csv
+   
   def index
     @students=Student.all
-   
     respond_to do |format|
       format.html
       format.csv{send_data @students.to_csv,:filename => "students.csv", :disposition => 'attachment' }
     end
   end
-
   #http://www.thegreatcodeadventure.com/exporting-csv-from-rails/
   #https://medium.com/coderaga/rails-import-export-csv-data-without-gem-fbf2a36a84f6
 end

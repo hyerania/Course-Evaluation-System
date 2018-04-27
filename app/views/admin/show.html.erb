@@ -31,53 +31,62 @@
         <% end %>
     </tbody>
 </table>
-<%= link_to "Export data", controller: "students", action: "index" %>
-<h1>Access Code</h1>
-
-<p>
-    <div>Current Access Code: <%= @access_code.code %></div>
-    <%= form_tag do%>
-      <%= "Change Access Code To: "%><%= text_field_tag :access_code %><br>
-      <%= submit_tag "Change", :class=>"btn btn-primary btn-sm" %><br>
-    <% end %>
-</p>
-<p>
-<table id="sections">
+<div class="col-xs-12">
+    <%= link_to "Export data", controller: "students", action: "index" %>
+</div>
+<div class="col-lg-5">
+    <h1>Access Code</h1>
+    <p>
+        <label>Current Access Code: <%= @access_code.code %></label>
+        <%= form_tag do%>
+          <div class="form-group">
+              <label>Change Access Code To:</label>
+              <div>
+                  <%= text_field_tag :access_code, nil, class: "form-control" %>
+              </div>
+          </div>
+          <%= submit_tag "Change", :class=>"btn btn-primary btn-sm" %><br>
+        <% end %>
+    </p>
+</div>
+<div class="col-lg-1"></div>
+<div class="col-lg-6">
+    <table id="sections">
     <thead>
         <tr>
-            <th>section</th>
+            <th><h1>Section</h1></th>
         </tr>
     </thead>
     <tbody>
         <% @sections.each do |section| %>
           <tr>
-            <td><%= section.section_number %></td>
+            <td><label><%= section.section_number %></label></td>
             <td><%= button_to("Delete", action: "delete", value: section.section_number) %></td>
           </tr>
         <% end %>
     </tbody>
 </table>
-</p>
 <%= form_tag do%>
-    <%= "Section Number: "%><%= number_field_tag :section_number %><br>
-    <%= submit_tag "Add" %><br>
+    <label>Section Number:</label><%= number_field_tag :section_number, nil, class: "form-control" %><br>
+    <%= submit_tag "Add", class: "btn btn-primary" %><br>
 <% end %>
+</div>
 
 
-<div class="form-group" style="margin: 20px 0px">
+<div class="form-group col-xs-12" style="margin: 20px 0px">
     <a href="/admin/questions/show" class="btn btn-primary btn-lg" role="button">Questions Manager</a>
     <a href="/admin/evaluations" class="btn btn-primary btn-lg" role="button">Evaluations Manager</a>
 </div>
 
+<div class="col-xs-12">
 <%= form_tag do%>
     <div>Please type the following text in the text box to confirm deletion:</div>
     <div>I want to delete all students in the database, and I understand that once deleted, they are not recoverable.</div>
-    <%= "disclaimer: "%><%= text_field_tag :disclaimer %><br>
-    <%= submit_tag "Reset Student Database" %><br>
+    <label>Disclaimer: </label><%= text_field_tag :disclaimer, nil, class: "form-control" %><br>
+    <%= submit_tag "Reset Database" %><br>
 <% end %>
+</div>
 
 <% if flash[:notice] %>
   <div class="notice" style="color: red"><%= flash[:notice] %></div>
 <% end %>
-
-<%= link_to "Logout", controller: "admin", action: "logout" %>

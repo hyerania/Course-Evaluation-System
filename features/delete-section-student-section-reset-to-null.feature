@@ -31,7 +31,7 @@ Scenario: Reset Database
   And I press "Login"
   Then I should be on the admin page
   And I fill in "disclaimer" with "I want to delete all students in the database, and I understand that once deleted, they are not recoverable."
-  And I press "Reset Student Database"
+  And I press "Reset Database"
   And I should see "Databse Reset"
   
 Scenario: Reset Database with invalid disclaimer
@@ -40,5 +40,5 @@ Scenario: Reset Database with invalid disclaimer
   And I press "Login"
   Then I should be on the admin page
   And I fill in "disclaimer" with "Random Text."
-  And I press "Reset Student Database"
+  And I press "Reset Database"
   And I should see "Disclaimer does not match. Database unchanged."

@@ -1,4 +1,6 @@
 class AdminController < ApplicationController
+  before_action :check_admin_login, only: [:show]
+  
   def login
     if(!params[:key].nil?)
       @input_hash = Digest::SHA1.hexdigest(params[:key])
@@ -14,9 +16,10 @@ class AdminController < ApplicationController
   end
   
   def show
-    if(session[:admin] != "login")
-      redirect_to controller: 'admin', action: 'login'
-    end
+    # if(session[:admin] != "login")
+    #   flash.now[:danger]= "You are not logged in!"
+    #   redirect_to controller: 'admin', action: 'login'
+    # end
     
     @sections = Section.all.order('section_number asc')
     @list_of_sections = Section.pluck(:section_number).sort
@@ -28,10 +31,14 @@ class AdminController < ApplicationController
     #control panel
     #add new section
     if(!params[:section_number].nil? and unique_section(params[:section_number]))
-      @new_section = Section.new
-      @new_section.section_number = params[:section_number]
-      @new_section.save
-      redirect_to controller: 'admin', action: 'show'
+      if(params[:section_number] == "")
+        flash[:notice] = "Section number cannot be empty!"
+      else
+        @new_section = Section.new
+        @new_section.section_number = params[:section_number]
+        @new_section.save
+      end
+        redirect_to controller: 'admin', action: 'show'
     end
     
     #update a student's section
@@ -56,22 +63,28 @@ class AdminController < ApplicationController
   end
   
   def delete
-    Section.where(section_number: params[:value]).first.destroy
+    if(session[:admin] != "login")
+      # return
+      redirect_to controller: 'admin', action: 'show'
+    else
+      Section.where(section_number: params[:value]).first.destroy
     
     #set all students with this section number their section number to null
-    @students_in_this_section = Student.where(section: params[:value])
+      @students_in_this_section = Student.where(section: params[:value])
     
-    for i in 0..@students_in_this_section.size - 1
-      @students_in_this_section[i].section = ""
-      @students_in_this_section[i].save
+      for i in 0..@students_in_this_section.size - 1
+        @students_in_this_section[i].section = ""
+        @students_in_this_section[i].save
+      end
+      redirect_to controller: 'admin', action: 'show'
+      
     end
-    
-    redirect_to controller: 'admin', action: 'show'
   end
   
   def unique_section entry
     ret = Section.where(section_number: entry)
     if !ret.empty?
+      flash[:notice] = "Section already exists!"
       return false
     else
       return true
@@ -88,5 +101,15 @@ class AdminController < ApplicationController
   def logout
     session[:admin] = ""
     redirect_to controller: 'admin', action: 'show'
+  end
+  
+  def logged_in?
+      session[:admin] == "login"
+  end
+      
+  def check_admin_login
+    unless logged_in?
+        redirect_to controller: 'admin', action: 'login'
+    end
   end
 end

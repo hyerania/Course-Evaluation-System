@@ -45,6 +45,10 @@ class StudentsController < ApplicationController
       redirect_to controller: 'students', action: 'welcome'
     end
   
+    if(session[:uin].nil?)
+      return
+    end
+    
     @sections = Section.all.order('section_number asc')
     @list_of_sections = Section.pluck(:section_number).sort
     @instructions = Instruction.all.first

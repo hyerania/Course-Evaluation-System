@@ -103,7 +103,7 @@ Rails.application.routes.draw do
   
   #POST
   post 'students/welcome'
-  
+
   post 'admin/delete'
   post 'admin/update'
   

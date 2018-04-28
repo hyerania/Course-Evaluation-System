@@ -49,6 +49,9 @@ Given(/^the following evaluations exist:$/) do |table|
         if evaluation[:scales]!=nil
           @evaluation.scales=evaluation[:scales].tr('[]','').split(',').map(&:to_i)
         end
+        if evaluation[:qids]!=nil
+          @evaluation.qids=evaluation[:qids].tr('[]','').split(',').map(&:to_i)
+        end
         @evaluation.save
     end
 end
@@ -91,4 +94,9 @@ end
 
 When(/^I go back$/) do
   page.go_back
+end
+
+Then("evaluation {string} should have {string} questions") do |eid, num|
+  evaluation = Evaluation.where(eid: eid.to_i)
+  expect(evaluation[0].qids.length.to_s).to eq num
 end

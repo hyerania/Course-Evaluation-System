@@ -10,10 +10,13 @@ class StudentsController < ApplicationController
   end
   
   def welcome
-    flash[:notice] = ""
     if(!params[:uin].nil?)
       uin = params[:uin]
-      login(uin)
+      if(login(uin) == true)
+        redirect_to controller: 'students', action: 'show'
+      else
+        redirect_to conntroller: 'students', action: 'welcome'
+      end
     end
   end
   
@@ -23,19 +26,18 @@ class StudentsController < ApplicationController
   def login(uin)
     #first check if input is legal
     if(uin.to_i > 999999999 || uin.to_i < 100000000)
-      flash[:notice] = "Please enter a valid UIN!"
+      flash[:warning] = "Please enter a valid UIN!"
       return false
     end
     
     #then validate
     @student = Student.where(uin: uin.to_i).first
     if(@student.nil?)
-      flash[:notice] = "UIN not registered!"
+      flash[:warning] = "UIN not registered!"
       return false
     else
       #set session key
       session[:uin] = uin
-      redirect_to controller: 'students', action: 'show'
       return true
     end
   end
@@ -50,33 +52,23 @@ class StudentsController < ApplicationController
     @instructions = Instruction.all.first
     
     @student = Student.where(uin: session[:uin]).first
-    if(params[:access_code].nil?)
-      flash[:notice] = ""
-    elsif(params[:access_code] == "")
-      flash[:notice] = "Please enter an access code!"
-    else
-      @evaluations = Evaluation.where(access_code: params[:access_code]).first
-      if(@evaluations.nil?)
-        flash[:notice] = "Error: No evaluation exists with the corresponding access code!"
+    if(!params[:access_code].nil?)
+      if(params[:access_code] == "")
+        flash[:warning] = "Please enter an access code!"
+        redirect_to controller: 'students', action: 'show'
       else
-        session[:eid] = @evaluations.eid
-        session[:page]=0
-        session[:choice]=[]
-        @student.choices=[]
-        @student.save
-        redirect_to controller: 'questions', action: 'view'
-        # if(@access_code.code == params[:access_code])
-        #   session[:page]=0
-        #   session[:choice]=[]
-        #   @student.choices=[]
-        #   @student.save
-        #   redirect_to controller: 'questions', action: 'view'
-        # else
-        #   session[:eid] = @evaluations.eid
-        #   session[:page] = 0
-        #   session[:choice] = []
-        #   redirect_to controller: 'questions', action: 'view'
-        # end
+        @evaluations = Evaluation.where(access_code: params[:access_code]).first
+        if(@evaluations.nil?)
+          flash[:warning] = "Error: No evaluation exists with the corresponding access code!"
+          redirect_to controller: 'students', action: 'show'
+        else
+          session[:eid] = @evaluations.eid
+          session[:page]=0
+          session[:choice]=[]
+          @student.choices=[]
+          @student.save
+          redirect_to controller: 'questions', action: 'view'
+        end
       end
     end
     
@@ -94,7 +86,6 @@ class StudentsController < ApplicationController
   end
   
   def create
-    flash[:notice] = ""
     params.permit! #allow mass assignment
     @student = Student.new(params[:student])
     @student.attempts = 0
@@ -116,27 +107,26 @@ class StudentsController < ApplicationController
     puts "validating"
     
     #nil entry
-    if(entry.uin.nil? ||entry.name.nil? || entry.section.nil?)
-      flash[:notice] = "Please fill in all required fields!!"
+    if(entry.uin.nil? ||entry.name.nil? || entry.section.nil? || entry.name == "")
+      flash[:warning] = "Please fill in all required fields!!"
       return false
     end
 
     
     #inavlid uin
     if(entry.uin > 999999999 || entry.uin < 100000000)
-      flash[:notice] = "Invalid UIN!"
+      flash[:warning] = "Invalid UIN!"
       return false
     end
     
     #uin uniqueness
     ret = Student.where(uin: entry.uin)
     if !ret.empty?
-      flash[:notice] = "UIN already exist!"
+      flash[:warning] = "UIN already exist!"
       return false
     end
     
-    flash[:notice] = "Student Added!"
-    
+    flash[:success] = "Student Added!"
     return true
   end
   

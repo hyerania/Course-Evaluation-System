@@ -127,7 +127,34 @@ class Admin::QuestionsController < ApplicationController
       flash[:warning] = "Unable to find question. Please try again."
       redirect_to action: "show"
     else
+
       @question = questions[0]
+      evaluations = Evaluation.all
+      scale_index = 0
+      evaluations.each do |evaluation|
+        question_to_delete = evaluation.qids.index(@question.qid)
+        if question_to_delete
+          evaluation.qids.each do |qid|
+            current_eval_question = Question.where(qid: qid.to_s)
+            if current_eval_question[0].qid == @question.qid
+              i = 0
+              while i < current_eval_question[0].numAnswers
+                evaluation.scales.delete_at(scale_index)
+                i+=1
+              end
+            else
+              scale_index = scale_index + current_eval_question[0].numAnswers
+            end
+          end
+          evaluation.qids.delete_at(question_to_delete)
+          evaluation.content.delete_at(question_to_delete)
+          if evaluation.qids.length == 0
+            evaluation.delete
+          else
+            evaluation.save
+          end
+        end
+      end
       @question.delete
       flash[:success] = "Question #{@question.qid} successfully deleted."
       redirect_to action: "show"

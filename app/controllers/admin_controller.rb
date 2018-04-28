@@ -8,7 +8,7 @@ class AdminController < ApplicationController
         redirect_to controller: 'admin', action: 'show'
       else
         flash[:warning] = "Incorrect Key!"
-        redirect_to controller: 'admin', action: 'show'
+        redirect_to controller: 'admin', action: 'login'
       end
     end
   end

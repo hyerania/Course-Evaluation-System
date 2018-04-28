@@ -43,6 +43,7 @@ Given(/^the following evaluations exist:$/) do |table|
         @evaluation = Evaluation.new
         @evaluation.eid=evaluation[:eid].to_i
         @evaluation.title=evaluation[:title]
+        # @evaluation.qids=evaluation[:qids]
         @evaluation.content=evaluation[:content].tr('[]','').split(',')
         @evaluation.access_code=evaluation[:access_code]
         if evaluation[:scales]!=nil
@@ -50,6 +51,13 @@ Given(/^the following evaluations exist:$/) do |table|
         end
         @evaluation.save
     end
+end
+
+When("I delete evaluation {string}") do |string|
+  eid = string.to_i
+  evaluations = Evaluation.where(eid: eid)
+  evaluation = evaluations[0]
+  evaluation.delete
 end
 
 And (/I should see the average is "(.*)"$/) do |val|

@@ -128,6 +128,7 @@ Rails.application.routes.draw do
   get 'admin/evaluations', to: 'evaluations#show'
   post 'admin/evaluations', to: 'evaluations#show'
   get 'admin/evaluations/view/:id', to: 'evaluations#view'
+  delete 'admin/evaluations/delete/:id', to: 'evaluations#delete'
   # '/' Route
   get 'welcome/show'
   get 'students/hello'

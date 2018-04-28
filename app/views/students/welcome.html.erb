@@ -1,3 +1,7 @@
+<% flash.each do |key, value|%>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <h1>Student Login</h1>
 <p>
  <%= form_tag do%>
@@ -5,9 +9,9 @@
   <%= submit_tag "Login" %><br>
  <% end %>
  
- <% if flash[:notice] %>
-  <div class="notice" style="color: red"><%= flash[:notice] %></div>
- <% end %>
+ <%# if flash[:warning] %>
+  <!--<div class="notice" style="color: red"><%= flash[:warning] %></div>-->
+ <%# end %>
  
  <%= link_to "Register", controller: "students", action: "register" %>
  <%= link_to "HomePage", controller: "welcome", action: "show" %>

@@ -14,7 +14,8 @@ class EvaluationsController < ApplicationController
             if(check_access_code_uniqueness(params[:access_code]) == true)
               update(params[:access_code], params[:eid]) 
             else
-              flash.now[:notice] = "Access code already exists for another evaluation!"
+              flash[:warning] = "Access code already exists for another evaluation!"
+              redirect_to controller: 'evaluations', action: 'show'
             end
         end
     end
@@ -52,12 +53,12 @@ class EvaluationsController < ApplicationController
                 end
                 #puts scales
                 @question=Evaluation.create!(:eid =>(Evaluation.maximum(:eid)==nil) ? 1 : Evaluation.maximum(:eid)+1,:title =>params[:title],:content =>params[:questions].values, :scales=> scales, :qids=> params[:questions].keys.map(&:to_i))
-                flash.now[:notice] = "Question #{@question.title} was successfully created."
+                flash[:success] = "Evaluation #{@question.title} was successfully created."
                 #flash.keep
                 
                 redirect_to action: "show"
             else
-                flash.now[:error] = "Some parameter is missing."
+                flash[:warning] = "Some parameter is missing."
                 session[:content]=[]
                 if params[:questions]!=nil
                     params[:questions].keys.each do |q|
@@ -76,8 +77,8 @@ class EvaluationsController < ApplicationController
         @instructions = Instruction.all.first
         @instructions.content = params[:content]
         @instructions.save
-        flash.now[:notice] = "Instruction updated!"
-        redirect_to('/admin/evaluations')
+        flash[:success] = "Instruction updated!"
+        redirect_to controller: 'evaluations', action: 'show'
     end
     
     def selectr

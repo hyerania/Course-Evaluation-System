@@ -23,14 +23,16 @@ class StudentsController < ApplicationController
   def login(uin)
     #first check if input is legal
     if(uin.to_i > 999999999 || uin.to_i < 100000000)
-      flash.now[:notice] = "Please enter a valid UIN!"
+      flash[:warning] = "Please enter a valid UIN!"
+      redirect_to controller: 'students', action: 'welcome'
       return false
     end
     
     #then validate
     @student = Student.where(uin: uin.to_i).first
     if(@student.nil?)
-      flash.now[:notice] = "UIN not registered!"
+      flash[:warning] = "UIN not registered!"
+      redirect_to controller: 'students', action: 'welcome'
       return false
     else
       #set session key
@@ -53,11 +55,13 @@ class StudentsController < ApplicationController
     if(params[:access_code].nil?)
       #flash[:notice] = ""
     elsif(params[:access_code] == "")
-      flash.now[:notice] = "Please enter an access code!"
+      flash[:warning] = "Please enter an access code!"
+      redirect_to controller: 'students', action: 'show'
     else
       @evaluations = Evaluation.where(access_code: params[:access_code]).first
       if(@evaluations.nil?)
-        flash.now[:notice] = "Error: No evaluation exists with the corresponding access code!"
+        flash[:warning] = "Error: No evaluation exists with the corresponding access code!"
+        redirect_to controller: 'students', action: 'show'
       else
         session[:eid] = @evaluations.eid
         session[:page]=0
@@ -117,25 +121,29 @@ class StudentsController < ApplicationController
     
     #nil entry
     if(entry.uin.nil? ||entry.name.nil? || entry.section.nil?)
-      flash.now[:notice] = "Please fill in all required fields!!"
+      flash[:warning] = "Please fill in all required fields!!"
+      #redirect_to controller: 'students', action: 'register'
       return false
     end
 
     
     #inavlid uin
     if(entry.uin > 999999999 || entry.uin < 100000000)
-      flash.now[:notice] = "Invalid UIN!"
+      flash[:warning] = "Invalid UIN!"
+      #redirect_to controller: 'students', action: 'register'
       return false
     end
     
     #uin uniqueness
     ret = Student.where(uin: entry.uin)
     if !ret.empty?
-      flash.now[:notice] = "UIN already exist!"
+      flash[:warning] = "UIN already exist!"
+      #redirect_to controller: 'students', action: 'register'
       return false
     end
     
-    flash.now[:notice] = "Student Added!"
+    flash[:success] = "Student Added!"
+    redirect_to controller: 'students', action: 'welcome'
     
     return true
   end

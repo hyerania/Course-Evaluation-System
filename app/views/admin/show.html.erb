@@ -69,7 +69,7 @@
     <div>Please type the following text in the text box to confirm deletion:</div>
     <div>"I want to delete all students in the database, and I understand that once deleted, they are not recoverable."</div>
     <%= "disclaimer: "%><%= text_field_tag :disclaimer %><br>
-    <%= submit_tag "Reset Student Database" %><br>
+    <%= submit_tag "Reset Student Database" , :class => "btn btn-danger"%><br>
 <% end %>
 
 <%= link_to "Logout", controller: "admin", action: "logout" %>

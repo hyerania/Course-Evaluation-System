@@ -82,6 +82,7 @@ class StudentsController < ApplicationController
     @student = Student.where(uin: params[:uin].keys[0]).first
     @student.section = params[:section]
     @student.save
+    flash[:success] = "Section updated"
     redirect_to controller: 'students', action: 'show'
   end
   
@@ -132,6 +133,7 @@ class StudentsController < ApplicationController
   
   def logout
     session[:uin] = nil
+    flash[:success] = "Successful logged out"
     redirect_to controller: 'students', action: 'welcome'
   end
 end

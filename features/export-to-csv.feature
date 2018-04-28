@@ -17,7 +17,7 @@ Scenario: export student records
   And I fill in "key" with "dshell"
   And I press "Login"
   Then I should be on the admin page
-  And I follow "Export Manager"
+  And I follow "Export Students to CSV"
   And I press "Export to CSV"
   Then I should get a download with the filename "students.csv"
   
@@ -27,5 +27,5 @@ Scenario: export questions
   And I press "Login"
   Then I should be on the admin page
   And I follow "Questions Manager"
-  And I press "Export questions to CSV"
+  And I follow "Export Questions to CSV"
   Then I should get a download with the filename "questions.csv"

@@ -96,7 +96,7 @@ Rails.application.routes.draw do
   get 'questions/instructions' => 'students#instructions', :as => :instructions_student
   get 'questions/save' => 'questions#save', :as => :save_test
   post 'admin/export' => 'admin#export', :as => :export_admin
-  post 'admin/questions/export' => 'admin#export_questions', :as => :export_questions
+  get 'admin/questions/export' => 'admin#export_questions', :as => :export_questions
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
 end

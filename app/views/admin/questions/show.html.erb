@@ -27,7 +27,9 @@
         </tr>
     <% end %>
 </table>
-<%= button_to 'Export questions to CSV', export_questions_path(format: 'csv') %>
+<%#= button_to 'Export questions to CSV', export_questions_path(format: 'csv'), class: 'btn btn-primary btn-lg' %>
 <div class="form-group" style="margin: 20px 0px">
     <a href="/admin/questions/new" class="btn btn-primary btn-lg" role="button">Add Question</a>
+    <a href="/admin/questions/export.csv" class="btn btn-primary btn-lg" role="button">Export Questions to CSV</a>
+    <%#= button_to 'Export questions to CSV', export_questions_path(format: 'csv') %>
 </div>

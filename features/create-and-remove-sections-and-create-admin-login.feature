@@ -53,6 +53,15 @@ Scenario: Add an existing section
   And I fill in "section_number" with "501"
   And I press "Add"
   Then I should see "501"
+  
+Scenario: Add an empty section
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I fill in "section_number" with ""
+  And I press "Add"
+  Then I should see "Section number cannot be empty!"
 
 Scenario: Delete a section
   Given I am on the admin login page

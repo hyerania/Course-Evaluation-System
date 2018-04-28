@@ -1,6 +1,5 @@
 #background
 
-
 Given(/^the following questions exist:$/) do |table|
     table.hashes.each do |question|
         Question.create(question)
@@ -81,6 +80,6 @@ Then(/^the section of "(.*)" should be "(.*)"$/) do |name, section|
   expect(@student.section.to_s).to eq section
 end
 
-When(/^I go back$/) do
-  page.go_back
+And(/^I hard code the link$/) do
+  visit "/delete?value=501"
 end

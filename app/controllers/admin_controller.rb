@@ -16,11 +16,10 @@ class AdminController < ApplicationController
   end
   
   def show
-    
-    if(session[:admin] != "login")
-      flash.now[:danger]= "You are not logged in!"
-      redirect_to controller: 'admin', action: 'login'
-    end
+    # if(session[:admin] != "login")
+    #   flash.now[:danger]= "You are not logged in!"
+    #   redirect_to controller: 'admin', action: 'login'
+    # end
     
     @sections = Section.all.order('section_number asc')
     @list_of_sections = Section.pluck(:section_number).sort
@@ -65,20 +64,21 @@ class AdminController < ApplicationController
   
   def delete
     if(session[:admin] != "login")
-      return
-    end
-    
-    Section.where(section_number: params[:value]).first.destroy
+      # return
+      redirect_to controller: 'admin', action: 'show'
+    else
+      Section.where(section_number: params[:value]).first.destroy
     
     #set all students with this section number their section number to null
-    @students_in_this_section = Student.where(section: params[:value])
+      @students_in_this_section = Student.where(section: params[:value])
     
-    for i in 0..@students_in_this_section.size - 1
-      @students_in_this_section[i].section = ""
-      @students_in_this_section[i].save
+      for i in 0..@students_in_this_section.size - 1
+        @students_in_this_section[i].section = ""
+        @students_in_this_section[i].save
+      end
+      redirect_to controller: 'admin', action: 'show'
+      
     end
-    
-    redirect_to controller: 'admin', action: 'show'
   end
   
   def unique_section entry

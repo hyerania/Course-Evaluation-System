@@ -1,16 +1,17 @@
-<% flash.each do |key, value| %>
-<div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-<h1>Student Register</h1>
-<p>
-    <div>Find me in app/views/students/register.html.erb</div>
-    
-    <%= form_for @student do |f| %>
-      <%= f.label :uin, 'UIN' %><%= f.number_field :uin %><br>
-      <%= f.label :name, 'Name' %><%= f.text_field :name %><br>
-      <%= f.label :section, 'Section' %><%= f.select "section", options_from_collection_for_select(@sections, "section_number", "section_number")  %><br>
-      <%= f.submit %>
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Student Register</h1>
+    <p>Register for an account to take your accessment. All scores will automatically be sent to the professors.</p>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
-    
-    <%= link_to "Home Page", controller: "welcome", action: "show" %>
-</p>
+  </div>
+  <div class="col-sm-12">
+      <%= form_for @student do |f| %>
+        <%= f.label :uin, 'UIN: ' %><%= f.number_field :uin %><br>
+        <%= f.label :name, 'Name: ' %><%= f.text_field :name %><br>
+        <%= f.label :section, 'Section: ' %><%= f.select "section", options_from_collection_for_select(@sections, "section_number", "section_number")  %><br>
+        <%= f.submit "Register", :class => "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

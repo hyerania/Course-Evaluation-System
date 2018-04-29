@@ -11,7 +11,7 @@ class Admin::QuestionsController < ApplicationController
     last_question =  @all_questions.last
     
     @question = Question.new
-    @question.qid = last_question.qid + 1
+    @question.qid = (last_question==nil)?1 : last_question.qid + 1
     @question.content = question_params[:content]
     @question.c1 = question_params[:c1]
     @question.c2 = question_params[:c2]

@@ -104,5 +104,5 @@ Scenario: Logout
   And I fill in "uin" with "123000123"
   And I press "Login"
   Then I should be on the student personal page
-  And I follow "Logout"
+  And I follow "Logout as Student"
   Then I should be on the student login page

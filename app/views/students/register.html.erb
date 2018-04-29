@@ -11,7 +11,7 @@
         <%= f.label :uin, 'UIN: ' %><%= f.number_field :uin %><br>
         <%= f.label :name, 'Name: ' %><%= f.text_field :name %><br>
         <%= f.label :section, 'Section: ' %><%= f.select "section", options_from_collection_for_select(@sections, "section_number", "section_number")  %><br>
-        <%= f.submit "Register", :class => "btn btn-primary" %>
+        <%= f.submit "Create Student", :class => "btn btn-primary" %>
     <% end %>
   </div>
 </div>

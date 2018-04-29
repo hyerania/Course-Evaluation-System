@@ -24,6 +24,18 @@
             <li class="<%= 'active' if params[:controller] == 'welcome' %>"><a href="/">Home</a></li>
             <li class="<%= 'active' if params[:controller] == 'about' %>"><a href="/about">About Us</a></li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="">
+              <% if session[:admin]!="" %>
+                <a href="/admin/logout">Logout as Professor</a>
+              <% end %>
+            </li>
+            <li class="">
+              <% if session[:uin] %>
+                <%= link_to "Logout as Student", controller: "students", action: "logout" %>
+              <% end %>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>

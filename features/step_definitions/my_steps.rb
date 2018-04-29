@@ -95,3 +95,9 @@ Then("evaluation {string} should have {string} questions") do |eid, num|
   evaluation = Evaluation.where(eid: eid.to_i)
   expect(evaluation[0].qids.length.to_s).to eq num
 end
+
+Then("I uncheck the first student") do
+  all_checks = all('input[type=checkbox]')
+  all_checks[0].click
+  # pending # Write code here that turns the phrase above into concrete actions
+end

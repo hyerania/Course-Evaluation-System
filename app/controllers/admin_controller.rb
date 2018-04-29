@@ -112,4 +112,38 @@ class AdminController < ApplicationController
         redirect_to controller: 'admin', action: 'login'
     end
   end
+  
+  def export
+    debugger
+    if !params[:display_all] && !params[:student_ids]
+      @students = Student.all
+    else
+      if(params[:display_all] == "1")
+        @students = Student.all
+      else
+        if(params[:student_ids].nil?)
+          if(session[:student_ids].nil?)
+            @students = Student.all
+          else
+            @students = Student.where(id: session[:student_ids])
+          end
+        else
+          @students = Student.where(id: params[:student_ids])
+          session[:student_ids] = params[:student_ids]
+        end  
+      end
+    end
+    respond_to do |format|
+      format.html
+      format.csv{send_data @students.to_csv,:filename => "students.csv", :disposition => 'attachment' }
+    end
+  end
+  
+  def export_questions
+    @questions=Question.all
+    respond_to do |format|
+      format.html
+      format.csv{send_data @questions.to_csv,:filename => "questions.csv", :disposition => 'attachment' }
+    end
+  end
 end

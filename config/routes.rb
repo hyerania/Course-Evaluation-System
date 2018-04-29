@@ -90,6 +90,7 @@ Rails.application.routes.draw do
   get 'admin/login'
   get 'admin/show'
   get 'admin/logout'
+  get 'admin/export'
   
   get 'students/welcome'
   get 'students/register'
@@ -142,5 +143,6 @@ Rails.application.routes.draw do
   get 'questions/save' => 'questions#save', :as => :save_test
   patch 'admin/evaluations' => 'evaluations#update_instructions', :as => :update_instructions
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+  post 'admin/export' => 'admin#export', :as => :export_admin
+  get 'admin/questions/export' => 'admin#export_questions', :as => :export_questions
 end

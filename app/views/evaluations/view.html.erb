@@ -4,7 +4,7 @@
     
     <% @questions.each_with_index do |question, index|%>
         <h2>Question
-            <%= "#{index+1}" %>
+            <%= "#{index+1}: " %>
         </h2>
         <%= text_area_tag :question_content, question.content, :rows => 5, :cols => 120, :disabled => true %>
         <%= simple_format " \n " %>

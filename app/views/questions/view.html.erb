@@ -36,10 +36,14 @@
     <% end %>
     <% if @student.choices.count == @evaluation.count-1 %>
         <%= hidden_field_tag(:page, @student.choices.count+1) %>
-        <%= submit_tag 'Submit',:id=>"questions_next"%>
+        <div class="form-group">
+            <%= submit_tag 'Submit',:id=>"questions_next", :class => "btn btn-primary"%>
+        </div>
     <% else %>
         <%= hidden_field_tag(:page, @student.choices.count+1) %>
-        <%= submit_tag 'Next',:id=>"questions_next"%>
+        <div class="form-group">
+            <%= submit_tag 'Next',:id=>"questions_next", :class => "btn btn-primary"%>
+        </div>
     <% end %>
 <% end %>
 

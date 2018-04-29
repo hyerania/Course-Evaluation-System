@@ -1,5 +1,11 @@
 <div class="row">
     <div class="col-sm-12">
+        <%= link_to "Logout", controller: "students", action: "logout" %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
         <h1>Student Information</h1>
     </div>
     <div class="col-sm-12">
@@ -58,12 +64,6 @@
         <% if flash[:notice] %>
           <div class="notice" style="color: red"><%= flash[:notice] %></div>
         <% end %>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-sm-12">
-        <%= link_to "Logout", controller: "students", action: "logout" %>
     </div>
 </div>
 

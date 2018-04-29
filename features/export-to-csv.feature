@@ -39,13 +39,23 @@ Scenario: Display all the students
   And I follow "Export Students to CSV"
   And I press "Display all"
   Then I should see all the students
-  
+
 Scenario: Update the students
   Given I am on the admin login page
   And I fill in "key" with "dshell"
   And I press "Login"
   Then I should be on the admin page
   And I follow "Export Students to CSV"
-  Then I check "student.id"
+  Then I uncheck the first student
   Then I press "Update"
-  Then I should see 
+  Then I should not see "123000123"
+  And I press "Export to CSV"
+  Then I should get a download with the filename "students.csv"
+  
+Scenario: First Display all the students
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I follow "Export Students to CSV"
+  Then I should see all the students

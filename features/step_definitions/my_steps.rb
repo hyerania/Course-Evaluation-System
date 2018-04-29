@@ -101,3 +101,6 @@ Then("I uncheck the first student") do
   all_checks[0].click
   # pending # Write code here that turns the phrase above into concrete actions
 end
+Then (/^I should get a download with the filename "([^\"]*)"$/) do |filename|
+   page.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")
+end

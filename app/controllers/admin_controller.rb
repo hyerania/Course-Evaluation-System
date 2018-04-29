@@ -114,7 +114,7 @@ class AdminController < ApplicationController
   end
   
   def export
-    if !params[:display_all] && !params[:student_ids]
+    if !params[:display_all] && !params[:student_ids] 
       @students = Student.all
     else
       if(params[:display_all] == "1")

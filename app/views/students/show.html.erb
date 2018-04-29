@@ -1,35 +1,65 @@
 <%= link_to "Logout", controller: "students", action: "logout" %>
 
-<h1>Records</h1>
-<p>
-    <table style = "width:100%", border = "1px solid black">
-        <tr>
-            <th>UIN</th>
-            <th>Name</th>
-            <th>Section</th>
-            <th>Attempts</th>
-            <th>Score</th>
-            <th>Change Section</th>
-        </tr>
-        <tr>
-            <td><%= @student.uin %></td>
-            <td><%= @student.name %></td>
-            <td><%= @student.section %></td>
-            <td><%= @student.attempts %></td>
-            <td><%= @student.score.to_s+"/"+@student.scoretotal.to_s+"(#{((@student.score+0.0)/((@student.scoretotal.nonzero?||1)+0.0)).round(2)})" %></td>
-            <td><%= form_tag do %>
-                <%= select_tag 'section', options_for_select(@list_of_sections, @selected_section) %>
-                <%= submit_tag "Update", :name => "uin[#{@student.uin}]" %>
-                <% end %>
-            </td>
-        </tr>
-    </table>
-</p>
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Student Information</h1>
+    </div>
+    <div class="col-sm-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>UIN</th>
+                        <th>Name</th>
+                        <th>Section</th>
+                        <th>Attempts</th>
+                        <th>Score</th>
+                        <th>Change Section</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= @student.uin %></td>
+                    <td><%= @student.name %></td>
+                    <td><%= @student.section %></td>
+                    <td><%= @student.attempts %></td>
+                    <td><%= @student.score.to_s+"/"+@student.scoretotal.to_s+"(#{((@student.score+0.0)/((@student.scoretotal.nonzero?||1)+0.0)).round(2)})" %></td>
+                    <td><%= form_tag do %>
+                        <%= select_tag 'section', options_for_select(@list_of_sections, @selected_section) %>
+                        <%= submit_tag "Update", :name => "uin[#{@student.uin}]", class: "btn btn-primary btn-sm" %>
+                        <% end %>
+                    </td>
+                </tr>  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Exam Instructions</h1>
+        <%= text_area_tag :content, @instructions.content, :rows => 10, :cols => 120%>
+        <%= simple_format " \n " %>
+    </div>
+</div>
 
-<h1>Instructions</h1>
-<%= text_area_tag :content, @instructions.content, :rows => 10, :cols => 120%>
-<%= simple_format " \n " %>
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Begin Test</h1>
+        <p>In order to take the evaluation, the instructor will provide you an access code. Once you obtain the access code, enter it below and press begin.</p>
+    </div>
+    <div class="col-sm-12">
+        <%= form_tag do%>
+            <label for="access_code">Access Code: </label>
+            <%= text_field_tag :access_code %><br>
+            <button type="submit" class="btn btn-primary">Begin</button>
+        <% end %>
+        <% if flash[:notice] %>
+          <div class="notice" style="color: red"><%= flash[:notice] %></div>
+        <% end %>
+    </div>
+</div>
 
 <%= tinymce %>
 
@@ -42,14 +72,3 @@
     readonly: 1,
   });
 </script>
-
-<h1>Begin Test</h1>
-<p>
-    <%= form_tag do%>
-       <%= "Access Code: "%><%= text_field_tag :access_code %><br>
-       <%= submit_tag "Begin" %><br>
-    <% end %>
-    <% if flash[:notice] %>
-      <div class="notice" style="color: red"><%= flash[:notice] %></div>
-    <% end %>
-</p>

@@ -1,9 +1,6 @@
 <%= form_for @question, :url => {:controller => "/admin/questions", :action => "update"} do |f| %>
     <h1>Edit Question: <%= @question.qid %></h1>
     <%= hidden_field_tag :qid, @question.qid %>
-
-    <p>For more information about the text editor, go to <a target="_blank" href="https://www.tinymce.com/">https://www.tinymce.com/</a></p>
-    
     <h2>Question Details:</h2>
     <%= text_area_tag :content, @question.content, :class => "tinymce", :rows => 15, :cols => 120 %>
     

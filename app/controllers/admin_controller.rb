@@ -20,6 +20,7 @@ class AdminController < ApplicationController
     #   flash.now[:danger]= "You are not logged in!"
     #   redirect_to controller: 'admin', action: 'login'
     # end
+    session[:student_ids] = nil
     
     @sections = Section.all.order('section_number asc')
     @list_of_sections = Section.pluck(:section_number).sort
@@ -114,24 +115,26 @@ class AdminController < ApplicationController
   end
   
   def export
-    if !params[:display_all] && !params[:student_ids] 
+    if(params[:display_all] == "1")
       @students = Student.all
     else
-      if(params[:display_all] == "1")
-        @students = Student.all
-      else
-        if(params[:student_ids].nil?)
-          if(session[:student_ids].nil?)
-            @students = Student.all
-          else
-            @students = Student.where(id: session[:student_ids])
-          end
+      if(params[:student_ids].nil?)
+        if(session[:student_ids].nil?)
+          @students = Student.all
         else
-          @students = Student.where(id: params[:student_ids])
-          session[:student_ids] = params[:student_ids]
-        end  
-      end
+          @students = Student.where(id: session[:student_ids])
+        end
+      else
+        @students = Student.where(id: params[:student_ids])
+        session[:student_ids] = params[:student_ids]
+      end  
     end
+    
+    # if !params[:dispaly_all] && !params[:student_ids] #this is upon entering the page for the first time
+    #   @students = Student.all
+    # else
+      
+    # end
     respond_to do |format|
       format.html
       format.csv{send_data @students.to_csv,:filename => "students.csv", :disposition => 'attachment' }

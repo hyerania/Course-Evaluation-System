@@ -1,8 +1,23 @@
-<h1>CSCE120 Online Assessment</h1>
-<p>
- Welcome to the CSCE 120 Self-Evaluation Exam - Determine whether freshmen are ready for the new CSCE 120 intro course
- <br>
- <%= link_to "For Students", :controller => "students", :action => "welcome"%>
- <br>
- <%= link_to "For Professor", controller: "admin", action: "login" %>
-</p>
+<!--<h1>CSCE120 Online Assessment</h1>-->
+<!--<p>-->
+<!-- Welcome to the CSCE 120 Self-Evaluation Exam - Determine whether freshmen are ready for the new CSCE 120 intro course-->
+<!-- <br>-->
+<!-- <%= link_to "For Students", :controller => "students", :action => "welcome"%>-->
+<!-- <br>-->
+ <!--<%= link_to "For Professor", controller: "admin", action: "login" %>-->
+<!--</p>-->
+
+<div class="row">
+ <div class="col-sm-12">
+  <h1>CSCE120 Online Assessment</h1>
+ </div>
+ <div class="col-sm-12">
+  <p>
+   Welcome to the CSCE 120 Self-Evaluation Exam. Take the exam to determine whether or not you are ready to take this course!
+  </p>
+ </div>
+ <div class="col-sm-6">
+  <a href="/students/welcome" class="btn btn-primary">For Students</a>
+  <a href="/admin/login" class="btn btn-primary">For Professor</a>
+ </div>
+</div>

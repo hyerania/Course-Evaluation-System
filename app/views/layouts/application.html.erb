@@ -3,9 +3,9 @@
   <head>
     <title>CSCE 120 Online Assessment</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -23,28 +23,7 @@
           <ul class="nav navbar-nav foo" id="menu">
             <li class="<%= 'active' if params[:controller] == 'welcome' %>"><a href="/">Home</a></li>
             <li class="<%= 'active' if params[:controller] == 'about' %>"><a href="/about">About Us</a></li>
-            <!--<li>-->
-            <!--  <a href="/contact">-->
-            <!--    <span class='glyphicon glyphicon-hand-right'></span>-->
-            <!--    Contact Us!-->
-            <!--  </a>-->
-            <!--</li>-->
-            <!--<li class="dropdown">-->
-            <!--  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stuff <b class="caret"></b></a>-->
-            <!--  <ul class="dropdown-menu">-->
-            <!--    <li class="dropdown-header">Great stuff!</li>-->
-            <!--    <li><a href="/one">One</a></li>-->
-            <!--    <li><a href="/two">Two</a></li>-->
-            <!--    <li><a href="/three">Three</a></li>-->
-            <!--    <li class="divider"></li>-->
-            <!--    <li><a href="/admin">Admin Dashboard</a></li>-->
-            <!--    <li><a href="/admin/users">Users</a></li>-->
-            <!--  </ul>-->
-            <!--</li>-->
           </ul>
-          <!--<ul class="nav navbar-nav navbar-right" align="right">-->
-          <!--  <li><a href="/logout">Log Out</a></li>-->
-          <!--</ul>-->
         </div>
       </div>
     </nav>

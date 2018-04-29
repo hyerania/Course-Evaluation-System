@@ -1,0 +1,37 @@
+.btn {
+    background-color: #500000;
+    border-color: #707373;
+}
+
+.btn:hover {
+    background-color: #FFFFFF;
+    color: #500000;
+    border-color: #707373;
+}
+
+.navbar-default {
+    background-color: #500000;
+    .navbar-brand {
+        color: #FFFFFF;
+    }
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    background-color: #D6D3C4;
+    color: #332C2C;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #FFFFFF;
+}
+.navbar-default .navbar-nav > li:hover {
+    background-color: #707373;
+    color: #332C2C;
+}
+
+// .navbar-default .navbar-toggle {
+//     border-color: #FFFFFF;
+//     .icon-bar {
+//         background-color: #FFFFFF;
+//     }
+// }

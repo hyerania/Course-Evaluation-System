@@ -1,34 +1,32 @@
 <h1>All students</h1>
+<div><%= button_to "Display all", {:controller => "admin", :action => "export", :display_all => 1}, :method => :post %></div>
 
-<%= button_to "Display all", {:controller => "admin", :action => "export", :display_all => 1}, :method => :post %>
-
-<table id="t01", class="table table-hover">
-    <thead>
-        <tr>
-            <th>Check</th>
-            <th>UIN </th>
-            <th>Student Name </th>
-            <th>Section </th>
-            <th>Attempts </th>
-            <th>Score </th>
-        </tr>
-    </thead>
-  
-    <tbody>
-    <%= form_tag export_admin_path, controller: 'admin',action: 'export',  method: :post do %>
-        <% @students.each do |student| %>
-          <tr>
-            <td><%= check_box_tag "student_ids[]", student.id, checked = true %></td>
-            <td><%= student.uin%></td>
-            <td><%= student.name %></td>
-            <td><%= student.section %></td>
-            <td><%= student.attempts %></td>
-            <td><%= student.score %></td>
-          </tr>
-        <% end %>
-        
-        <%= submit_tag 'Update', controller: 'admin', action: "export" %>
-    <% end %>
-    </tbody>
-</table>
+<%= form_tag export_admin_path, controller: 'admin',action: 'export',  method: :post do %>
+    <table id="t01", class="table table-hover">
+        <thead>
+            <tr>
+                <th>Check</th>
+                <th>UIN </th>
+                <th>Student Name </th>
+                <th>Section </th>
+                <th>Attempts </th>
+                <th>Score </th>
+            </tr>
+        </thead>
+      
+        <tbody>
+            <% @students.each do |student| %>
+              <tr>
+                <td><%= check_box_tag "student_ids[]", student.id, checked = true %></td>
+                <td><%= student.uin%></td>
+                <td><%= student.name %></td>
+                <td><%= student.section %></td>
+                <td><%= student.attempts %></td>
+                <td><%= student.score %></td>
+              </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <%= submit_tag 'Update', controller: 'admin', action: "export" %>
+<% end %>
 <%= button_to 'Export to CSV', export_admin_path(format: 'csv') %>

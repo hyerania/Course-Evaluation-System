@@ -114,7 +114,6 @@ class AdminController < ApplicationController
   end
   
   def export
-    debugger
     if !params[:display_all] && !params[:student_ids]
       @students = Student.all
     else

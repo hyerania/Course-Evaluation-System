@@ -1,6 +1,6 @@
 <%= form_for @new_question, :url => {:controller => "/admin/questions", :action => "create"} do |f| %>
 <h1>Create a new question:</h1>
-<p>This question will only have 2 answers and each one can be scaled from 0 to 5 points.</p>
+<p>This question will only have 5 answers and each one can be scaled from 0 to 5 points.</p>
 <%= hidden_field_tag(:numAnswers, "5") %>
 
 <h3>Question Details:</h3>

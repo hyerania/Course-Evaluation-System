@@ -13,7 +13,7 @@ Background: students and sections in database
     |key                                      |
     |99f427c0c6a2411bc8a046f26c8aa4cb45bba27f |
 
-Scenario: Delete a section in used
+Scenario: Delete a section in use
   Given I am on the admin login page
   And I fill in "key" with "dshell"
   And I press "Login"

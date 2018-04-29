@@ -1,3 +1,7 @@
+<% flash.each do |key, value| %>
+<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <%= link_to "Logout", controller: "students", action: "logout" %>
 
 <h1>Records</h1>
@@ -48,8 +52,5 @@
     <%= form_tag do%>
        <%= "Access Code: "%><%= text_field_tag :access_code %><br>
        <%= submit_tag "Begin" %><br>
-    <% end %>
-    <% if flash[:notice] %>
-      <div class="notice" style="color: red"><%= flash[:notice] %></div>
     <% end %>
 </p>

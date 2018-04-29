@@ -1,3 +1,6 @@
+<% flash.each do |key, value| %>
+<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 <h1>Student Register</h1>
 <p>
     <div>Find me in app/views/students/register.html.erb</div>
@@ -7,11 +10,6 @@
       <%= f.label :name, 'Name' %><%= f.text_field :name %><br>
       <%= f.label :section, 'Section' %><%= f.select "section", options_from_collection_for_select(@sections, "section_number", "section_number")  %><br>
       <%= f.submit %>
-    <% end %>
-    
-    
-    <% if flash[:notice] %>
-        <div class="notice" style="color: red"><%= flash[:notice] %></div>
     <% end %>
     
     <%= link_to "Home Page", controller: "welcome", action: "show" %>

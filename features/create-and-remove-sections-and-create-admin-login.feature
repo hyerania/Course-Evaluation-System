@@ -61,7 +61,7 @@ Scenario: Add an empty section
   Then I should be on the admin page
   And I fill in "section_number" with ""
   And I press "Add"
-  Then I should see "Section number cannot be empty!"
+  Then I should see "Section number cannot be null"
 
 Scenario: Delete a section
   Given I am on the admin login page

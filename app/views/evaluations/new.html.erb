@@ -17,34 +17,43 @@
 	<%= label :question_label,'Question:'%>
 	<%= simple_format " \n " %>
 	<% @questions.each do |question| %>
-		<%= check_box_tag "questions[#{question.qid}]",question.content,(session[:content]!=nil&&session[:content].include?(question.qid)), :multiple=> true %>
-	    <%= question.qid %>
+		<h2><%= check_box_tag "questions[#{question.qid}]",question.content,(session[:content]!=nil&&session[:content].include?(question.qid)), :multiple=> true %>
+		Question:
+	    <%= question.qid %></h2>
 	    <%= text_area_tag :question_content, question.content, :rows => 5, :cols => 60, :disabled => true %>
 	    <% if question.c1!=nil&&question.c1!="" %>
+	    	<%= "Scale:" %>
 	    	<%= select_tag("scales[#{question.qid},1]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), :id =>"scales#{question.qid}-1")%>
-	    	<%= question.c1 %>
+	    	<%= text_area_tag :question_c1, question.c1, :rows => 5, :cols => 60, :disabled => true %>
 	    	<%= simple_format " \n " %>
 	    <% end %>
 	   	<% if question.c2!=nil&&question.c2!="" %>
+	    	<%= "Scale:" %>
 	    	<%= select_tag("scales[#{question.qid},2]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), :id => "scales#{question.qid}-2") %>
-	    	<%= question.c2 %>
+	    	<%= text_area_tag :question_c2, question.c2, :rows => 5, :cols => 60, :disabled => true %>
 	    	<%= simple_format " \n " %>
 	    <% end %>
 	    <% if question.c3!=nil&&question.c3!="" %>
+	    	<%= "Scale:" %>
 	    	<%= select_tag("scales[#{question.qid},3]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), :id => "scales#{question.qid}-3") %>
-	    	<%= question.c3 %>
+	    	<%= text_area_tag :question_c3, question.c3, :rows => 5, :cols => 60, :disabled => true %>
 	    	<%= simple_format " \n " %>
 	    <% end %>
 	    <% if question.c4!=nil&&question.c4!="" %>
+	    	<%= "Scale:" %>
 	    	<%= select_tag("scales[#{question.qid},4]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), :id => "scales#{question.qid}-4") %>
-	    	<%= question.c4 %>
+	    	<%= text_area_tag :question_c4, question.c4, :rows => 5, :cols => 60, :disabled => true %>
 	    	<%= simple_format " \n " %>
 	    <% end %>
 	    <% if question.c5!=nil&&question.c5!="" %>
+	    	<%= "Scale:" %>
 	    	<%= select_tag("scales[#{question.qid},5]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), :id => "scales#{question.qid}-5") %>
-	    	<%= question.c5 %>
+	    	<%= text_area_tag :question_c5, question.c5, :rows => 5, :cols => 60, :disabled => true %>
 	    	<%= simple_format " \n " %>
 	    <% end %>
+	    <%= simple_format " \n " %>
+	    <!--<%= label :end_label, '===================================================================================='%>-->
+	    <hr>
 	    <%= simple_format " \n " %>
 	<% end %>
 	<%= submit_tag 'Save Changes',:id=>"evaluations_submit" %>

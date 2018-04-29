@@ -1,51 +1,58 @@
-<h1>Evaluation Manager</h1>
-<% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-
-<table id="t01">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>QuestionIDs</th>
-            <th>Access Code</th>
-            <th>Change Access Code</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-  
-    
-    <% @allevaluations.each do |evaluation| %>
-      <tr>
-        <td><%= link_to evaluation.eid, "/admin/evaluations/view/#{evaluation.eid}" %></td>
-        <td><%= evaluation.title %></td>
-        <td><%= evaluation.qids %></td>
-        <td><%= evaluation.access_code %></td>
-        <td><%= form_tag do %>
-            <%= text_field_tag :access_code %><br>
-            <%= submit_tag "Update", :name => "eid[#{evaluation.eid}]" %><br>
-            <% end %>
-        </td>
-        <td><%= link_to 'Remove', "/admin/evaluations/delete/#{evaluation.eid}", :method => :delete %></td>
-      </tr>
-    <% end %>
-</table>
-<hr>
-<div style="margin: 10px 0px 50px">
-    <%= link_to 'Add new evaluation', new_evaluation_path, :class=>"btn btn-primary btn-lg" %>
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Evaluation Manager</h1>
+    </div>
 </div>
-
-
-<h1>Instructions for Evaluations:</h1>
-<%= form_for @instructions, :url => {:action => "update_instructions"} do |f| %>
-<%= text_area_tag :content, @instructions.content, :class => "tinymce", :rows => 10, :cols => 120 %>
-   <% if flash[:notice] %>
-        <div class="notice" style="color: red"><%= flash[:notice] %></div>
-    <% end %>
-<%= tinymce %>
-<div class="form-group" style="margin: 20px 0px">
-    <button class="btn btn-success btn-lg" style="float: right" type="submit">Update Instruction</button>
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Current Evaluations:</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>QuestionIDs</th>
+                        <th>Access Code</th>
+                        <th>Change Access Code</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @allevaluations.each do |evaluation| %>
+                      <tr>
+                        <td><%= link_to evaluation.eid, "/admin/evaluations/view/#{evaluation.eid}" %></td>
+                        <td><%= evaluation.title %></td>
+                        <td><%= evaluation.qids %></td>
+                        <td><%= evaluation.access_code %></td>
+                        <td><%= form_tag do %>
+                            <%= text_field_tag :access_code %>
+                            <%= submit_tag "Update", :name => "eid[#{evaluation.eid}]", class: "btn btn-primary btn-sm" %><br>
+                            <% end %>
+                        </td>
+                        <td><%= link_to 'Remove', "/admin/evaluations/delete/#{evaluation.eid}", :method => :delete %></td>
+                      </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <%= link_to 'Add new evaluation', new_evaluation_path, :class=>"btn btn-primary btn-lg" %>
+    </div>
+    <div class="col-sm-12">
+        <h3>Instructions for Evaluations:</h3>
+        <%= form_for @instructions, :url => {:action => "update_instructions"} do |f| %>
+            <div class="margin-bottom">
+                <%= text_area_tag :content, @instructions.content, :class => "tinymce", :rows => 10, :cols => 120 %>
+                   <% if flash[:notice] %>
+                        <div class="notice" style="color: red"><%= flash[:notice] %></div>
+                    <% end %>
+                <%= tinymce %>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success btn-lg" type="submit">Update Instructions</button>
+            </div>
+        <% end %>
+    </div>
 </div>
-<% end %>
-

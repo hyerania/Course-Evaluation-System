@@ -32,12 +32,13 @@
 .margin-bottom {
     margin-bottom: 10px;
 }
-// .navbar-default .navbar-toggle {
-//     border-color: #FFFFFF;
-//     .icon-bar {
-//         background-color: #FFFFFF;
-//     }
-// }
+
+.navbar-default .navbar-toggle {
+    border-color: #FFFFFF;
+    .icon-bar {
+        background-color: #FFFFFF;
+    }
+}
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 

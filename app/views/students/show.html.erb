@@ -1,5 +1,3 @@
-<%= link_to "Logout", controller: "students", action: "logout" %>
-
 <div class="row">
     <div class="col-sm-12">
         <h1>Student Information</h1>
@@ -53,11 +51,19 @@
         <%= form_tag do%>
             <label for="access_code">Access Code: </label>
             <%= text_field_tag :access_code %><br>
-            <button type="submit" class="btn btn-primary">Begin</button>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Begin</button>
+            </div>
         <% end %>
         <% if flash[:notice] %>
           <div class="notice" style="color: red"><%= flash[:notice] %></div>
         <% end %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <%= link_to "Logout", controller: "students", action: "logout" %>
     </div>
 </div>
 

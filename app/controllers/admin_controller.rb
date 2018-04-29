@@ -21,7 +21,8 @@ class AdminController < ApplicationController
     #   redirect_to controller: 'admin', action: 'login'
     # end
     session[:student_ids] = nil
-    
+    @all_questions = Question.order(:qid)
+
     @sections = Section.all.order('section_number asc')
     @list_of_sections = Section.pluck(:section_number).sort
     

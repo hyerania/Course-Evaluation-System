@@ -40,6 +40,37 @@
         </div>
     </div>
     <div class="col-sm-12 margin-bottom">
+        <h3>Question Summary:</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="t01">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Content</th>
+                        <th>Choice 1 Count</th>
+                        <th>Choice 2 Count</th>
+                        <th>Choice 3 Count</th>
+                        <th>Choice 4 Count</th>
+                        <th>Choice 5 Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @all_questions.each do |question| %>
+                        <tr>
+                            <td><%= question.qid %></td>
+                            <td><%= question.content %></td>
+                            <td><%= question.c1_count %></td>
+                            <td><%= question.c2_count %></td>
+                            <td><%= question.c3_count %></td>
+                            <td><%= question.c4_count %></td>
+                            <td><%= question.c5_count %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-12 margin-bottom">
         <div class="form-group" style="margin: 20px 0px">
             <a href="/admin/questions/show" class="btn btn-primary btn-lg margin-bottom" role="button">Questions Manager</a>
             <a href="/admin/evaluations" class="btn btn-primary btn-lg margin-bottom" role="button">Evaluations Manager</a>

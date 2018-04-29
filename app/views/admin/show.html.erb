@@ -1,76 +1,87 @@
-<% flash.each do |key, value| %>
-<div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-
-<h1>All Students</h1>
-
-<h4> Overall Average: <%=@average%></h4>
-
-<table id="t01">
-    <thead>
-        <tr>
-            <th>UIN &nbsp; &nbsp; &nbsp;</th>
-            <th>Student Name &nbsp; &nbsp; &nbsp;</th>
-            <th>Section &nbsp; &nbsp; &nbsp;</th>
-            <th>Attempts &nbsp; &nbsp; &nbsp;</th>
-            <th>Score &nbsp; &nbsp; &nbsp;</th>
-            <th>Change Section</th>
-        </tr>
-    </thead>
-  
-    <tbody>
-        <% @students.each do |student| %>
-          <tr>
-            <td><%= student.uin %></td>
-            <td><%= student.name %></td>
-            <td><%= student.section %></td>
-            <td><%= student.attempts %></td>
-            <td><%= student.score %></td>
-            <td><%= form_tag do %>
-                <%= select_tag 'section', options_for_select(@list_of_sections, @selected_section) %>
-                <%= submit_tag "Update", :name => "uin[#{student.uin}]" %>
-                <% end %>
-            </td>
-          </tr>
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Control Panel</h1>
+        <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
         <% end %>
-    </tbody>
-</table>
-
-<h1>Control Panel</h1>
-<p>
-<table id="t01">
-    <thead>
-        <tr>
-            <th>Sections</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @sections.each do |section| %>
-          <tr>
-            <td><%= section.section_number %></td>
-            <td><%= button_to("Delete", action: "delete", value: section.section_number) %></td>
-          </tr>
+    </div>
+    <div class="col-sm-12">
+        <h3>Student Summary:</h3>
+        <h4>Overall Average: <%=@average%></h4>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="t01">
+                <thead class="thead-light">
+                    <tr>
+                        <th>UIN</th>
+                        <th>Student Name</th>
+                        <th>Section</th>
+                        <th>Attempts</th>
+                        <th>Score</th>
+                        <th>Change Section</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @students.each do |student| %>
+                      <tr>
+                        <td><%= student.uin %></td>
+                        <td><%= student.name %></td>
+                        <td><%= student.section %></td>
+                        <td><%= student.attempts %></td>
+                        <td><%= student.score %></td>
+                        <td><%= form_tag do %>
+                            <%= select_tag 'section', options_for_select(@list_of_sections, @selected_section) %>
+                            <%= submit_tag "Update", :name => "uin[#{student.uin}]", class: "btn btn-primary btn-sm"  %>
+                            <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-12 margin-bottom">
+        <div class="form-group" style="margin: 20px 0px">
+            <a href="/admin/questions/show" class="btn btn-primary btn-lg margin-bottom" role="button">Questions Manager</a>
+            <a href="/admin/evaluations" class="btn btn-primary btn-lg margin-bottom" role="button">Evaluations Manager</a>
+        </div>
+        <h3>Section Information:</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="t01">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Section</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @sections.each do |section| %>
+                      <tr>
+                        <td><%= section.section_number %></td>
+                        <td><%= button_to "Delete", {action: "delete",  value: section.section_number}, {class: 'btn btn-primary btn-sm'} %></td>
+                      </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <h4>Add a Section:</h4>
+        <%= form_tag do%>
+            <label for="section_number">Section Number:</label>
+            <%= number_field_tag :section_number %>
+            <button type="submit" class="btn btn-primary">Add</button>
         <% end %>
-    </tbody>
-</table>
-</p>
-<%= form_tag do%>
-    <%= "Section Number: "%><%= number_field_tag :section_number %><br>
-    <%= submit_tag "Add" %><br>
-<% end %>
-
-
-<div class="form-group" style="margin: 20px 0px">
-    <a href="/admin/questions/show" class="btn btn-primary btn-lg" role="button">Questions Manager</a>
-    <a href="/admin/evaluations" class="btn btn-primary btn-lg" role="button">Evaluations Manager</a>
-    <a href="/admin/export" class="btn btn-primary btn-lg" role="button">Export Students to CSV</a>
+    </div>
+    <div class="col-sm-12">
+        <h3>Delete All Students:</h3>
+        <%= form_tag do%>
+            <p>Please type the following text in the text box to confirm deletion: </p>
+            <h4>"I want to delete all students in the database, and I understand that once deleted, they are not recoverable."</h4>
+            <div class="form-group">
+                <label for="disclaimer">Disclaimer:</label>
+                <%= text_field_tag :disclaimer %>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Reset Student Database</button>
+            </div>
+        <% end %>
+    </div>
 </div>
-
-<%= form_tag do%>
-    <div>Please type the following text in the text box to confirm deletion:</div>
-    <div>"I want to delete all students in the database, and I understand that once deleted, they are not recoverable."</div>
-    <%= "disclaimer: "%><%= text_field_tag :disclaimer %><br>
-    <%= submit_tag "Reset Student Database" , :class => "btn btn-danger"%><br>
-<% end %>
-
-<%= link_to "Logout", controller: "admin", action: "logout" %>

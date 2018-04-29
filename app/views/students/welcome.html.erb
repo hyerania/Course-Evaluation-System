@@ -1,13 +1,25 @@
-<% flash.each do |key, value| %>
-<div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-<h1>Student Login</h1>
-<p>
- <%= form_tag do%>
-  <%= "UIN: "%><%= number_field_tag :uin %><br>
-  <%= submit_tag "Login" %><br>
- <% end %>
- 
- <%= link_to "Register", controller: "students", action: "register" %>
- <%= link_to "HomePage", controller: "welcome", action: "show" %>
-</p>
+<div class="row">
+ <div class="col-sm-12">
+  <h1>Student Login</h1>
+   <div>
+    <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+  </div>
+ </div>
+ <div class="col-sm-12">
+  <%= form_tag do%>
+  <div class="form-group">
+   <label for="uin">UIN</label>
+    <%= number_field_tag :uin %><br>
+  </div>
+  <div class="form-group">
+   <button class="btn btn-primary" type="submit">Login</button>
+  </div>
+  <% end %>
+  <div class="form-group">
+   <%= link_to "Register", controller: "students", action: "register" %> | 
+   <%= link_to "HomePage", controller: "welcome", action: "show" %>
+  </div>
+ </div>
+</div>

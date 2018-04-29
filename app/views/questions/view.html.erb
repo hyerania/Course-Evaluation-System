@@ -1,9 +1,7 @@
+<h1>Self-Evaluation Exam</h1>
 <% flash.each do |key, value|%>
     <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
-
-<h1>Self-Evaluation Exam</h1>
-
 <%=form_for :questions_form, :url => {:controller => 'questions',:action => "view"} do |q|%>
     <p>Warning: Don't press the back arrow, your choices will be saved after you click "Next" and "Submit"! &nbsp; &nbsp; &nbsp;</p>
     <% @questions.each do |question| %>

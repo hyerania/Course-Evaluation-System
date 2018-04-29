@@ -79,11 +79,11 @@ class QuestionsController < ApplicationController
     @questions=Question.where(:content => @evaluation[@student.choices.count])
     
     if params[:commit]=="Next"||params[:commit]=="Submit"
-      puts "backarrow:"
-      puts params[:page]
-      puts @student.choices.count
+      #puts "backarrow:"
+      #puts params[:page]
+      #puts @student.choices.count
       if params[:page].to_i==@student.choices.count+((params[:stat]=="success"||params[:stat]=="noanswer"||params[:stat]=="goback")?0:1)
-        puts "here1"
+        #puts "here1"
         if params[:choice]!=nil&&params[:choice].length>0
           #if params[:page].to_i==@student.choices.count+1
           
@@ -136,7 +136,7 @@ class QuestionsController < ApplicationController
         @questions=Question.where(:content => @evaluation[@student.choices.count])
       
       else
-        puts "here2"
+        #puts "here2"
         @questions=Question.where(:content => @evaluation[@student.choices.count])
         if params[:stat]!="goback"
           redirect_to controller: 'questions', action: 'view', page:@student.choices.count, commit:"Next", stat:"goback"

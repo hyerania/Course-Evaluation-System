@@ -5,10 +5,10 @@ class AdminController < ApplicationController
       @key_hash = AdminKey.first.key
       if(@input_hash == @key_hash)
         session[:admin] = "login"
-        flash[:notice] = ""
         redirect_to controller: 'admin', action: 'show'
       else
-        flash[:notice] = "Incorrect Key!"
+        flash[:warning] = "Incorrect Key!"
+        redirect_to controller: 'admin', action: 'login'
       end
     end
   end
@@ -28,9 +28,18 @@ class AdminController < ApplicationController
     #control panel
     #add new section
     if(!params[:section_number].nil? and unique_section(params[:section_number]))
-      @new_section = Section.new
-      @new_section.section_number = params[:section_number]
-      @new_section.save
+      if(params[:section_number] == "")
+        flash[:warning] = "Section number cannot be null"
+        redirect_to controller:'admin', action: 'show'
+      else
+        @new_section = Section.new
+        @new_section.section_number = params[:section_number]
+        @new_section.save
+        flash[:success] = "Sections added!"
+        redirect_to controller: 'admin', action: 'show'
+      end
+    elsif(!params[:section_number].nil? and !unique_section(params[:section_number]))
+      flash[:warning] = "Section already exists"
       redirect_to controller: 'admin', action: 'show'
     end
     
@@ -49,9 +58,11 @@ class AdminController < ApplicationController
     disclaimerString = "I want to delete all students in the database, and I understand that once deleted, they are not recoverable."
     if(disclaimer == disclaimerString)
       Student.destroy_all
-      flash[:notice] = "Databse Reset"
+      flash[:success] = "Databse Reset"
+      redirect_to controller: 'admin', action: 'show'
     else
-      flash[:notice] = "Disclaimer does not match. Database unchanged."
+      flash[:danger] = "Disclaimer does not match. Database unchanged."
+      redirect_to controller: 'admin', action: 'show'
     end
   end
   
@@ -65,7 +76,7 @@ class AdminController < ApplicationController
       @students_in_this_section[i].section = ""
       @students_in_this_section[i].save
     end
-    
+    flash[:success] = "section deleted!"
     redirect_to controller: 'admin', action: 'show'
   end
   
@@ -82,11 +93,13 @@ class AdminController < ApplicationController
     @student = Student.where(uin: params[:uin].keys[0]).first
     @student.section = params[:section]
     @student.save
+    flash[:success] = "Section Updated!"
     redirect_to controller: 'admin', action: 'show'
   end
   
   def logout
     session[:admin] = ""
+    flash[:success] = "Successfully logged out!"
     redirect_to controller: 'admin', action: 'show'
   end
 end

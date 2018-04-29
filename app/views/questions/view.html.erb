@@ -37,6 +37,7 @@
         <%= hidden_field_tag(:qid, question.qid) %>
     <% end %>
     <% if @student.choices.count == @evaluation.count-1 %>
+        <%= hidden_field_tag(:page, @student.choices.count+1) %>
         <%= submit_tag 'Submit',:id=>"questions_next"%>
     <% else %>
         <%= hidden_field_tag(:page, @student.choices.count+1) %>

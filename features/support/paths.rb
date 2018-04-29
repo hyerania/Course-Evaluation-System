@@ -58,6 +58,9 @@ module NavigationHelpers
     
     when /^the student questions page$/
       '/questions'
+    
+    when /^the student questions previous page$/
+      '/questions?commit=Next&page=0&stat=success'
       
     when /^the student home page$/
       '/students/show'

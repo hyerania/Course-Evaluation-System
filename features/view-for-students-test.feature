@@ -99,3 +99,24 @@ Scenario: view for the student's test
   Then I should be on the student personal page
   
   
+Scenario: view for the student's test trying to press backarrow
+  Given I am on the home page
+  And I follow "For Students"
+  Then I should be on the student login page
+  And I fill in "uin" with "123000123"
+  And I press "Login"
+  Then I should be on the student personal page
+  And I fill in "access_code" with "CSCE120"
+  And I press "Begin"
+  
+  When I choose "choice_1"
+  And I press "Next"
+  Then I should see "What is the color of the hair?"
+  And  I should see "Black"
+  And  I should see "Pink"
+  And  I should see "White"
+  And  I should see "Blue"
+  And  I should see "Red"
+  
+  When I am on the student questions previous page
+  Then I should see "Don't even think about going back"

@@ -72,6 +72,11 @@ Then(/^the section of "(.*)" should be "(.*)"$/) do |name, section|
 end
 
 Then (/^I should get a download with the filename "([^\"]*)"$/) do |filename|
-       page.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")
-    end
-  
+   page.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")
+end
+
+Then("I uncheck the first student") do
+  all_checks = all('input[type=checkbox]')
+  all_checks[0].click
+  # pending # Write code here that turns the phrase above into concrete actions
+end

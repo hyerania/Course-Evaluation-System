@@ -46,7 +46,8 @@ Scenario: Update the students
   And I press "Login"
   Then I should be on the admin page
   And I follow "Export Students to CSV"
-  Then I check "student.id"
+  Then I uncheck the first student
   Then I press "Update"
-  Then I should see 
-  
+  Then I should not see "123000123"
+  And I press "Export to CSV"
+  Then I should get a download with the filename "students.csv"

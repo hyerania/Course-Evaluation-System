@@ -7,10 +7,10 @@ class AdminController < ApplicationController
       @key_hash = AdminKey.first.key
       if(@input_hash == @key_hash)
         session[:admin] = "login"
+        flash[:notice] = ""
         redirect_to controller: 'admin', action: 'show'
       else
-        flash[:warning] = "Incorrect Key!"
-        redirect_to controller: 'admin', action: 'login'
+        flash[:notice] = "Incorrect Key!"
       end
     end
   end
@@ -21,7 +21,8 @@ class AdminController < ApplicationController
     #   redirect_to controller: 'admin', action: 'login'
     # end
     session[:student_ids] = nil
-    
+    @all_questions = Question.order(:qid)
+
     @sections = Section.all.order('section_number asc')
     @list_of_sections = Section.pluck(:section_number).sort
     
@@ -33,18 +34,13 @@ class AdminController < ApplicationController
     #add new section
     if(!params[:section_number].nil? and unique_section(params[:section_number]))
       if(params[:section_number] == "")
-        flash[:warning] = "Section number cannot be null"
-        redirect_to controller:'admin', action: 'show'
+        flash[:notice] = "Section number cannot be null!"
       else
         @new_section = Section.new
         @new_section.section_number = params[:section_number]
         @new_section.save
-        flash[:success] = "Sections added!"
-        redirect_to controller: 'admin', action: 'show'
       end
-    elsif(!params[:section_number].nil? and !unique_section(params[:section_number]))
-      flash[:warning] = "Section already exists"
-      redirect_to controller: 'admin', action: 'show'
+        redirect_to controller: 'admin', action: 'show'
     end
     
     #update a student's section
@@ -62,11 +58,9 @@ class AdminController < ApplicationController
     disclaimerString = "I want to delete all students in the database, and I understand that once deleted, they are not recoverable."
     if(disclaimer == disclaimerString)
       Student.destroy_all
-      flash[:success] = "Databse Reset"
-      redirect_to controller: 'admin', action: 'show'
+      flash[:notice] = "Databse Reset"
     else
-      flash[:danger] = "Disclaimer does not match. Database unchanged."
-      redirect_to controller: 'admin', action: 'show'
+      flash[:notice] = "Disclaimer does not match. Database unchanged."
     end
   end
   
@@ -84,8 +78,8 @@ class AdminController < ApplicationController
         @students_in_this_section[i].section = ""
         @students_in_this_section[i].save
       end
-      flash[:success] = "section deleted!"
       redirect_to controller: 'admin', action: 'show'
+      
     end
   end
   
@@ -103,13 +97,11 @@ class AdminController < ApplicationController
     @student = Student.where(uin: params[:uin].keys[0]).first
     @student.section = params[:section]
     @student.save
-    flash[:success] = "Section Updated!"
     redirect_to controller: 'admin', action: 'show'
   end
   
   def logout
     session[:admin] = ""
-    flash[:success] = "Successfully logged out!"
     redirect_to controller: 'admin', action: 'show'
   end
   
@@ -124,26 +116,20 @@ class AdminController < ApplicationController
   end
   
   def export
-    if(params[:display_all] == "1")
-      @students = Student.all
-    else
-      if(params[:student_ids].nil?)
-        if(session[:student_ids].nil?)
-          @students = Student.all
-        else
-          @students = Student.where(id: session[:student_ids])
-        end
+      if(params[:display_all] == "1")
+        @students = Student.all
       else
-        @students = Student.where(id: params[:student_ids])
-        session[:student_ids] = params[:student_ids]
-      end  
-    end
-    
-    # if !params[:dispaly_all] && !params[:student_ids] #this is upon entering the page for the first time
-    #   @students = Student.all
-    # else
-      
-    # end
+        if(params[:student_ids].nil?)
+          if(session[:student_ids].nil?)
+            @students = Student.all
+          else
+            @students = Student.where(id: session[:student_ids])
+          end
+        else
+          @students = Student.where(id: params[:student_ids])
+          session[:student_ids] = params[:student_ids]
+        end  
+      end
     respond_to do |format|
       format.html
       format.csv{send_data @students.to_csv,:filename => "students.csv", :disposition => 'attachment' }

@@ -5,24 +5,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-h1{
-    border-bottom: 1px solid Grey;
-}
-
-table#t01 th{
+table th {
   border: 2px solid white;
   font-weight: bold;
-  background-color: LightGrey;
-}
-
-table#t01 th, table#t01 td {
-  padding: 4px;
-  text-align: left;
-}
-
-tr#t01:nth-child(even) {
-    background: #CCC;
-}
-tr#t01:nth-child(odd) {
-    background: #FFF;
+  background-color: LightGrey; 
 }

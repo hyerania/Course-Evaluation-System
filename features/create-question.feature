@@ -19,7 +19,7 @@ Scenario: creating a new question with 2 answers
   And I follow "Questions Manager"
   And I select "2" from "numAnswers"
   And I press "Add Question"
-  Then I should see "2 Answers"
+  Then I should see "2 answers"
 
 Scenario: creating a new question with 3 answers
   Given I am on the admin login page
@@ -29,7 +29,7 @@ Scenario: creating a new question with 3 answers
   And I follow "Questions Manager"
   And I select "3" from "numAnswers"
   And I press "Add Question"
-  Then I should see "3 Answers"
+  Then I should see "3 answers"
   
 Scenario: creating a new question with 4 answers
   Given I am on the admin login page
@@ -39,7 +39,7 @@ Scenario: creating a new question with 4 answers
   And I follow "Questions Manager"
   And I select "4" from "numAnswers"
   And I press "Add Question"
-  Then I should see "4 Answers"
+  Then I should see "4 answers"
   
 Scenario: creating a new question with 5 answers
   Given I am on the admin login page
@@ -49,7 +49,7 @@ Scenario: creating a new question with 5 answers
   And I follow "Questions Manager"
   And I select "5" from "numAnswers"
   And I press "Add Question"
-  Then I should see "5 Answers"
+  Then I should see "5 answers"
 
 
 

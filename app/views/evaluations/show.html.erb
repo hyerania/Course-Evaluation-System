@@ -48,9 +48,6 @@
         <%= form_for @instructions, :url => {:action => "update_instructions"} do |f| %>
             <div class="margin-bottom">
                 <%= text_area_tag :content, @instructions.content, :class => "tinymce", :rows => 10, :cols => 120 %>
-                   <% if flash[:notice] %>
-                        <div class="notice" style="color: red"><%= flash[:notice] %></div>
-                    <% end %>
                 <%= tinymce %>
             </div>
             <div class="form-group">

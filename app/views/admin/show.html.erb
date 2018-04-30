@@ -58,7 +58,7 @@
                     <% @all_questions.each do |question| %>
                         <tr>
                             <td><%= question.qid %></td>
-                            <td><%= question.content %></td>
+                            <td><%= question.content.truncate(500)  %></td>
                             <td><%= question.c1_count %></td>
                             <td><%= question.c2_count %></td>
                             <td><%= question.c3_count %></td>

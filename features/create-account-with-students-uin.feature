@@ -9,6 +9,10 @@ Background: students and sections in database
     |section_number    |
     |500               |
 
+  Given the following admin_keys exist:
+    |key                                      |
+    |99f427c0c6a2411bc8a046f26c8aa4cb45bba27f |
+
 Scenario: add student with non-existing uin
   When I am on the student registration page
   And I fill in "UIN" with "222007338"

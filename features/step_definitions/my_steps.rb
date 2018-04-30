@@ -1,6 +1,5 @@
 #background
 
-
 Given(/^the following questions exist:$/) do |table|
     table.hashes.each do |question|
         Question.create(question)
@@ -25,6 +24,12 @@ Given(/^the following admin_keys exist:$/) do |table|
   end
 end
 
+Given(/^the following instructions exist:$/) do |table|
+  table.hashes.each do |content|
+    Instruction.create(content)
+  end
+end
+
 Then (/^I should see all the students/) do
   students = Student.all
   students.each do |student|
@@ -37,9 +42,24 @@ Given(/^the following evaluations exist:$/) do |table|
         @evaluation = Evaluation.new
         @evaluation.eid=evaluation[:eid].to_i
         @evaluation.title=evaluation[:title]
+        # @evaluation.qids=evaluation[:qids]
         @evaluation.content=evaluation[:content].tr('[]','').split(',')
+        @evaluation.access_code=evaluation[:access_code]
+        if evaluation[:scales]!=nil
+          @evaluation.scales=evaluation[:scales].tr('[]','').split(',').map(&:to_i)
+        end
+        if evaluation[:qids]!=nil
+          @evaluation.qids=evaluation[:qids].tr('[]','').split(',').map(&:to_i)
+        end
         @evaluation.save
     end
+end
+
+When("I delete evaluation {string}") do |string|
+  eid = string.to_i
+  evaluations = Evaluation.where(eid: eid)
+  evaluation = evaluations[0]
+  evaluation.delete
 end
 
 And (/I should see the average is "(.*)"$/) do |val|
@@ -61,12 +81,26 @@ Then (/I should not see any question twice/) do
   end
 end
 
-Then (/^the access code should be "(.*)"$/) do |code|
-  access_code = AccessCode.all.first
-  expect(access_code.code).to eq code
+Then (/^the access code of "(.*)" should be "(.*)"$/) do |eid, code|
+  evaluation = Evaluation.where(eid: eid).first
+  expect(evaluation.access_code).to eq code
 end
 
 Then(/^the section of "(.*)" should be "(.*)"$/) do |name, section|
   @student = Student.find_by_name(name)
   expect(@student.section.to_s).to eq section
+end
+
+Then("evaluation {string} should have {string} questions") do |eid, num|
+  evaluation = Evaluation.where(eid: eid.to_i)
+  expect(evaluation[0].qids.length.to_s).to eq num
+end
+
+Then("I uncheck the first student") do
+  all_checks = all('input[type=checkbox]')
+  all_checks[0].click
+  # pending # Write code here that turns the phrase above into concrete actions
+end
+Then (/^I should get a download with the filename "([^\"]*)"$/) do |filename|
+   page.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")
 end

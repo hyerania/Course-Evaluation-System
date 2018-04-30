@@ -1,5 +1,59 @@
 Rails.application.routes.draw do
+  
+  namespace :admin do
+    namespace :questions do
+      get 'edit/c2/:id', to: 'edit#c2'
+    end
+  end
 
+  namespace :admin do
+    namespace :questions do
+      get 'edit/c3/:id', to: 'edit#c3'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      get 'edit/c4/:id', to: 'edit#c4'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      get 'edit/c5/:id', to: 'edit#c5'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      get 'new/c2'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      get 'new/c3'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      get 'new/c4'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      get 'new/c5'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      post 'new/show'
+    end
+  end
+  
   namespace :admin do
     patch 'questions/update'
   end
@@ -23,41 +77,40 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'questions/new'
   end
+  
+  namespace :admin do
+    put 'questions/copy/:id', to: 'questions#copy'
+  end
+  
   get 'students/logout'
   
-  get 'students/welcome'
-
-  get 'admin/login'
-
-  get 'admin/show'
-
+  #GET
   get 'welcome/show'
-
-  get 'students/register'
   
+  get 'admin/login'
+  get 'admin/show'
+  get 'admin/logout'
+  get 'admin/export'
+  
+  get 'students/welcome'
+  get 'students/register'
+  get 'students/logout'
   get 'students/show'
   
-  get 'admin/logout'
+  get 'admin/questions/show'
   
+  get 'questions/edit'
+  get 'questions/remove'
+  
+  #POST
   post 'students/welcome'
-  
+
   post 'admin/delete'
-  
   post 'admin/update'
   
   post 'students/show'
-  
-  post 'admin/show'
-  
   post 'admin/login'
-  
-
-  #get 'questions/view'
-
-  get 'questions/edit'
-
-  get 'questions/remove'
-  
+  post 'admin/show'
   
   match '/questions', to: 'questions#view', via: [:get, :post]
   
@@ -65,22 +118,31 @@ Rails.application.routes.draw do
   
   resources :questions, only: [:view], via: [:post]
   
+  resources :instructions
+  
   root to: 'welcome#show'
 
+  
+  
   get 'about', to: 'about#show'
   get 'admin', to: 'admin#show'
   get 'admin/evaluations', to: 'evaluations#show'
   post 'admin/evaluations', to: 'evaluations#show'
+  get 'admin/evaluations/view/:id', to: 'evaluations#view'
+  delete 'admin/evaluations/delete/:id', to: 'evaluations#delete'
   # '/' Route
   get 'welcome/show'
   get 'students/hello'
 
   post 'admin/evaluations/new' => 'evaluations#create', :as => :create
+  #post 'admin/evaluations' => 'evaluations#update_instructions', :as => :update_instructions
   post 'admin/evaluations/selectr' => 'evaluations#selectr', :as => :selectr_evaluation
   get 'admin/evaluations/selectr' => 'evaluations#selectr', :as => :selectr_evaluation_get
   get 'admin/evaluations/new' => 'evaluations#new', :as => :new_evaluation
   get 'questions/instructions' => 'students#instructions', :as => :instructions_student
   get 'questions/save' => 'questions#save', :as => :save_test
+  patch 'admin/evaluations' => 'evaluations#update_instructions', :as => :update_instructions
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+  post 'admin/export' => 'admin#export', :as => :export_admin
+  get 'admin/questions/export' => 'admin#export_questions', :as => :export_questions
 end

@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Student Data Export</h1>
+        <p>Export student data including UIN, Name, Section, Attempts, and Scores to a CSV.</p>
+        <%= button_to "Display all", {:controller => "admin", :action => "export", :display_all => 1}, :method => :post, :class => "btn btn-primary" %>
+        <%= form_tag export_admin_path, controller: 'admin',action: 'export',  method: :post do %>
+            <div class="form-group">
+            </div>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Check</th>
+                        <th>UIN </th>
+                        <th>Student Name </th>
+                        <th>Section </th>
+                        <th>Attempts </th>
+                        <th>Score </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @students.each do |student| %>
+                      <tr>
+                        <td><%= check_box_tag "student_ids[]", student.id, checked = true %></td>
+                        <td><%= student.uin%></td>
+                        <td><%= student.name %></td>
+                        <td><%= student.section %></td>
+                        <td><%= student.attempts %></td>
+                        <td><%= student.score %></td>
+                      </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <div class="form-group">
+                <%= submit_tag 'Update', controller: 'admin', action: "export", class: "btn btn-primary" %>
+            </div>
+        <% end %>
+        <%= button_to 'Export to CSV', export_admin_path(format: 'csv'), class: "btn btn-primary btn-lg" %>
+
+    </div>
+</div>

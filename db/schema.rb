@@ -10,16 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180417021853) do
+ActiveRecord::Schema.define(version: 20180427003654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "access_codes", force: :cascade do |t|
-    t.string "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "admin_keys", force: :cascade do |t|
     t.string "key"
@@ -31,6 +25,15 @@ ActiveRecord::Schema.define(version: 20180417021853) do
     t.integer "eid"
     t.string "title"
     t.string "content", default: [], array: true
+    t.string "access_code"
+    t.integer "scales", default: [], array: true
+    t.integer "qids", default: [], array: true
+  end
+
+  create_table "instructions", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "questions", force: :cascade do |t|
@@ -51,6 +54,7 @@ ActiveRecord::Schema.define(version: 20180417021853) do
     t.integer "c3_count"
     t.integer "c4_count"
     t.integer "c5_count"
+    t.integer "numAnswers", null: false
     t.index ["qid"], name: "index_questions_on_qid"
   end
 
@@ -70,6 +74,8 @@ ActiveRecord::Schema.define(version: 20180417021853) do
     t.datetime "last_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "choices", default: [], array: true
+    t.integer "scoretotal", default: 0
     t.index ["uin"], name: "index_students_on_uin"
   end
 

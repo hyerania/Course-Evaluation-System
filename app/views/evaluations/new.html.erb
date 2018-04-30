@@ -1,31 +1,91 @@
-<% flash.each do |key, value|%>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
+<div class="row">
+	<div class="col-sm-12">
+		<h1>Enter the new evaluation</h1>
+		<p>Check next to each question to enable that question for the new evaluation. Select from the scale option for each answer to adjust the number of points each answer is worth.</p>
+		<% flash.each do |key, value|%>
+		    <div class="alert alert-<%= key %>"><%= value %></div>
+		<% end %>
+	</div>
+	<div class="col-sm-12">
+		<%=form_for :evaluation, :url => {:controller => 'evaluations',:action => "create"} do |e|%>
+	
+			<div class="form-group">
+				<%= label :title_label, 'Title: '%>
+				<%= text_field_tag :title, session[:title]%>
+			</div>
+			
+			<div class="form-group">
+				<%= label :random_label, 'How many random questions do you want?'%>
+				<%= number_field_tag :size %>
+				<%= submit_tag 'Random',:id=>"evaluations_random", :class => "btn btn-primary" %>
+			</div>
+		
+			<% @questions.each do |question| %>
+				<div class="form-group">
+					<h3><%= check_box_tag "questions[#{question.qid}]",question.content,(session[:content]!=nil&&session[:content].include?(question.qid)), :multiple=> true %>
+					Question:
+				    <%= question.qid %></h3>
+			    </div>
+			    <div class="form-group">
+			    	<%= text_area_tag :question_content, question.content, :rows => 5, :cols => 60, :disabled => true %>
+			    </div>
+			    <div class="form-group">
+				    <% if question.c1!=nil&&question.c1!="" %>
+				    	<label>Scale: </label>
+				    	<%= select_tag("scales[#{question.qid},1]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), :id =>"scales#{question.qid}-1")%>
+				    	<%= text_area_tag :question_c1, question.c1, :rows => 5, :cols => 60, :disabled => true %>
+				    	<%= simple_format " \n " %>
+				    <% end %>
+			    </div>
+			    <div class="form-group">
+				   	<% if question.c2!=nil&&question.c2!="" %>
+				    	<label>Scale: </label>
+				    	<%= select_tag("scales[#{question.qid},2]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), :id => "scales#{question.qid}-2") %>
+				    	<%= text_area_tag :question_c2, question.c2, :rows => 5, :cols => 60, :disabled => true %>
+				    	<%= simple_format " \n " %>
+				    <% end %>
+			    </div>
+			    <div class="form-group">
+				    <% if question.c3!=nil&&question.c3!="" %>
+				    	<label>Scale: </label>
+				    	<%= select_tag("scales[#{question.qid},3]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), :id => "scales#{question.qid}-3") %>
+				    	<%= text_area_tag :question_c3, question.c3, :rows => 5, :cols => 60, :disabled => true %>
+				    	<%= simple_format " \n " %>
+				    <% end %>
+			    </div>
+			    <div class="form-group">
+				    <% if question.c4!=nil&&question.c4!="" %>
+				    	<label>Scale: </label>
+				    	<%= select_tag("scales[#{question.qid},4]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), :id => "scales#{question.qid}-4") %>
+				    	<%= text_area_tag :question_c4, question.c4, :rows => 5, :cols => 60, :disabled => true %>
+				    	<%= simple_format " \n " %>
+				    <% end %>
+			    </div>
+			    <div class="form-group">
+				    <% if question.c5!=nil&&question.c5!="" %>
+				    	<label>Scale: </label>
+				    	<%= select_tag("scales[#{question.qid},5]", options_for_select([['0', 0], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), :id => "scales#{question.qid}-5") %>
+				    	<%= text_area_tag :question_c5, question.c5, :rows => 5, :cols => 60, :disabled => true %>
+				    	<%= simple_format " \n " %>
+				    <% end %>
+			    </div>
+			    <hr>
+			<% end %>
+			<div class="form-group">
+				<%= submit_tag 'Save Changes',:id=>"evaluations_submit", :class => "btn btn-primary" %>
+			</div>
+		<% end %>
+	</div>
+</div>
 
-<h1>Enter the new evaluation</h1>
+<%= tinymce %>
 
-
-
-<%=form_for :evaluation, :url => {:controller => 'evaluations',:action => "create"} do |e|%>
-	<%= label :title_label, 'Title:'%>
-	<%= text_field_tag :title, session[:title]%>
-	<%= simple_format " \n " %>
-	<%= label :question_label,'Question:'%>
-	<%= simple_format " \n " %>
-	<% @questions.each do |question| %>
-		<%= check_box_tag "questions[#{question.qid}]",question.content,(session[:content]!=nil&&session[:content].include?(question.qid)), :multiple=> true %>
-	    <%= question.qid %>
-	    <%= question.content %>
-	    <%= simple_format " \n " %>
-	<% end %>
-	<%= label :random_label, 'Random questions:'%>
-	<%= text_field_tag :size %>
-	<%= submit_tag 'Random',:id=>"evaluations_random" %>
-	<%= submit_tag 'Save Changes',:id=>"evaluations_submit" %>
-<% end %>
-
-<%#=form_for :random, :url => {:controller => 'evaluations',:action => "selectr"} do |f|%>
-	<%#= label :random_label, 'Random questions:'%>
-	<%#= text_field_tag :size %>
-	<%#= submit_tag 'Random',:id=>"evaluations_submit" %>
-<%# end %>
+<script type="text/javascript">
+  tinyMCE.init({
+    selector: 'textarea',
+    branding: false,
+    menubar: false,
+    toolbar: false,
+    readonly: 1,
+  });
+</script>

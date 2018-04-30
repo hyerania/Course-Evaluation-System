@@ -1,33 +1,59 @@
-<h1>Admin::Questions Manager</h1>
-<% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-
-<table id="t01">
-    <tr>
-        <th>ID</th>
-        <th>Details</th>
-        <th>Answer</th>
-        <th>Choice 1</th>
-        <th>Choice 2</th>
-        <th>Choice 3</th>
-        <th>Choice 4</th>
-        <th>Delete</th>
-    </tr>
-    <% @all_questions.each do |question| %>
-        <tr>
-            <td><%= link_to question.qid, "/admin/questions/edit/#{question.qid}" %></td>
-            <td><%= question.content %></td>
-            <td><%= question.answer %></td>
-            <td><%= question.c1 %></td>
-            <td><%= question.c2 %></td>
-            <td><%= question.c3 %></td>
-            <td><%= question.c4 %></td>
-            <td><%= link_to 'Remove', "/admin/questions/delete/#{question.qid}", :method => :delete %></td>
-        </tr>
-    <% end %>
-</table>
-
-<div class="form-group" style="margin: 20px 0px">
-    <a href="/admin/questions/new" class="btn btn-primary btn-lg" role="button">Add Question</a>
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Question Manager</h1>
+        <p>Create, update, and remove questions.</p>
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+    </div>
+    <div class="col-sm-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" style="table-layout: fixed; width: 100%;">
+                <thead class="thead-light">
+                   <tr>
+                        <th width="5%">ID</th>
+                        <th width="20%">Content</th>
+                        <th width="10%">Answer</th>
+                        <th width="10%">Choice 1</th>
+                        <th width="10%">Choice 2</th>
+                        <th>Choice 3</th>
+                        <th>Choice 4</th>
+                        <th>Choice 5</th>
+                        <th>Delete</th>
+                        <th>Copy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @all_questions.each do |question| %>
+                        <tr>
+                            <td><%= link_to question.qid, "/admin/questions/edit/#{question.qid}" %></td>
+                            <td class="break"><%= question.content.truncate(500) %></td>
+                            <td class="break"><%= question.answer %></td>
+                            <td class="break"><%= question.c1 %></td>
+                            <td class="break"><%= question.c2 %></td>
+                            <td class="break"><%= question.c3 %></td>
+                            <td class="break"><%= question.c4 %></td>
+                            <td class="break"><%= question.c5 %></td>
+                            <td><%= link_to 'Remove', "/admin/questions/delete/#{question.qid}", :method => :delete, :id => "remove#{question.qid}"%></td>
+                            <td><%= link_to 'Copy', "/admin/questions/copy/#{question.qid}", :method => :put %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <a href="/admin/questions/export.csv" class="btn btn-primary btn-lg" role="button">Export Questions to CSV</a>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <hr>
+        <%= form_for @num_answers, :url => {:controller => "/admin/questions/new", :action => "show"} do |f| %>
+            <div class="form-group">
+                <h2>Create a new question:</h2>
+                <h4>Number of answer choices:
+                <%= select_tag(:answer, options_for_select([2,3,4,5]), :id => "numAnswers")%></h4>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" role="button">Add Question</button>
+            </div>
+        <% end %>
+    </div>
 </div>

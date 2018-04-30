@@ -1,13 +1,19 @@
-<h1>Admin Login</h1>
-<p>
-    <%= form_tag do%>
-        <%= "Key: "%><%= text_field_tag :key %><br>
-        <%= submit_tag "Login" %><br>
-    <% end %>
- 
-  <% if flash[:notice] %>
-  <div class="notice" style="color: red"><%= flash[:notice] %></div>
- <% end %>
- 
- <%= link_to "HomePage", controller: "welcome", action: "show" %>
-</p>
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Admin Login</h1>
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+    </div>
+    <div class="col-sm-12">
+        <%= form_tag do%>
+            <div class="form-group">
+                <label for="key">Key: </label>
+                <%= password_field_tag :key %>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Login</button>
+            </div>
+        <% end %>
+    </div>
+</div>

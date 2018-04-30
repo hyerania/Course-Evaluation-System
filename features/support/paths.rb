@@ -32,6 +32,15 @@ module NavigationHelpers
     when /^the admin questions page$/
       '/admin/questions/show'
       
+    when /^the edit question c3 page for "(.*)"/
+      "/admin/questions/edit/c3/#{$1}"
+    
+    when /^the edit question c4 page for "(.*)"/
+      "/admin/questions/edit/c4/#{$1}"
+      
+    when /^the edit question c5 page for "(.*)"/
+      "/admin/questions/edit/c5/#{$1}"
+      
     when /^the edit question page for "(.*)"/
       "/admin/questions/edit/#{$1}"
     
@@ -49,6 +58,9 @@ module NavigationHelpers
     
     when /^the student questions page$/
       '/questions'
+    
+    when /^the student questions previous page$/
+      '/questions?commit=Next&page=0&stat=success'
       
     when /^the student home page$/
       '/students/show'
@@ -56,6 +68,11 @@ module NavigationHelpers
     when /^the admin login page$/
       '/admin/login'
       
+    when /^the questions manager page$/
+      '/admin/questions/show'
+      
+    when /^the student question page without arguments$/
+      'questions?page=1'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

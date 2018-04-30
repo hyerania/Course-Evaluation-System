@@ -8,14 +8,14 @@ Background: students and sections in database
   Given the following sections exist:
     |section_number    |
     |501               |
-
-  Given the following access_code exist:
-    |code       |
-    |CSCE120    | 
   
   Given the following admin_keys exist:
     |key                                      |
     |99f427c0c6a2411bc8a046f26c8aa4cb45bba27f |
+  
+  Given the following instructions exist:
+    |content                  |
+    |"This exam is not timed" |
 
 Scenario: update section through student portal
   Given I am on the student login page
@@ -53,6 +53,15 @@ Scenario: Add an existing section
   And I fill in "section_number" with "501"
   And I press "Add"
   Then I should see "501"
+  
+Scenario: Add an empty section
+  Given I am on the admin login page
+  And I fill in "key" with "dshell"
+  And I press "Login"
+  Then I should be on the admin page
+  And I fill in "section_number" with ""
+  And I press "Add"
+  Then I should see "Section number cannot be null"
 
 Scenario: Delete a section
   Given I am on the admin login page

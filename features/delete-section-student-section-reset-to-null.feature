@@ -8,16 +8,12 @@ Background: students and sections in database
   Given the following sections exist:
     |section_number    |
     |500               |
-
-  Given the following access_code exist:
-    |code       |
-    |CSCE120    | 
   
   Given the following admin_keys exist:
     |key                                      |
     |99f427c0c6a2411bc8a046f26c8aa4cb45bba27f |
 
-Scenario: Delete a section in used
+Scenario: Delete a section in use
   Given I am on the admin login page
   And I fill in "key" with "dshell"
   And I press "Login"

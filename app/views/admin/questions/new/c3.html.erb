@@ -1,0 +1,28 @@
+<%= form_for @new_question, :url => {:controller => "/admin/questions", :action => "create"} do |f| %>
+<h1>Create a new question:</h1>
+<p>This question will only have 3 answers and each one can be scaled from 0 to 5 points.</p>
+<%= hidden_field_tag(:numAnswers, "3") %>
+
+<h3>Question Details:</h3>
+<%= text_area_tag :content, 'Enter question details...', :class => "tinymce", :rows => 15, :cols => 120 %>
+
+<h3>Answer Choice 1:</h3>
+<%= text_area_tag :c1, 'Answer choice 1', :class => "tinymce", :rows => 10, :cols => 120 %>
+
+<h3>Answer Choice 2:</h3>
+<%= text_area_tag :c2, 'Answer choice 2', :class => "tinymce", :rows => 10, :cols => 120 %>
+
+<h3>Answer Choice 3:</h3>
+<%= text_area_tag :c3, 'Answer choice 3', :class => "tinymce", :rows => 10, :cols => 120 %>
+
+<h3>Correct Answer Choice:
+<%= select_tag(:answer, options_for_select([['1', '1'], ['2', '2'], ['3', '3']]))%>
+
+</h3>
+<%= tinymce %>
+<div class="form-group" style="margin: 20px 0px">
+    <a href="/admin/questions/show" class="btn btn-primary btn-lg">Cancel</a>
+    <button class="btn btn-success btn-lg" style="float: right" type="submit">Save</button>
+</div>
+
+<% end %>

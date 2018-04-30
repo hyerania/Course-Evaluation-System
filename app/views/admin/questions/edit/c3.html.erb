@@ -1,0 +1,26 @@
+<%= form_for @question, :url => {:controller => "/admin/questions", :action => "update"} do |f| %>
+    <h1>Edit Question: <%= @question.qid %></h1>
+    <%= hidden_field_tag :qid, @question.qid %>
+    <h3>Question Details:</h3>
+    <%= text_area_tag :content, @question.content, :class => "tinymce", :rows => 15, :cols => 120 %>
+    
+    <h3>Answer Choice 1:</h3>
+    <%= text_area_tag :c1, @question.c1, :class => "tinymce", :rows => 10, :cols => 120 %>
+    
+    <h3>Answer Choice 2:</h3>
+    <%= text_area_tag :c2, @question.c2, :class => "tinymce", :rows => 10, :cols => 120 %>
+    
+    <h3>Answer Choice 3:</h3>
+    <%= text_area_tag :c3, @question.c3, :class => "tinymce", :rows => 10, :cols => 120 %>
+    
+    <h3>Correct Answer Choice:
+    <%= select_tag(:answer, options_for_select([['1', 1], ['2', 2], ['3', 3]], @answer))%>
+    </h3>
+    <div class="form-group" style="margin: 20px 0px">
+        <a href="/admin/questions/show" class="btn btn-primary btn-lg">Cancel</a>
+        <button class="btn btn-success btn-lg" style="float: right" type="submit">Save</button>
+    </div>
+
+<% end %>
+
+<%= tinymce %>

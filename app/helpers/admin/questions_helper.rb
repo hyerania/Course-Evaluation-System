@@ -1,2 +1,3 @@
 module Admin::QuestionsHelper
+
 end

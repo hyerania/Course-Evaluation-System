@@ -1,6 +1,6 @@
 {
   "name": "CSCE120 Evaluation Application",
-  "description": "This assessment was created in conjunction with CSCE606 Software Engineering to enable new or existing students to evaluate their computer science skills in preparation of taking the new CSCE 120 course. We encourage everyone to read more about basic computer science topics prior to taking the evaluation.",
+  "description": "Evaluation System created by Team Apple Sauce in CSCE606",
   "repository": "https://github.com/hyerania/Course-Evaluation-System.git",
   "keywords": ["CSCE", "120", "Evaluation"],
   "scripts": {

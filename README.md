@@ -1,4 +1,4 @@
-# CSCE606-Project
+# Course-Evaluation-System
 CSCE120 Self-Evaluation Exam
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/hyerania/Course-Evaluation-System)

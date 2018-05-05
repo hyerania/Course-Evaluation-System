@@ -1,5 +1,5 @@
 # Course-Evaluation-System
-CSCE120 Self-Evaluation Exam
+Our team created a CSCE120 Self-Evaluation Exam. The application we developed has two main aspects to it: (1) an administrative side for the professor and (2) a client side for the students. The administrative side has the ability to create the questions and evaluations for the students. Each answer choice in the question is scalable and the admin has the ability to select between two to five answer choices as part of the question. Each evaluation also has a unique access code in order for a student to take a specific evaluation. In addition, the admin can export data from each of the students, such as their scores, and export data about the questions such as the number of times a specific answer choice was selected. The client side for the student has the ability to see their score of the latest attempt, change their section in case they switch class sections, and an input for the unique access code to take the evaluation. All the questions are multiple choice, but the admin has the ability to add images, code snippets, tables, and other extensive features in HTML tags.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/hyerania/Course-Evaluation-System)
 

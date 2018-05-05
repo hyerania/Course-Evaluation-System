@@ -21,7 +21,7 @@ class Question < ApplicationRecord
     end
     
     def self.to_csv
-        attributes = %w{qid content answer c1 c2 c3 c4 c5 c1_count c2_count c3_count c4_count c5_count}
+        attributes = %w{qid c1_count c2_count c3_count c4_count c5_count}
         CSV.generate(headers: true) do |csv|
           csv << attributes
           all.each do |question| csv << question.attributes.values_at(*attributes)

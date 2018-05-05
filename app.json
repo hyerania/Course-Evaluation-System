@@ -1,0 +1,9 @@
+{
+  "name": "CSCE120 Evaluation Application",
+  "description": "Evaluation System created by Team Apple Sauce in CSCE606",
+  "repository": "https://github.com/hyerania/Course-Evaluation-System.git",
+  "keywords": ["CSCE", "120", "Evaluation"],
+  "scripts": {
+    "postdeploy": "./production.sh"
+  }
+}

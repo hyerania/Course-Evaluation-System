@@ -1,5 +1,8 @@
-# CSCE606-Project
+# Course-Evaluation-System
 CSCE120 Self-Evaluation Exam
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/hyerania/Course-Evaluation-System)
+
 
 ## Development Workflow
 We will be utilizing a simple version of Gitflow. [More Info](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).

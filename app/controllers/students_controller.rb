@@ -82,6 +82,11 @@ class StudentsController < ApplicationController
     end
   end
   
+  def practice
+     #TBD
+     return
+  end
+  
   def update uin,section
     @student = Student.where(uin: params[:uin].keys[0]).first
     @student.section = params[:section]

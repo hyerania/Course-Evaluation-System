@@ -7,7 +7,7 @@ Background: evaluations in database
   
   Given the following questions exist:
   | qid   | content                               | answer|c1     | c2   | c3    | c4    | c5    |c1_count|c2_count|c3_count|c4_count|c5_count| numAnswers |
-  | 1002  | "What is an array?"     | Green | Green | Pink |"White"|"Blue" |"Red"  |0       |0       |0       |0       |0       | 5          |
+  | 1002  | "What is an array?"     | "Data structure" | "Data structure" | "I don't know" |"Loop"|"building" |"coding standard"  |0       |0       |0       |0       |0       | 5          |
   
  
   Given the following evaluations exist:
@@ -30,8 +30,8 @@ Scenario: view for the student's test
   And I press "Practice"
   When I am on the student questions page
   Then I should see "What is an array?"
-  And  I should see "Green"
-  And  I should see "Pink"
-  And  I should see "White"
-  And  I should see "Blue"
-  And  I should see "Red"
+  And  I should see "Data structure"
+  And  I should see "I don't know"
+  And  I should see "Loop"
+  And  I should see "building"
+  And  I should see "coding standard"

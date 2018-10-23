@@ -82,6 +82,35 @@ class StudentsController < ApplicationController
     end
   end
   
+  def practice 
+    if(session[:uin].nil?)
+      redirect_to controller: 'students', action: 'welcome'
+    end
+  
+    if(session[:uin].nil?)
+      return
+    end
+    
+    @sections = Section.all.order('section_number asc')
+    @list_of_sections = Section.pluck(:section_number).sort
+    @instructions = Instruction.all.first
+    
+    @student = Student.where(uin: session[:uin]).first
+    @access_code = "practice"
+    @evaluations = Evaluation.where(access_code: @access_code).first
+    if(@evaluations.nil?)
+      flash[:warning] = "Error: No practice evaluation exists. Please create a new one"
+      redirect_to controller: 'students', action: 'show'
+    else
+      session[:eid] = @evaluations.eid
+      session[:page]=0
+      session[:choice]=[]
+      @student.choices=[]
+      @student.save
+      redirect_to controller: 'questions', action: 'view'
+    end
+  end 
+  
   def update uin,section
     @student = Student.where(uin: params[:uin].keys[0]).first
     @student.section = params[:section]

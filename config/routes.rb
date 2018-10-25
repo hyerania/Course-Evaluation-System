@@ -108,6 +108,7 @@ Rails.application.routes.draw do
   post 'admin/delete'
   post 'admin/update'
   
+  post 'students/practice', :as => :students_practice
   post 'students/show'
   post 'admin/login'
   post 'admin/show'

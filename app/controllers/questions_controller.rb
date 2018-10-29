@@ -127,9 +127,9 @@ class QuestionsController < ApplicationController
             #flash[:success] = "Choice saved!"
           elsif params[:stat]=="noanswer"
             flash[:warning] = "You have to pick an answer"
-          else
-            @questions=Question.where(:content => @evaluation[@student.choices.count])
-            redirect_to controller: 'questions', action: 'view', page:@student.choices.count, commit:"Next",stat:"noanswer"
+          #else
+           # @questions=Question.where(:content => @evaluation[@student.choices.count])
+            #redirect_to controller: 'questions', action: 'view', page:@student.choices.count, commit:"Next",stat:"noanswer"
           end
         end
         

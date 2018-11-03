@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180427003654) do
+ActiveRecord::Schema.define(version: 20181103025958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,24 @@ ActiveRecord::Schema.define(version: 20180427003654) do
     t.string "access_code"
     t.integer "scales", default: [], array: true
     t.integer "qids", default: [], array: true
+    t.bigint "questions_id"
+    t.index ["questions_id"], name: "index_evaluations_on_questions_id"
   end
 
   create_table "instructions", force: :cascade do |t|
     t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "privilages", force: :cascade do |t|
+    t.string "actionnames"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "question_tags", force: :cascade do |t|
+    t.string "tagname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -55,13 +69,25 @@ ActiveRecord::Schema.define(version: 20180427003654) do
     t.integer "c4_count"
     t.integer "c5_count"
     t.integer "numAnswers", null: false
+    t.bigint "question_tags_id"
     t.index ["qid"], name: "index_questions_on_qid"
+    t.index ["question_tags_id"], name: "index_questions_on_question_tags_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "rolename"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "privilages_id"
+    t.index ["privilages_id"], name: "index_roles_on_privilages_id"
   end
 
   create_table "sections", force: :cascade do |t|
     t.integer "section_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "students_id"
+    t.index ["students_id"], name: "index_sections_on_students_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -79,4 +105,17 @@ ActiveRecord::Schema.define(version: 20180427003654) do
     t.index ["uin"], name: "index_students_on_uin"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "roles_id"
+    t.index ["roles_id"], name: "index_users_on_roles_id"
+  end
+
+  add_foreign_key "evaluations", "questions", column: "questions_id"
+  add_foreign_key "questions", "question_tags", column: "question_tags_id"
+  add_foreign_key "roles", "privilages", column: "privilages_id"
+  add_foreign_key "sections", "students", column: "students_id"
+  add_foreign_key "users", "roles", column: "roles_id"
 end

@@ -12,6 +12,7 @@
                 <thead class="thead-light">
                    <tr>
                         <th width="5%">ID</th>
+                        <th width=10%">Difficulty</th>
                         <th width="20%">Content</th>
                         <th width="10%">Answer</th>
                         <th width="10%">Choice 1</th>
@@ -27,6 +28,7 @@
                     <% @all_questions.each do |question| %>
                         <tr>
                             <td><%= link_to question.qid, "/admin/questions/edit/#{question.qid}" %></td>
+                            <td class="break"><%= question.difficulty %></td>
                             <td class="break"><%= question.content.truncate(500) %></td>
                             <td class="break"><%= question.answer %></td>
                             <td class="break"><%= question.c1 %></td>

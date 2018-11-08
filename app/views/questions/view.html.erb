@@ -5,7 +5,17 @@
 <%=form_for :questions_form, :url => {:controller => 'questions',:action => "view"} do |q|%>
     <p>Warning: Don't press the back arrow, your choices will be saved after you click "Next" and "Submit"! &nbsp; &nbsp; &nbsp;</p>
     <% @questions.each do |question| %>
+        <% if question.difficulty == 'easy' %>
+            <div class="alert alert-success">Easy</div>
+        <% end %>
+        <% if question.difficulty == 'medium' %>
+            <div class="alert alert-warning fade in">Medium</div>
+        <% end %>
+        <% if question.difficulty == 'hard' %>
+            <div class="alert alert-danger">Hard</div>
+        <% end %>
         <%= question.content.html_safe %>
+
         <% if question.c1!=nil&&question.c1!="" %>
             <%= radio_button_tag :choice, "1" %>
             <div style="display: inline-block;">

@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20181105023751) do
 
   # These are extensions that must be enabled in order to support this database
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 20181105023751) do
     t.integer "c5_count"
     t.integer "numAnswers", null: false
     t.bigint "question_tags_id"
+    t.string "difficulty"
     t.index ["qid"], name: "index_questions_on_qid"
     t.index ["question_tags_id"], name: "index_questions_on_question_tags_id"
   end

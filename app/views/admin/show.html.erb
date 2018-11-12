@@ -46,6 +46,7 @@
                 <thead class="thead-light">
                     <tr>
                         <th>ID</th>
+                        <th>Difficulty</th>
                         <th>Content</th>
                         <th>Choice 1 Count</th>
                         <th>Choice 2 Count</th>
@@ -58,6 +59,7 @@
                     <% @all_questions.each do |question| %>
                         <tr>
                             <td><%= question.qid %></td>
+                            <td><%= question.difficulty %></td>
                             <td><%= question.content.truncate(500)  %></td>
                             <td><%= question.c1_count %></td>
                             <td><%= question.c2_count %></td>

@@ -6,33 +6,27 @@
         <% end %>
     </div>
     <div class="col-sm-12">
-        <h3>Student Summary:</h3>
+        <h3>Evaluations Summary:</h3>
         <h4>Overall Average: <%=@average%></h4>
         <div class="table-responsive">
             <table class="table table-bordered table-hover" id="t01">
                 <thead class="thead-light">
                     <tr>
-                        <th>UIN</th>
-                        <th>Student Name</th>
-                        <th>Section</th>
-                        <th>Attempts</th>
-                        <th>Score</th>
-                        <th>Change Section</th>
+                        <th>ID</th>
+                        <th>Evaluation Title</th>
+                        <th>Average Score</th>
+                        <th>Maximum Score</th>
+                        <th>Minimum Score</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% @students.each do |student| %>
+                    <% @evaluations.each do |evaluation| %>
                       <tr>
-                        <td><%= student.uin %></td>
-                        <td><%= student.name %></td>
-                        <td><%= student.section %></td>
-                        <td><%= student.attempts %></td>
-                        <td><%= student.score %></td>
-                        <td><%= form_tag do %>
-                            <%= select_tag 'section', options_for_select(@list_of_sections, @selected_section) %>
-                            <%= submit_tag "Update", :name => "uin[#{student.uin}]", class: "btn btn-primary btn-sm"  %>
-                            <% end %>
-                        </td>
+                        <td><%= evaluation.eid %></td>
+                        <td><%= evaluation.title %></td>
+                        <td><%= evaluation.avg_score %></td>
+                        <td><%= evaluation.max_score %></td>
+                        <td><%= evaluation.min_score %></td>
                       </tr>
                     <% end %>
                 </tbody>
@@ -60,7 +54,7 @@
                         <tr>
                             <td><%= question.qid %></td>
                             <td><%= question.difficulty %></td>
-                            <td><%= question.content.truncate(500)  %></td>
+                            <td><%= question.content.html_safe  %></td>
                             <td><%= question.c1_count %></td>
                             <td><%= question.c2_count %></td>
                             <td><%= question.c3_count %></td>

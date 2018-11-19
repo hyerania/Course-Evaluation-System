@@ -10,8 +10,11 @@ class QuestionsController < ApplicationController
     score=0
     i=0
     
-    @evaluation = Evaluation.pluck(:content).last
-    @this_evaluation=Evaluation.last
+    @eval = Evaluation.where(:eid => session[:eid]).first
+    
+    
+    @evaluation = @eval[:content]
+    @this_evaluation=@eval
     
     @student=Student.where(:uin=>session[:uin]).first
     
@@ -60,6 +63,13 @@ class QuestionsController < ApplicationController
     puts total_score
     
     session[:choice]=[]
+    
+    @score = Score.new
+    @score.score = score
+    @score.students_id = @student.id
+    @score.evaluations_id = @eval[:eid]
+    @score.save
+    
     
     @student.score=score
     @student.scoretotal=total_score

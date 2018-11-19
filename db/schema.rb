@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20181105023751) do
 
   # These are extensions that must be enabled in order to support this database
@@ -70,8 +69,8 @@ ActiveRecord::Schema.define(version: 20181105023751) do
     t.integer "c4_count"
     t.integer "c5_count"
     t.integer "numAnswers", null: false
-    t.bigint "question_tags_id"
     t.string "difficulty"
+    t.bigint "question_tags_id"
     t.index ["qid"], name: "index_questions_on_qid"
     t.index ["question_tags_id"], name: "index_questions_on_question_tags_id"
   end
@@ -85,7 +84,7 @@ ActiveRecord::Schema.define(version: 20181105023751) do
   end
 
   create_table "scores", force: :cascade do |t|
-    t.integer "name"
+    t.integer "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "students_id"

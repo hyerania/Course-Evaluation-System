@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
   #   params.require(:student).permit(:uin, :name, :section, :attempts, :score)
   # end
   def show
-
+    
   end
   
 end
